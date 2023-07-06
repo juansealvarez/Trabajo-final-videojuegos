@@ -55,6 +55,12 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized]
     public static PlayerInput mPlayerInput;
     private bool canJump = true;
+    [SerializeField]
+    private Animator modelAnimator;
+    [SerializeField]
+    private GameObject modelShotgun;
+    [SerializeField]
+    private GameObject modelPistol;
     private void Awake()
     {
         Instance = this;
@@ -94,6 +100,7 @@ public class PlayerController : MonoBehaviour
 
         RunnigMultiplier = 1.5f;
         CameraAnimator.enabled = false;
+        modelAnimator.SetBool("IsShotgun", true);
     }
 
     private void Update()
@@ -121,12 +128,36 @@ public class PlayerController : MonoBehaviour
                 cameraMain.GetComponent<CameraMovement>().RotateUpDown(
                     -turnSpeed * Time.deltaTime * mDeltaLook.y
                 );
-                if (mRb.velocity.y != 0)
+
+                if (mDirection != Vector2.zero)
                 {
-                    canJump = false;
+                    modelAnimator.SetFloat("Horizontal", mDirection.x);
+                    modelAnimator.SetFloat("Vertical", mDirection.y);
+                    modelAnimator.SetBool("IsWalking", true);
+                }
+                else
+                {
+                    modelAnimator.SetBool("IsWalking", false);
+                }
+
+                if(!aimShotgun.WeaponActive)
+                {
+                    modelAnimator.SetBool("IsShotgun", false);
+                    modelPistol.SetActive(true);
+                    modelShotgun.SetActive(false);
                 }else
                 {
-                    canJump = true;
+                    modelAnimator.SetBool("IsShotgun", true);
+                    modelPistol.SetActive(false);
+                    modelShotgun.SetActive(true);
+                }
+
+                if (aimShotgun.isAiming)
+                {
+                    modelAnimator.SetBool("IsAiming", true);
+                }else if (!aimShotgun.isAiming)
+                {
+                    modelAnimator.SetBool("IsAiming", false);
                 }
             }
             
