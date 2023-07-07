@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -54,13 +55,20 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     [System.NonSerialized]
     public static PlayerInput mPlayerInput;
-    private bool canJump = true;
     [SerializeField]
     private Animator modelAnimator;
     [SerializeField]
     private GameObject modelShotgun;
     [SerializeField]
     private GameObject modelPistol;
+
+    [SerializeField] 
+    private float jumpForce = 5.0f;
+    [SerializeField] 
+    private bool isReadyToJump = true;
+    [System.NonSerialized]
+    public bool isReloading = false;
+    private AimShotgun scriptGun;
     private void Awake()
     {
         Instance = this;
@@ -101,10 +109,19 @@ public class PlayerController : MonoBehaviour
         RunnigMultiplier = 1.5f;
         CameraAnimator.enabled = false;
         modelAnimator.SetBool("IsShotgun", true);
+        scriptGun = aimShotgun;
     }
 
     private void Update()
     {
+        
+        if (aimShotgun.WeaponActive)
+        {
+            scriptGun = aimShotgun;
+        }else
+        {
+            scriptGun = aimPistol;
+        }
         if (!IsDead)
         {
             if (!MenuPausa.isPaused)
@@ -159,6 +176,11 @@ public class PlayerController : MonoBehaviour
                 {
                     modelAnimator.SetBool("IsAiming", false);
                 }
+                if (!isReloading && scriptGun.balasActuales==0 && scriptGun.balasTotales>0)
+                {
+                    //Recarga
+                    reloading();
+                }
             }
             
         }else
@@ -181,6 +203,44 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    private void reloading()
+    {
+        isReloading = true;
+        mAnimator.SetTrigger("IsReloading");
+    }
+
+    public void stopReloading()
+    {
+        var balasARecargar = 0f;
+        balasARecargar = scriptGun.balasCargador-scriptGun.balasActuales;
+        if (scriptGun.balasTotales>=balasARecargar)
+        {
+            scriptGun.balasTotales-=balasARecargar;
+            scriptGun.balasActuales+=balasARecargar;
+        }else
+        {
+            scriptGun.balasActuales+=scriptGun.balasTotales;
+            scriptGun.balasTotales-=scriptGun.balasTotales;
+        }
+        isReloading = false;
+    }
+    private void OnReload(InputValue value)
+    {
+        if(!IsDead)
+        {
+            if (value.isPressed)
+            {
+                if(!MenuPausa.isPaused)
+                {
+                    if (!isReloading && (scriptGun.balasActuales>0 && scriptGun.balasActuales<scriptGun.balasCargador))
+                    {
+                        reloading();
+                    }
+                }
+            }
+        }
+    }
     private void OnMove(InputValue value)
     {
         mDirection = value.Get<Vector2>();
@@ -197,19 +257,24 @@ public class PlayerController : MonoBehaviour
         {
             if (value.isPressed)
             {
-                Debug.Log("Se hizo click...");
                 if(!MenuPausa.isPaused)
                 {
                     if(aimShotgun.WeaponActive)
                     {
-                        mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[0]);
-                        mAnimator.SetTrigger("GunShooting");
-                        Shoot();
+                        if(!isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
+                        {
+                            //mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[0]);
+                            mAnimator.SetTrigger("GunShooting");
+                            Shoot(scriptGun);
+                        }
                     }else
                     {
-                        pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
-                        pAnimator.SetTrigger("GunShooting");
-                        Shoot();
+                        if(!isReloading && (scriptGun.balasCargador > 0 || scriptGun.balasActuales > 0))
+                        {
+                            //pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
+                            pAnimator.SetTrigger("GunShooting");
+                            Shoot(scriptGun);
+                        }
                     }
                 }
                 
@@ -218,16 +283,9 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void Shoot()
+    private void Shoot(AimShotgun scriptGun)
     {
-        var scriptGun = aimShotgun;
-        if (aimShotgun.WeaponActive)
-        {
-            scriptGun = aimShotgun;
-        }else
-        {
-            scriptGun = aimPistol;
-        }
+        scriptGun.balasActuales-=1;
         scriptGun.shootPS.Play();
 
         RaycastHit hit;
@@ -305,23 +363,42 @@ public class PlayerController : MonoBehaviour
         {
             if(!MenuPausa.isPaused)
             {
-                if(canJump)
+                if(value.isPressed)
                 {
-                    if(value.isPressed)
+                    if (isReadyToJump)
                     {
-                        Debug.Log("saltando...");
-                        // Saltar
-                        mRb.velocity = new Vector3(
-                            mRb.velocity.x,
-                            JumpSpeed,
-                            mRb.velocity.z
-                            
-                        );
-                        Debug.Log(mRb.velocity.y);
-                        //mRb.AddForce(new Vector3(0f, JumpSpeed, 0f), ForceMode.Impulse);
+                        Debug.Log("va a saltar");
+                        isReadyToJump = false;
+                        Saltar();
+                        Invoke("ReiniciarSalto", 1f);
                     }
+                    //Debug.Log("saltando...");
+                    // Saltar
+                    /*mRb.velocity = new Vector3(
+                        mRb.velocity.x,
+                        JumpSpeed,
+                        mRb.velocity.z
+                        
+                    );
+                    Debug.Log(mRb.velocity.y);*/
+                    //mRb.velocity = new Vector3(mRb.velocity.x, 0f, mRb.velocity.z);
+
+                    //mRb.AddForce(transform.up * JumpSpeed, ForceMode.Impulse);
+                    //mRb.AddForce(new Vector3(0f, JumpSpeed, 0f), ForceMode.Impulse);
                 }
             }
         }
+    }
+
+    private void Saltar()
+    {
+        mRb.velocity = new Vector3(mRb.velocity.x, 0f, mRb.velocity.z);
+
+        mRb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void ReiniciarSalto()
+    {
+        isReadyToJump = true;
     }
 }

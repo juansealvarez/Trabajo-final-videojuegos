@@ -5,7 +5,7 @@ using TMPro;
 
 public class AimShotgun : MonoBehaviour
 {
-    public AimShotgun Instance { private set; get; }
+    public AimShotgun Instance { set; get; }
     public float AimingSpeed = 2f;
     public Transform targetAim;
     public Transform targetNoAim;
@@ -22,10 +22,21 @@ public class AimShotgun : MonoBehaviour
     public TextMeshProUGUI balas;
     [System.NonSerialized]
     public bool isAiming = false;
+    [System.NonSerialized]
+    public float balasActuales;
+    [System.NonSerialized]
+    public float balasCargador;
+    [System.NonSerialized]
+    public float balasTotales;
+    [SerializeField]
+    private PlayerController PlayerController;
 
     private void Awake()
     {
         Instance = this;
+        balasActuales = Weapon.balasCargador;
+        balasCargador = Weapon.balasCargador;
+        balasTotales = Weapon.balas;
     }
 
     private void Start()
@@ -44,23 +55,37 @@ public class AimShotgun : MonoBehaviour
     private void Update()
     {
         arma.text = Weapon.GunName;
-        balas.text = Weapon.balasCargador.ToString() + "/" + Weapon.balas.ToString();
+        balas.text = balasActuales.ToString() + "/" + balasTotales.ToString();
         float aiming = AimingSpeed * Time.deltaTime;
+        var animator = GetComponent<Animator>();
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            isAiming = true;
-            transform.position = Vector3.MoveTowards(transform.position, targetAim.position, aiming);
+            if(!PlayerController.Instance.isReloading)
+            {
+                animator.enabled = false;
+                isAiming = true;
+                transform.position = Vector3.MoveTowards(transform.position, targetAim.position, aiming);
+            }
+            
         }else
         {
+            animator.enabled = true;
             isAiming = false;
             transform.position = Vector3.MoveTowards(transform.position, targetNoAim.position, aiming);
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            WeaponActive = false;
-            WeaponToActivate.GetComponent<AimShotgun>().WeaponActive = true;
-            gameObject.SetActive(false);
-            WeaponToActivate.gameObject.SetActive(true);
+            if(!PlayerController.Instance.isReloading)
+            {
+                WeaponActive = false;
+                WeaponToActivate.GetComponent<AimShotgun>().WeaponActive = true;
+                gameObject.SetActive(false);
+                WeaponToActivate.gameObject.SetActive(true);
+            }
         }
+    }
+    private void stopReloading()
+    {
+        PlayerController.stopReloading();
     }
 }

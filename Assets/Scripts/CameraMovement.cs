@@ -18,4 +18,6 @@ public class CameraMovement : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(newRotation);
     }
+
 }
+
