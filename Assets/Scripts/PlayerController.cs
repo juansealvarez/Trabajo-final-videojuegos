@@ -69,6 +69,14 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized]
     public bool isReloading = false;
     private AimShotgun scriptGun;
+    [SerializeField]
+    private GameObject UIReload;
+    [SerializeField]
+    private GameObject UILowAmmo;
+    [SerializeField]
+    private GameObject UINoAmmo;
+    public ParticleSystem shootGunPSModel;
+    public ParticleSystem shootPistolPSModel;
     private void Awake()
     {
         Instance = this;
@@ -176,13 +184,40 @@ public class PlayerController : MonoBehaviour
                 {
                     modelAnimator.SetBool("IsAiming", false);
                 }
+                if (aimPistol.isAiming)
+                {
+                    modelAnimator.SetBool("IsAimingPistol", true);
+                }else if (!aimShotgun.isAiming)
+                {
+                    modelAnimator.SetBool("IsAimingPistol", false);
+                }
                 if (!isReloading && scriptGun.balasActuales==0 && scriptGun.balasTotales>0)
                 {
                     //Recarga
                     reloading();
                 }
+                if(scriptGun.balasActuales <= scriptGun.balasCargador*0.2 && scriptGun.balasTotales!=0)
+                {
+                    UIReload.SetActive(true);
+                    UILowAmmo.SetActive(false);
+                    UINoAmmo.SetActive(false);
+                }else if (scriptGun.balasActuales <= scriptGun.balasCargador*0.2 && scriptGun.balasActuales!=0 && scriptGun.balasTotales==0)
+                {
+                    UIReload.SetActive(false);
+                    UILowAmmo.SetActive(true);
+                    UINoAmmo.SetActive(false);
+                }else if (scriptGun.balasActuales==0 && scriptGun.balasTotales==0)
+                {
+                    UIReload.SetActive(false);
+                    UILowAmmo.SetActive(false);
+                    UINoAmmo.SetActive(true);
+                }else
+                {
+                    UIReload.SetActive(false);
+                    UILowAmmo.SetActive(false);
+                    UINoAmmo.SetActive(false);
+                }
             }
-            
         }else
         {
             Cursor.lockState = CursorLockMode.None;
@@ -207,7 +242,16 @@ public class PlayerController : MonoBehaviour
     private void reloading()
     {
         isReloading = true;
-        mAnimator.SetTrigger("IsReloading");
+        if (aimShotgun.WeaponActive)
+        {
+            modelAnimator.SetTrigger("IsReloading");
+            mAnimator.SetTrigger("IsReloading");
+        }else
+        {
+            modelAnimator.SetTrigger("IsReloading");
+            pAnimator.SetTrigger("IsReloading");
+        }
+        
     }
 
     public void stopReloading()
@@ -233,7 +277,7 @@ public class PlayerController : MonoBehaviour
             {
                 if(!MenuPausa.isPaused)
                 {
-                    if (!isReloading && (scriptGun.balasActuales>0 && scriptGun.balasActuales<scriptGun.balasCargador))
+                    if (!isReloading && (scriptGun.balasActuales>0 && scriptGun.balasActuales<scriptGun.balasCargador && scriptGun.balasTotales!=0))
                     {
                         reloading();
                     }
@@ -265,14 +309,16 @@ public class PlayerController : MonoBehaviour
                         {
                             //mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[0]);
                             mAnimator.SetTrigger("GunShooting");
+                            shootGunPSModel.Play();
                             Shoot(scriptGun);
                         }
                     }else
                     {
-                        if(!isReloading && (scriptGun.balasCargador > 0 || scriptGun.balasActuales > 0))
+                        if(!isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
                             //pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
                             pAnimator.SetTrigger("GunShooting");
+                            shootPistolPSModel.Play();
                             Shoot(scriptGun);
                         }
                     }
