@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float turnSpeed;
     public float PlayerHealth = 20f;
-    [SerializeField]
-    private float JumpSpeed = 10f;
 
     private Rigidbody mRb;
     private Vector2 mDirection;
@@ -64,8 +62,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] 
     private float jumpForce = 5.0f;
-    [SerializeField] 
-    private bool isReadyToJump = true;
     [System.NonSerialized]
     public bool isReloading = false;
     private AimShotgun scriptGun;
@@ -77,6 +73,17 @@ public class PlayerController : MonoBehaviour
     private GameObject UINoAmmo;
     public ParticleSystem shootGunPSModel;
     public ParticleSystem shootPistolPSModel;
+    [SerializeField]
+    private bool grounded;
+    [SerializeField]
+    private float groundDrag = 5f;
+    [SerializeField]
+    private float playerHeight = 0.4f;
+    [SerializeField]
+    private LayerMask whatIsGround;
+    [SerializeField]
+    private float airMultiplier = 1f;
+
     private void Awake()
     {
         Instance = this;
@@ -134,6 +141,15 @@ public class PlayerController : MonoBehaviour
         {
             if (!MenuPausa.isPaused)
             {
+                Vector3 PosicionSalto = transform.position + new Vector3(0f, playerHeight, 0f);
+                grounded = Physics.Raycast(PosicionSalto, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+                SpeedControl();
+                if (grounded) {
+                    mRb.drag = groundDrag;
+                }else 
+                {
+                    mRb.drag = 0f;
+                }
                 if (Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl))
                 {
                     speed = WalkingSpeed * RunnigMultiplier;
@@ -142,8 +158,9 @@ public class PlayerController : MonoBehaviour
                     speed = WalkingSpeed;
                 }
                 
-                mRb.velocity = mDirection.y * speed * transform.forward
-                    + mDirection.x * speed * transform.right;
+                /*mRb.velocity = mDirection.y * speed * transform.forward
+                    + mDirection.x * speed * transform.right;*/
+                MovePlayer();
 
                 //var control = GetComponent<PlayerInput>().currentControlScheme;
                 transform.Rotate(
@@ -154,7 +171,7 @@ public class PlayerController : MonoBehaviour
                     -turnSpeed * Time.deltaTime * mDeltaLook.y
                 );
 
-                if (mDirection != Vector2.zero)
+                if (mDirection != Vector2.zero && grounded)
                 {
                     modelAnimator.SetFloat("Horizontal", mDirection.x);
                     modelAnimator.SetFloat("Vertical", mDirection.y);
@@ -239,6 +256,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void MovePlayer()
+    {
+        Vector3 moveDirection = mDirection.y * transform.forward + mDirection.x * transform.right;
+        if(grounded){
+            mRb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
+        }else{
+            mRb.AddForce(moveDirection.normalized * speed * 10f * airMultiplier, ForceMode.Force);
+        }
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(mRb.velocity.x, 0f, mRb.velocity.z);
+        if(flatVel.magnitude > speed)
+        {
+            Vector3 limitedVel = flatVel.normalized * speed;
+            mRb.velocity = new Vector3(limitedVel.x, mRb.velocity.y, limitedVel.z);
+        }
+    }
+
     private void reloading()
     {
         isReloading = true;
@@ -307,7 +344,7 @@ public class PlayerController : MonoBehaviour
                     {
                         if(!isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
-                            //mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[0]);
+                            mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[0]);
                             mAnimator.SetTrigger("GunShooting");
                             shootGunPSModel.Play();
                             Shoot(scriptGun);
@@ -316,7 +353,7 @@ public class PlayerController : MonoBehaviour
                     {
                         if(!isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
-                            //pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
+                            pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
                             pAnimator.SetTrigger("GunShooting");
                             shootPistolPSModel.Play();
                             Shoot(scriptGun);
@@ -411,26 +448,10 @@ public class PlayerController : MonoBehaviour
             {
                 if(value.isPressed)
                 {
-                    if (isReadyToJump)
+                    if (grounded)
                     {
-                        Debug.Log("va a saltar");
-                        isReadyToJump = false;
                         Saltar();
-                        Invoke("ReiniciarSalto", 1f);
                     }
-                    //Debug.Log("saltando...");
-                    // Saltar
-                    /*mRb.velocity = new Vector3(
-                        mRb.velocity.x,
-                        JumpSpeed,
-                        mRb.velocity.z
-                        
-                    );
-                    Debug.Log(mRb.velocity.y);*/
-                    //mRb.velocity = new Vector3(mRb.velocity.x, 0f, mRb.velocity.z);
-
-                    //mRb.AddForce(transform.up * JumpSpeed, ForceMode.Impulse);
-                    //mRb.AddForce(new Vector3(0f, JumpSpeed, 0f), ForceMode.Impulse);
                 }
             }
         }
@@ -441,10 +462,5 @@ public class PlayerController : MonoBehaviour
         mRb.velocity = new Vector3(mRb.velocity.x, 0f, mRb.velocity.z);
 
         mRb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
-
-    private void ReiniciarSalto()
-    {
-        isReadyToJump = true;
     }
 }
