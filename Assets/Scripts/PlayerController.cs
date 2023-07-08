@@ -346,6 +346,7 @@ public class PlayerController : MonoBehaviour
                         {
                             mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[0]);
                             mAnimator.SetTrigger("GunShooting");
+                            modelAnimator.SetTrigger("IsShooting");
                             shootGunPSModel.Play();
                             Shoot(scriptGun);
                         }
@@ -355,6 +356,7 @@ public class PlayerController : MonoBehaviour
                         {
                             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
                             pAnimator.SetTrigger("GunShooting");
+                            modelAnimator.SetTrigger("IsShooting");
                             shootPistolPSModel.Play();
                             Shoot(scriptGun);
                         }
