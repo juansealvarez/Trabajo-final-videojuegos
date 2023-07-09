@@ -234,6 +234,12 @@ public class PlayerController : MonoBehaviour
                     UILowAmmo.SetActive(false);
                     UINoAmmo.SetActive(false);
                 }
+                if(grounded){
+                    modelAnimator.SetBool("IsJumping", false);
+                }else
+                {
+                    modelAnimator.SetBool("IsJumping", true);
+                }
             }
         }else
         {
