@@ -73,19 +73,19 @@ public class AimShotgun : MonoBehaviour
             isAiming = false;
             transform.position = Vector3.MoveTowards(transform.position, targetNoAim.position, aiming);
         }
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if(!PlayerController.Instance.isReloading)
-            {
-                WeaponActive = false;
-                WeaponToActivate.GetComponent<AimShotgun>().WeaponActive = true;
-                gameObject.SetActive(false);
-                WeaponToActivate.gameObject.SetActive(true);
-            }
-        }
     }
     private void stopReloading()
     {
         PlayerController.stopReloading();
+    }
+    public void SwitchWeapon()
+    {
+        if(!PlayerController.Instance.isReloading)
+        {
+            WeaponActive = false;
+            WeaponToActivate.GetComponent<AimShotgun>().WeaponActive = true;
+            gameObject.SetActive(false);
+            WeaponToActivate.gameObject.SetActive(true);
+        }
     }
 }

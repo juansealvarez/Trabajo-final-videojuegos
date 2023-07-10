@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
     private LayerMask whatIsGround;
     [SerializeField]
     private float airMultiplier = 1f;
+    private float turnSpeed2;
 
     private void Awake()
     {
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour
         CameraAnimator.enabled = false;
         modelAnimator.SetBool("IsShotgun", true);
         scriptGun = aimShotgun;
+        turnSpeed2 = turnSpeed;
     }
 
     private void Update()
@@ -162,13 +164,21 @@ public class PlayerController : MonoBehaviour
                     + mDirection.x * speed * transform.right;*/
                 MovePlayer();
 
-                //var control = GetComponent<PlayerInput>().currentControlScheme;
+                var control = GetComponent<PlayerInput>().currentControlScheme;
+                //Debug.Log(control);
+                if (control == "Gamepad" || control == "Player1Controller" || control == "Player2Controller")
+                {
+                    turnSpeed2 = turnSpeed*50;
+                }else
+                {
+                    turnSpeed2 = turnSpeed;
+                }
                 transform.Rotate(
                     Vector3.up,
-                    turnSpeed * Time.deltaTime * mDeltaLook.x
+                    turnSpeed2 * Time.deltaTime * mDeltaLook.x
                 );
                 cameraMain.GetComponent<CameraMovement>().RotateUpDown(
-                    -turnSpeed * Time.deltaTime * mDeltaLook.y
+                    -turnSpeed2 * Time.deltaTime * mDeltaLook.y
                 );
 
                 if (mDirection != Vector2.zero && grounded)
@@ -431,6 +441,7 @@ public class PlayerController : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.None;
                 MenuPausa.Instance.PausarJuego();
+                //Ver por que chuchas no funca con el gamepad
             }
         }
         
@@ -470,5 +481,18 @@ public class PlayerController : MonoBehaviour
         mRb.velocity = new Vector3(mRb.velocity.x, 0f, mRb.velocity.z);
 
         mRb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    private void OnSwitchWeapon(InputValue value)
+    {
+        if(!IsDead)
+        {
+            if(!MenuPausa.isPaused)
+            {
+                if(value.isPressed)
+                {
+                    scriptGun.SwitchWeapon();
+                }
+            }
+        }
     }
 }
