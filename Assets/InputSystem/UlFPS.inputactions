@@ -76,24 +76,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "StartAiming",
-                    "type": "Button",
-                    "id": "e3001b6d-0052-4fc2-9c8d-bbd98e370f1d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "StopAiming",
-                    "type": "Button",
-                    "id": "f58afb7a-c953-4815-8ef0-5fc3e456f982",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -358,50 +340,6 @@
                     "processors": "",
                     "groups": "Gamepad;Player1Controller;Player2Controller",
                     "action": "SwitchWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0e3f7714-fc6c-454f-8141-510dedab3420",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse;PlayerKeyboard",
-                    "action": "StartAiming",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fb9d8753-3951-4553-a0c8-5358b1fc8027",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
-                    "action": "StartAiming",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "78ef361a-f290-4e57-a87a-4d1910751d28",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse;PlayerKeyboard",
-                    "action": "StopAiming",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1ff22947-a4d3-4f0f-814b-320cb69cd2a5",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
-                    "action": "StopAiming",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

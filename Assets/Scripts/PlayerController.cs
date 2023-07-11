@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float airMultiplier = 1f;
     private float turnSpeed2;
+    private Animator legAnimator;
 
     private void Awake()
     {
@@ -112,6 +113,8 @@ public class PlayerController : MonoBehaviour
         mPlayerInput = GetComponent<PlayerInput>();
 
         Cursor.lockState = CursorLockMode.Locked;
+        legAnimator = transform.Find("Legs")
+            .GetComponent<Animator>();
 
         mAudioSource = transform
             .Find("Main Camera")
@@ -186,10 +189,12 @@ public class PlayerController : MonoBehaviour
                     modelAnimator.SetFloat("Horizontal", mDirection.x);
                     modelAnimator.SetFloat("Vertical", mDirection.y);
                     modelAnimator.SetBool("IsWalking", true);
+                    legAnimator.SetBool("IsWalking", true);
                 }
                 else
                 {
                     modelAnimator.SetBool("IsWalking", false);
+                    legAnimator.SetBool("IsWalking", false);
                 }
 
                 if(!aimShotgun.WeaponActive)
@@ -365,6 +370,9 @@ public class PlayerController : MonoBehaviour
                             modelAnimator.SetTrigger("IsShooting");
                             shootGunPSModel.Play();
                             Shoot(scriptGun);
+                        }else if(!isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
+                        {
+                            mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[1]);
                         }
                     }else
                     {
@@ -375,6 +383,9 @@ public class PlayerController : MonoBehaviour
                             modelAnimator.SetTrigger("IsShooting");
                             shootPistolPSModel.Play();
                             Shoot(scriptGun);
+                        }else if (!isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
+                        {
+                            pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[1]);
                         }
                     }
                 }
