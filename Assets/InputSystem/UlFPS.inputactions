@@ -383,6 +383,12 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "MenuAndEndgame",
+            "id": "3e0670ad-0712-44de-ad2e-6363a3bb9f69",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [

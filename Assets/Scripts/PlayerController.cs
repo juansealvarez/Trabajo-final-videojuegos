@@ -85,7 +85,16 @@ public class PlayerController : MonoBehaviour
     private float airMultiplier = 1f;
     private float turnSpeed2;
     private Animator legAnimator;
+    [SerializeField]
+    private GameObject swat;
+    [SerializeField]
+    private GameObject legs;
+    [System.NonSerialized]
+    public bool isInspecting = false;
 
+    //TODO: poner sonidos de recarga y de caminar y sonidos de daño
+    //TODO: que el jugador recoja balas del suelo dropeadas por los zombies
+    //TODO: voice acting
     private void Awake()
     {
         Instance = this;
@@ -190,6 +199,8 @@ public class PlayerController : MonoBehaviour
                     modelAnimator.SetFloat("Vertical", mDirection.y);
                     modelAnimator.SetBool("IsWalking", true);
                     legAnimator.SetBool("IsWalking", true);
+                    legAnimator.SetFloat("Horizontal", mDirection.x);
+                    legAnimator.SetFloat("Vertical", mDirection.y);
                 }
                 else
                 {
@@ -251,19 +262,24 @@ public class PlayerController : MonoBehaviour
                 }
                 if(grounded){
                     modelAnimator.SetBool("IsJumping", false);
+                    legAnimator.SetBool("IsJumping", false);
                 }else
                 {
                     modelAnimator.SetBool("IsJumping", true);
+                    legAnimator.SetBool("IsJumping", true);
                 }
             }
         }else
         {
             Cursor.lockState = CursorLockMode.None;
+            mPlayerInput.SwitchCurrentActionMap("MenuAndEndgame");
             PlayerCapsulle.SetActive(false);
             primary.SetActive(false);
             secondary.SetActive(false);
             UI.gameObject.SetActive(false);
             DeadScreen.gameObject.SetActive(true);
+            swat.SetActive(false);
+            legs.SetActive(false);
             gameManager.enabled = false;
             if(gameManager.CopyrigthSong && !songPlayed)
             {
@@ -335,7 +351,7 @@ public class PlayerController : MonoBehaviour
             {
                 if(!MenuPausa.isPaused)
                 {
-                    if (!isReloading && (scriptGun.balasActuales>0 && scriptGun.balasActuales<scriptGun.balasCargador && scriptGun.balasTotales!=0))
+                    if (!isInspecting && !isReloading && (scriptGun.balasActuales>0 && scriptGun.balasActuales<scriptGun.balasCargador && scriptGun.balasTotales!=0))
                     {
                         reloading();
                     }
@@ -363,27 +379,27 @@ public class PlayerController : MonoBehaviour
                 {
                     if(aimShotgun.WeaponActive)
                     {
-                        if(!isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
+                        if(!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
                             mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[0]);
                             mAnimator.SetTrigger("GunShooting");
                             modelAnimator.SetTrigger("IsShooting");
                             shootGunPSModel.Play();
                             Shoot(scriptGun);
-                        }else if(!isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
+                        }else if(!isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
                         {
                             mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[1]);
                         }
                     }else
                     {
-                        if(!isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
+                        if(!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
                             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
                             pAnimator.SetTrigger("GunShooting");
                             modelAnimator.SetTrigger("IsShooting");
                             shootPistolPSModel.Play();
                             Shoot(scriptGun);
-                        }else if (!isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
+                        }else if (!isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
                         {
                             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[1]);
                         }
@@ -452,7 +468,6 @@ public class PlayerController : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.None;
                 MenuPausa.Instance.PausarJuego();
-                //Ver por que chuchas no funca con el gamepad
             }
         }
         
@@ -463,7 +478,7 @@ public class PlayerController : MonoBehaviour
         {
             if(value.isPressed)
             {
-                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.lockState = CursorLockMode.Locked;
                 MenuPausa.Instance.ReanudarJuego();
             }
         }
@@ -497,7 +512,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!IsDead)
         {
-            if(!MenuPausa.isPaused)
+            if(!MenuPausa.isPaused && !isInspecting)
             {
                 if(value.isPressed)
                 {
@@ -505,5 +520,29 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+    private void OnInspectWeapon(InputValue value)
+    {
+        if(!IsDead)
+        {
+            if(!MenuPausa.isPaused)
+            {
+                if(value.isPressed && !isInspecting && !isReloading)
+                {
+                    isInspecting = true;
+                    if(aimShotgun.WeaponActive)
+                    {
+                        mAnimator.SetTrigger("IsInspecting");
+                    }else
+                    {
+                        pAnimator.SetTrigger("IsInspecting");
+                    }
+                }
+            }
+        }
+    }
+    public void StopInspecting()
+    {
+        isInspecting = false;
     }
 }

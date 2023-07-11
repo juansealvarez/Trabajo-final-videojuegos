@@ -60,7 +60,7 @@ public class AimShotgun : MonoBehaviour
         var animator = GetComponent<Animator>();
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            if(!PlayerController.Instance.isReloading)
+            if(!PlayerController.Instance.isReloading && !PlayerController.Instance.isInspecting)
             {
                 animator.enabled = false;
                 isAiming = true;
@@ -87,5 +87,9 @@ public class AimShotgun : MonoBehaviour
             gameObject.SetActive(false);
             WeaponToActivate.gameObject.SetActive(true);
         }
+    }
+    private void stopInspecting()
+    {
+        PlayerController.StopInspecting();
     }
 }
