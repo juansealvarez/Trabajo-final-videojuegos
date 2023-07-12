@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform Player;
-
     private Animator mAnimator;
     private Rigidbody mRb;
 
@@ -87,31 +85,6 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    private void Walk(Collider collider2)
-    {
-        Debug.Log("En funcion Walk");
-        // caminar
-        var playerPosition = collider2.transform.position;
-        var direction = playerPosition - transform.position;
-        mDirection = new Vector2(direction.x, direction.z);
-
-        //transform.LookAt(playerPosition, Vector3.up);
-        direction.y = 0f;
-        transform.rotation = Quaternion.Lerp(
-            transform.rotation, Quaternion.LookRotation(direction, Vector3.up), 0.1f
-        );
-
-        mRb.velocity = new Vector3(
-            mDirection.x * EnemyType.Speed,
-            0f,
-            mDirection.y * EnemyType.Speed
-        );
-
-        mAnimator.SetBool("IsWalking", true);
-        mAnimator.SetFloat("Horizontal", mDirection.x);
-        mAnimator.SetFloat("Vertical", mDirection.y);
-    }
-
     private Collider IsPlayerNearby()
     {
         var colliders = Physics.OverlapSphere(
@@ -142,10 +115,10 @@ public class EnemyController : MonoBehaviour
             EnemyType.AttackRadio,
             LayerMask.GetMask("Player2")
         );
-        Debug.Log(colliders2);
         if (colliders.Length == 1) return colliders[0];
         else if (colliders2.Length == 1) return colliders2[0];
         else return null;
+        //TODO: que el zombie sepa que jugador esta mas cerca para atacarlo
     }
 
     public void StartAttack()

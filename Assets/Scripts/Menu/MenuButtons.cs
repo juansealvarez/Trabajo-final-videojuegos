@@ -10,4 +10,9 @@ public class MenuButtons : MonoBehaviour
         //PlayerController.mPlayerInput.SwitchCurrentActionMap("Player");
         SceneManager.LoadScene(escena);
     }
+    public void TypeOfGame(bool isSolo)
+    {
+        //PlayerController.mPlayerInput.SwitchCurrentActionMap("Player");
+        StateNameController.isSoloMode = isSolo;
+    }
 }

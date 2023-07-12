@@ -22,19 +22,22 @@ public class GameManager : MonoBehaviour
     public bool CopyrigthSong = false;
     public List<AudioClip> BackgroundAudio;
     private AudioSource BackgroundSource;
+    private bool isSoloGame;
     private void Awake()
     {
         Instance = this;
     }
     private void Start()
     {
+        isSoloGame = StateNameController.isSoloMode;
         timer = timerFijo;
         BackgroundSource = transform
             .GetComponent<AudioSource>();
+        Debug.Log(isSoloGame);
     }
     private void Update()
     {
-        timer -= Time.deltaTime;
+        /*timer -= Time.deltaTime;
         if (timer < 0f)
         {
             Ronda++;
@@ -54,7 +57,7 @@ public class GameManager : MonoBehaviour
             {
                 timer = timerFijo;
             }
-        }
+        }*/ //Sistema de rondas (por tiempo), cambiarlo a por kills de zombies
     }
 
     private void SpawnEnemies()
@@ -66,9 +69,9 @@ public class GameManager : MonoBehaviour
                 0f,
                 UnityEngine.Random.Range(Player.position.z + SpawnRadius, Player.position.z - SpawnRadius)
             );
+            // Cambiar lugar de spawn a lugares predefinidos
             int random = UnityEngine.Random.Range(0,2);
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
-            enemy.GetComponent<EnemyController>().Player = GameManager.Instance.Player;
             enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
             enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
         }
