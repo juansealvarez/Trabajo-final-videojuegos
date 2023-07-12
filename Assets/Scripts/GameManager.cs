@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private float timerFijo = 10f;
     private int Ronda = 0;
     public GameObject RondaUI;
+    public GameObject RondaUI2;
     public bool CopyrigthSong = false;
     public List<AudioClip> BackgroundAudio;
     private AudioSource BackgroundSource;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             Ronda++;
             RondaUI.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+            RondaUI2.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
             if (CopyrigthSong)
             {
                 BackgroundSource.PlayOneShot(BackgroundAudio[0]);

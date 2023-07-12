@@ -93,6 +93,8 @@ public class PlayerController : MonoBehaviour
     public bool isInspecting = false;
     private float maxPlayerHealth;
     private bool isBeingDamaged = false;
+    [System.NonSerialized]
+    public bool apuntando;
 
     //TODO: poner sonidos de recarga y de caminar y sonidos de daño
     //TODO: que el jugador recoja balas del suelo dropeadas por los zombies
@@ -572,5 +574,28 @@ public class PlayerController : MonoBehaviour
     public void StopInspecting()
     {
         isInspecting = false;
+    }
+    
+    private void OnStartAiming(InputValue value)
+    {
+        if(!IsDead)
+        {
+            if(!MenuPausa.isPaused)
+            {
+                if (value.isPressed)
+                {
+                    apuntando = true;
+                }
+            }
+        }
+        
+    }
+    private void OnStopAiming(InputValue value)
+    {
+        if (apuntando)
+        {
+            scriptGun.StopAiming();
+            apuntando = false;
+        }
     }
 }

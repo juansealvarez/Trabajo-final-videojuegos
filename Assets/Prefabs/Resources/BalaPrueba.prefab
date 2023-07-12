@@ -30,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8466878892253909591}
-  m_LocalRotation: {x: 0.70322466, y: -0, z: -0, w: 0.7109677}
+  m_LocalRotation: {x: 0.7032272, y: 0, z: 0, w: 0.71096516}
   m_LocalPosition: {x: -10.102365, y: 0.0528, z: 0.5122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -101,7 +101,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 0.28042093
   m_SpotAngle: 50
   m_InnerSpotAngle: 30
   m_CookieSize: 10
@@ -178,12 +178,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8466878892253909591}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.0031712414
+  m_Radius: 0.0051016887
   m_Height: 0.01913096
   m_Direction: 1
-  m_Center: {x: 0, y: -0.0004121475, z: 0.00014715875}
+  m_Center: {x: 0, y: -0.0004121475, z: -0.0017832884}
 --- !u!54 &-8907488878247316760
 Rigidbody:
   m_ObjectHideFlags: 0

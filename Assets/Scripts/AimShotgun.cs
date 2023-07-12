@@ -31,6 +31,8 @@ public class AimShotgun : MonoBehaviour
     [SerializeField]
     private PlayerController PlayerController;
     private AudioSource audioSource;
+    private Animator animator;
+    private float aiming;
 
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class AimShotgun : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         mAnimator = LookCamera.GetComponent<Animator>();
         gAnimator = GetComponent<Animator>();
@@ -52,28 +55,19 @@ public class AimShotgun : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        aiming = AimingSpeed * Time.deltaTime;
     }
 
     private void Update()
     {
         arma.text = Weapon.GunName;
         balas.text = balasActuales.ToString() + "/" + balasTotales.ToString();
-        float aiming = AimingSpeed * Time.deltaTime;
-        var animator = GetComponent<Animator>();
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (PlayerController.apuntando)
         {
-            if(!PlayerController.Instance.isReloading && !PlayerController.Instance.isInspecting)
-            {
-                animator.enabled = false;
-                isAiming = true;
-                transform.position = Vector3.MoveTowards(transform.position, targetAim.position, aiming);
-            }
-            
+            StartAiming();
         }else
         {
-            animator.enabled = true;
-            isAiming = false;
-            transform.position = Vector3.MoveTowards(transform.position, targetNoAim.position, aiming);
+            StopAiming();
         }
     }
     private void stopReloading()
@@ -97,5 +91,20 @@ public class AimShotgun : MonoBehaviour
     private void click()
     {
         audioSource.PlayOneShot(Weapon.audioList[3]);
+    }
+    public void StartAiming()
+    {
+        if(!PlayerController.Instance.isReloading && !PlayerController.Instance.isInspecting)
+        {
+            animator.enabled = false;
+            isAiming = true;
+            transform.position = Vector3.MoveTowards(transform.position, targetAim.position, aiming);
+        }
+    }
+    public void StopAiming()
+    {
+        animator.enabled = true;
+        isAiming = false;
+        transform.position = Vector3.MoveTowards(transform.position, targetNoAim.position, aiming);
     }
 }

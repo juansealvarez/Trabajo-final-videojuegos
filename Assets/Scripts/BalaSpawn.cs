@@ -11,12 +11,14 @@ public class BalaSpawn : MonoBehaviour
         mRb = GetComponent<Rigidbody>();
         mCollider = GetComponent<CapsuleCollider>();
     }
-    /*private void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter(Collider col)
     {
-        if (col.CompareTag("Ground"))
+        if (col.CompareTag("Suelo"))
         {
-            mRb.isKinematic = true;
-            mCollider.isTrigger = true;
+            Debug.Log("Entro al ground");
+            Destroy(mRb);
+            transform.position = new Vector3(transform.position.x, transform.position.y+0.15f, transform.position.z);
+            //mCollider.isTrigger = true;
         }
-    }*/
+    }
 }
