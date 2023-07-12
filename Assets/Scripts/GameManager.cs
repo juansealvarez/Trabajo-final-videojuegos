@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public Transform Player;
     public PlayerController PlayerController;
+    public GameObject Bullet;
 
     public List<GameObject> EnemiesToInstantiate;
     public int CantidadZombiesPorHorda = 10;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
             enemy.GetComponent<EnemyController>().Player = GameManager.Instance.Player;
             enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
+            enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
         }
         
     }

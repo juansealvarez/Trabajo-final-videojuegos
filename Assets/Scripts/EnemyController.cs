@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     public EnemySO EnemyType;
     public static float damage;
     private float salud;
+    public GameObject Bullet;
 
     private void Start()
     {
@@ -168,6 +169,12 @@ public class EnemyController : MonoBehaviour
         salud -= Damage;
         if (salud  == 0f)
         {
+            var instantiatePosition = new Vector3(
+                transform.position.x,
+                transform.position.y,
+                transform.position.z
+            );
+            var bullet = Instantiate(Bullet, instantiatePosition, Quaternion.identity);
             mAnimator.SetTrigger("Die");
             mCollider.enabled = false;
             dead = true;

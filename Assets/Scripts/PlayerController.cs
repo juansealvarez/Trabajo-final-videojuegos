@@ -475,16 +475,17 @@ public class PlayerController : MonoBehaviour
         if (col.CompareTag("EnemyAttack"))
         {
             isBeingDamaged = true;
-            // llamar a takeDamage() pero en vez de lo de abajo que sea el daño del scriptable object del
-            // zombie que hizo el daño
-            TakeDamage(EnemyController.damage);
-        }else if(col.CompareTag("AmmoCrate"))
-        {
-            // hacer que lo que toque se destruya (llamar al metodo de Destroy() de AmmoCrate)
-            scriptGun.balasTotales+=1;
+            var damage = col.gameObject.GetComponentInParent<EnemyController>().EnemyType.Damage;
+            TakeDamage(damage);
         }else
         {
             isBeingDamaged = false;
+        }
+
+        if(col.CompareTag("AmmoCrate"))
+        {
+            Destroy(col.gameObject);
+            scriptGun.balasTotales+=1;
         }
     }
     private void OnPause(InputValue value)
