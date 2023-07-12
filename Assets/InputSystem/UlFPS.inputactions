@@ -85,7 +85,7 @@
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
+                    "groups": "Gamepad;Player1Controller;Player2Controller;PlayerKeyboard",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -195,7 +195,7 @@
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
+                    "groups": "Gamepad;Player1Controller;Player2Controller;PlayerKeyboard",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -217,7 +217,7 @@
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
+                    "groups": "Gamepad;Player1Controller;Player2Controller;PlayerKeyboard",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -250,7 +250,7 @@
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
+                    "groups": "Gamepad;Player1Controller;Player2Controller;PlayerKeyboard",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -272,7 +272,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
+                    "groups": "Gamepad;Player1Controller;Player2Controller;PlayerKeyboard",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -294,7 +294,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
+                    "groups": "Gamepad;Player1Controller;Player2Controller;PlayerKeyboard",
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -316,7 +316,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player1Controller;Player2Controller",
+                    "groups": "Player1Controller;Player2Controller;PlayerKeyboard",
                     "action": "InspectWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -338,7 +338,7 @@
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
+                    "groups": "Gamepad;Player1Controller;Player2Controller;PlayerKeyboard",
                     "action": "SwitchWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -377,7 +377,7 @@
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Player1Controller;Player2Controller",
+                    "groups": "Gamepad;Player1Controller;Player2Controller;PlayerKeyboard",
                     "action": "Play",
                     "isComposite": false,
                     "isPartOfComposite": false

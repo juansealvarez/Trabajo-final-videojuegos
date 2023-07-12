@@ -91,6 +91,8 @@ public class PlayerController : MonoBehaviour
     private GameObject legs;
     [System.NonSerialized]
     public bool isInspecting = false;
+    private float maxPlayerHealth;
+    private bool isBeingDamaged = false;
 
     //TODO: poner sonidos de recarga y de caminar y sonidos de daño
     //TODO: que el jugador recoja balas del suelo dropeadas por los zombies
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        maxPlayerHealth = PlayerHealth;
     }
     private void Start()
     {
@@ -143,7 +146,18 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(!isBeingDamaged)
+        {
+            if (PlayerHealth < maxPlayerHealth)
+            {
+                PlayerHealth += 0.05f;
+            }else if (PlayerHealth >= maxPlayerHealth)
+            {
+                PlayerHealth = maxPlayerHealth;
+            }
+        }
         
+
         if (aimShotgun.WeaponActive)
         {
             scriptGun = aimShotgun;
@@ -315,13 +329,16 @@ public class PlayerController : MonoBehaviour
 
     private void reloading()
     {
+        
         isReloading = true;
         if (aimShotgun.WeaponActive)
         {
+            mAudioSource.PlayOneShot(aimPistol.Weapon.audioList[2]);
             modelAnimator.SetTrigger("IsReloading");
             mAnimator.SetTrigger("IsReloading");
         }else
         {
+            pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[2]);
             modelAnimator.SetTrigger("IsReloading");
             pAnimator.SetTrigger("IsReloading");
         }
@@ -457,7 +474,17 @@ public class PlayerController : MonoBehaviour
     {
         if (col.CompareTag("EnemyAttack"))
         {
+            isBeingDamaged = true;
+            // llamar a takeDamage() pero en vez de lo de abajo que sea el daño del scriptable object del
+            // zombie que hizo el daño
             TakeDamage(EnemyController.damage);
+        }else if(col.CompareTag("AmmoCrate"))
+        {
+            // hacer que lo que toque se destruya (llamar al metodo de Destroy() de AmmoCrate)
+            scriptGun.balasTotales+=1;
+        }else
+        {
+            isBeingDamaged = false;
         }
     }
     private void OnPause(InputValue value)

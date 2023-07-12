@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemigos
   - EnemyAttack
+  - AmmoCrate
   layers:
   - Default
   - TransparentFX

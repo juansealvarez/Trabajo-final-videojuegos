@@ -30,6 +30,7 @@ public class AimShotgun : MonoBehaviour
     public float balasTotales;
     [SerializeField]
     private PlayerController PlayerController;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class AimShotgun : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         mAnimator = LookCamera.GetComponent<Animator>();
         gAnimator = GetComponent<Animator>();
         if (WeaponActive)
@@ -91,5 +93,9 @@ public class AimShotgun : MonoBehaviour
     private void stopInspecting()
     {
         PlayerController.StopInspecting();
+    }
+    private void click()
+    {
+        audioSource.PlayOneShot(Weapon.audioList[3]);
     }
 }
