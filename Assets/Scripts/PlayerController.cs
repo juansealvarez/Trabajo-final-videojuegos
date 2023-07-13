@@ -97,6 +97,8 @@ public class PlayerController : MonoBehaviour
     public bool apuntando;
     public PlayerController OtherPlayer;
     private bool corriendo;
+    [SerializeField]
+    private List<AudioClip> balaRecogida;
 
     //TODO: poner sonidos de recarga y de caminar y sonidos de daño
     //TODO: que el jugador recoja balas del suelo dropeadas por los zombies
@@ -492,6 +494,7 @@ public class PlayerController : MonoBehaviour
 
         if(col.CompareTag("AmmoCrate"))
         {
+            BackgroundSource.PlayOneShot(balaRecogida[0]);
             Destroy(col.gameObject);
             scriptGun.balasTotales+=1;
         }

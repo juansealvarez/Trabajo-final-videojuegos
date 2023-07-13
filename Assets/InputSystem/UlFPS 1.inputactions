@@ -1,5 +1,5 @@
 {
-    "name": "UlFPS",
+    "name": "UlFPS 1",
     "maps": [
         {
             "name": "Player",
@@ -448,7 +448,7 @@
                 {
                     "name": "",
                     "id": "c4537073-c09a-4044-b6b8-0a44d06215c6",
-                    "path": "<Gamepad>/rightStickPress",
+                    "path": "<Gamepad>/leftStickPress",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Player1Controller",
@@ -481,7 +481,7 @@
                 {
                     "name": "",
                     "id": "9c3ec41b-8a22-41e3-8354-479ce8af5c17",
-                    "path": "<Gamepad>/rightStickPress",
+                    "path": "<Gamepad>/leftStickPress",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Player1Controller",
