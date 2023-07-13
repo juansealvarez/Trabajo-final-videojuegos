@@ -2025,6 +2025,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e893e56e7e56e4da1444966a36f2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 5726983678223657631, guid: 18195d69d7d662f4198a57986adb3a77, type: 3}
+  player2: {fileID: 2135516418314264313, guid: 832333c265cb2c643b0c66691dcfe822, type: 3}
 --- !u!114 &1934645069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2184,6 +2186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e893e56e7e56e4da1444966a36f2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 5726983678223657631, guid: 18195d69d7d662f4198a57986adb3a77, type: 3}
+  player2: {fileID: 2135516418314264313, guid: 832333c265cb2c643b0c66691dcfe822, type: 3}
 --- !u!114 &2043892492
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class MenuPausa : MonoBehaviour
     public GameObject menuPausa;
     public static bool isPaused = false;
     public GameObject mainUI;
+    public GameObject mainUICoop;
+    public GameManager gameManager;
 
     private void Awake()
     {
@@ -23,7 +25,13 @@ public class MenuPausa : MonoBehaviour
     {
         PlayerController.mPlayerInput.SwitchCurrentActionMap("PauseMenu");
         menuPausa.SetActive(true);
-        mainUI.SetActive(false);
+        if(gameManager.isSoloGame)
+        {
+            mainUI.SetActive(false);
+        }else
+        {
+            mainUICoop.SetActive(false);
+        }
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -31,13 +39,19 @@ public class MenuPausa : MonoBehaviour
     {
         PlayerController.mPlayerInput.SwitchCurrentActionMap("Player");
         menuPausa.SetActive(false);
-        mainUI.SetActive(true);
+        if(gameManager.isSoloGame)
+        {
+            mainUI.SetActive(true);
+        }else
+        {
+            mainUICoop.SetActive(true);
+        }
         Time.timeScale = 1f;
         isPaused = false;
     }
     public void IrAlMenu()
     {
-        PlayerController.mPlayerInput.SwitchCurrentActionMap("Player");
+        PlayerController.mPlayerInput.SwitchCurrentActionMap("MenuAndEndgame");
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }

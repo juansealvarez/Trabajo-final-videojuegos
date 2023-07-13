@@ -7,6 +7,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Transform Player;
+    public GameObject Player1;
+    public GameObject Player2;
     public PlayerController PlayerController;
     public GameObject Bullet;
 
@@ -19,11 +21,19 @@ public class GameManager : MonoBehaviour
     private float timerFijo = 10f;
     private int Ronda = 0;
     public GameObject RondaUI;
+    public GameObject RondaUI1;
     public GameObject RondaUI2;
     public bool CopyrigthSong = false;
     public List<AudioClip> BackgroundAudio;
     private AudioSource BackgroundSource;
-    private bool isSoloGame;
+    [System.NonSerialized]
+    public bool isSoloGame;
+    public GameObject UISolo;
+    public GameObject UICoop;
+    public AimShotgun escopeta;
+    public AimShotgun pistola;
+    public TextMeshProUGUI arma;
+    public TextMeshProUGUI balas;
     private void Awake()
     {
         Instance = this;
@@ -35,6 +45,17 @@ public class GameManager : MonoBehaviour
         BackgroundSource = transform
             .GetComponent<AudioSource>();
         Debug.Log(isSoloGame);
+        if(!isSoloGame)
+        {
+            UISolo.SetActive(false);
+            UICoop.SetActive(true);
+            Player1.transform.Find("Main Camera").GetComponent<Camera>().rect =  new Rect (0, 0.5f, 1, 1);
+            Player2.SetActive(true);
+            escopeta.arma = arma;
+            escopeta.balas = balas;
+            pistola.arma = arma;
+            pistola.balas = balas;
+        }
     }
     private void Update()
     {
@@ -44,6 +65,7 @@ public class GameManager : MonoBehaviour
             Ronda++;
             RondaUI.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
             RondaUI2.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+            RondaUI1GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
             if (CopyrigthSong)
             {
                 BackgroundSource.PlayOneShot(BackgroundAudio[0]);

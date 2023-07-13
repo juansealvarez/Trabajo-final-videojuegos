@@ -95,6 +95,8 @@ public class PlayerController : MonoBehaviour
     private bool isBeingDamaged = false;
     [System.NonSerialized]
     public bool apuntando;
+    public PlayerController OtherPlayer;
+    private bool corriendo;
 
     //TODO: poner sonidos de recarga y de caminar y sonidos de daño
     //TODO: que el jugador recoja balas del suelo dropeadas por los zombies
@@ -125,7 +127,6 @@ public class PlayerController : MonoBehaviour
 
         CameraAnimator = transform.Find("Main Camera").GetComponent<Animator>();
         mPlayerInput = GetComponent<PlayerInput>();
-
         Cursor.lockState = CursorLockMode.Locked;
         legAnimator = transform.Find("Legs")
             .GetComponent<Animator>();
@@ -167,7 +168,7 @@ public class PlayerController : MonoBehaviour
         {
             scriptGun = aimPistol;
         }
-        if (!IsDead)
+        if (!IsDead && !OtherPlayer.IsDead)
         {
             if (!MenuPausa.isPaused)
             {
@@ -180,7 +181,7 @@ public class PlayerController : MonoBehaviour
                 {
                     mRb.drag = 0f;
                 }
-                if (Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl))
+                if (corriendo)
                 {
                     speed = WalkingSpeed * RunnigMultiplier;
                 }else
@@ -468,6 +469,11 @@ public class PlayerController : MonoBehaviour
             mPlayerInput.SwitchCurrentActionMap("PauseMenu");
             CameraAnimator.enabled = true;
             CameraAnimator.SetBool("IsDead", true);
+            if (OtherPlayer.CameraAnimator != null)
+            {
+                OtherPlayer.CameraAnimator.enabled = true;
+                OtherPlayer.CameraAnimator.SetBool("IsDead", true);
+            }
             IsDead = true;
         }
     }
@@ -508,6 +514,7 @@ public class PlayerController : MonoBehaviour
         {
             if(value.isPressed)
             {
+                Debug.Log("se presiono play");
                 Cursor.lockState = CursorLockMode.Locked;
                 MenuPausa.Instance.ReanudarJuego();
             }
@@ -596,6 +603,27 @@ public class PlayerController : MonoBehaviour
         {
             scriptGun.StopAiming();
             apuntando = false;
+        }
+    }
+    private void OnStartSprinting(InputValue value)
+    {
+        if(!IsDead)
+        {
+            if(!MenuPausa.isPaused)
+            {
+                if (value.isPressed)
+                {
+                    corriendo = true;
+                }
+            }
+        }
+        
+    }
+    private void OnStopSprinting(InputValue value)
+    {
+        if (apuntando)
+        {
+            corriendo = false;
         }
     }
 }
