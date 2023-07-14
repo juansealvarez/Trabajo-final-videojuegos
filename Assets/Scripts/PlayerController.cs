@@ -66,12 +66,9 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized]
     public bool isReloading = false;
     private AimShotgun scriptGun;
-    [SerializeField]
-    private GameObject UIReload;
-    [SerializeField]
-    private GameObject UILowAmmo;
-    [SerializeField]
-    private GameObject UINoAmmo;
+    public GameObject UIReload;
+    public GameObject UILowAmmo;
+    public GameObject UINoAmmo;
     public ParticleSystem shootGunPSModel;
     public ParticleSystem shootPistolPSModel;
     [SerializeField]

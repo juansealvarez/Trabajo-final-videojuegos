@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     public float SpawnRadius = 5f;
 
     public static GameManager Instance { private set; get; }
+    public GameObject UIReload;
+    public GameObject UILowAmmo;
+    public GameObject UINoAmmo;
+
     private float timer;
     private float timerFijo = 10f;
     private int Ronda = 0;
@@ -54,6 +58,9 @@ public class GameManager : MonoBehaviour
             escopeta.balas = balas;
             pistola.arma = arma;
             pistola.balas = balas;
+            PlayerController.UIReload = UIReload;
+            PlayerController.UILowAmmo = UILowAmmo;
+            PlayerController.UINoAmmo = UINoAmmo;
         }
     }
     private void Update()
