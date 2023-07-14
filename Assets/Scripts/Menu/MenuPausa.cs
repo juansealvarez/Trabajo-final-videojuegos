@@ -38,6 +38,7 @@ public class MenuPausa : MonoBehaviour
     public void ReanudarJuego()
     {
         PlayerController.mPlayerInput.SwitchCurrentActionMap("Player");
+        Cursor.lockState = CursorLockMode.Locked;
         menuPausa.SetActive(false);
         if(gameManager.isSoloGame)
         {

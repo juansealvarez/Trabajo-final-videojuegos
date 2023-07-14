@@ -2123,6 +2123,10 @@ MonoBehaviour:
   swat: {fileID: 6090605859932492818}
   legs: {fileID: 173537773619685820}
   OtherPlayer: {fileID: 0}
+  balaRecogida:
+  - {fileID: 8300000, guid: 266b7fd726411cd4184e9faac8ce378f, type: 3}
+  PauseSelectedButton: {fileID: 0}
+  DeadSelectedButton: {fileID: 0}
 --- !u!114 &2135516418314264315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2135,7 +2139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 6dcece21b824c3241916262394258565, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: c9362885d03c0f547af830eb2cdb293c, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -2148,7 +2152,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 1
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Player1Controller
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -2168,7 +2172,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &2135516418314264314
 CapsuleCollider:
   m_ObjectHideFlags: 0

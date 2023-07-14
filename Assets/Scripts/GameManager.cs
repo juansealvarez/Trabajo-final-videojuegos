@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
         timer = timerFijo;
         BackgroundSource = transform
             .GetComponent<AudioSource>();
-        Debug.Log(isSoloGame);
         if(!isSoloGame)
         {
             UISolo.SetActive(false);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -99,6 +100,9 @@ public class PlayerController : MonoBehaviour
     private bool corriendo;
     [SerializeField]
     private List<AudioClip> balaRecogida;
+    public GameObject PauseSelectedButton;
+    public GameObject DeadSelectedButton;
+    private bool changedSelectedGameObject = false;
 
     //TODO: poner sonidos de recarga y de caminar y sonidos de daño
     //TODO: que el jugador recoja balas del suelo dropeadas por los zombies
@@ -290,6 +294,12 @@ public class PlayerController : MonoBehaviour
             }
         }else
         {
+            if(!changedSelectedGameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(DeadSelectedButton);
+                changedSelectedGameObject = true;
+            }
             Cursor.lockState = CursorLockMode.None;
             mPlayerInput.SwitchCurrentActionMap("MenuAndEndgame");
             PlayerCapsulle.SetActive(false);
@@ -505,6 +515,8 @@ public class PlayerController : MonoBehaviour
         {
             if(value.isPressed)
             {
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(PauseSelectedButton);
                 Cursor.lockState = CursorLockMode.None;
                 MenuPausa.Instance.PausarJuego();
             }

@@ -152,6 +152,7 @@ public class EnemyController : MonoBehaviour
             mCollider.enabled = false;
             dead = true;
             Destroy(gameObject, 20f);
+            HitboxLeft.SetActive(false);
         }
     }
 }
