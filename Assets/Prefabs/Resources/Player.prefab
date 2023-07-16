@@ -5873,6 +5873,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   airMultiplier: 1
+  legAnimator: {fileID: 1482810028}
   swat: {fileID: 458971695754616948}
   legs: {fileID: 5814202362095427034}
   OtherPlayer: {fileID: 0}
@@ -5905,7 +5906,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: PlayerKeyboard
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
