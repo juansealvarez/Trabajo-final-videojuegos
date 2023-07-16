@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float airMultiplier = 1f;
     private float turnSpeed2;
+    [SerializeField]
     private Animator legAnimator;
     [SerializeField]
     private GameObject swat;
@@ -131,8 +132,6 @@ public class PlayerController : MonoBehaviour
         CameraAnimator = transform.Find("Main Camera").GetComponent<Animator>();
         mPlayerInput = GetComponent<PlayerInput>();
         Cursor.lockState = CursorLockMode.Locked;
-        legAnimator = transform.Find("Legs")
-            .GetComponent<Animator>();
 
         mAudioSource = transform
             .Find("Main Camera")

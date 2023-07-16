@@ -38,12 +38,14 @@ public class GameManager : MonoBehaviour
     public AimShotgun pistola;
     public TextMeshProUGUI arma;
     public TextMeshProUGUI balas;
+    private float zombies;
     private void Awake()
     {
         Instance = this;
     }
     private void Start()
     {
+        zombies = CantidadZombiesPorHorda;
         isSoloGame = StateNameController.isSoloMode;
         timer = timerFijo;
         BackgroundSource = transform
