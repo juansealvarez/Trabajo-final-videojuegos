@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4532026524912154}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rock pile
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 33604336245524734}
   - component: {fileID: 23701508711357970}
   - component: {fileID: 8245407780693727467}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rock pile
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

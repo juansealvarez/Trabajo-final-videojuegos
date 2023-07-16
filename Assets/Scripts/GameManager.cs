@@ -20,9 +20,6 @@ public class GameManager : MonoBehaviour
     public GameObject UIReload;
     public GameObject UILowAmmo;
     public GameObject UINoAmmo;
-
-    private float timer;
-    private float timerFijo = 10f;
     private int Ronda = 0;
     public GameObject RondaUI;
     public GameObject RondaUI1;
@@ -39,6 +36,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI arma;
     public TextMeshProUGUI balas;
     private float zombies;
+    [SerializeField]
+    private List<GameObject> Spawnpoints;
+    [System.NonSerialized]
+    public int zombiesActuales = 0;
     private void Awake()
     {
         Instance = this;
@@ -47,7 +48,6 @@ public class GameManager : MonoBehaviour
     {
         zombies = CantidadZombiesPorHorda;
         isSoloGame = StateNameController.isSoloMode;
-        timer = timerFijo;
         BackgroundSource = transform
             .GetComponent<AudioSource>();
         if(!isSoloGame)
@@ -67,46 +67,45 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        /*timer -= Time.deltaTime;
-        if (timer < 0f)
+        if(Ronda <= 10)
         {
-            Ronda++;
-            RondaUI.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
-            RondaUI2.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
-            RondaUI1GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
-            if (CopyrigthSong)
+            if (zombiesActuales == 0)
             {
-                BackgroundSource.PlayOneShot(BackgroundAudio[0]);
-                //songPlayed = true;
+                Ronda++;
+                RondaUI.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+                RondaUI2.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+                RondaUI1.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+                StartCoroutine(newRound());
             }
-            //Sonido Cambio Ronda
-            SpawnEnemies();
-            if(timerFijo > 10f)
-            {
-                timerFijo -= 5f;
-                timer = timerFijo;
-            }else
-            {
-                timer = timerFijo;
-            }
-        }*/ //Sistema de rondas (por tiempo), cambiarlo a por kills de zombies
+        }else
+        {
+            // aca se habilita el boss fight
+        }
+        
     }
 
     private void SpawnEnemies()
     {
         for (int i = 0 ; i < CantidadZombiesPorHorda; i++)
         {
-            var instantiatePosition = new Vector3(
-                UnityEngine.Random.Range(Player.position.x + SpawnRadius, Player.position.x - SpawnRadius),
-                0f,
-                UnityEngine.Random.Range(Player.position.z + SpawnRadius, Player.position.z - SpawnRadius)
-            );
-            // Cambiar lugar de spawn a lugares predefinidos
+            var LugarRandom = UnityEngine.Random.Range(0, Spawnpoints.Count);
+            var instantiatePosition = Spawnpoints[LugarRandom].transform.position;
             int random = UnityEngine.Random.Range(0,2);
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
             enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
             enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
         }
         
+    }
+
+    IEnumerator newRound()
+    {
+        zombiesActuales = CantidadZombiesPorHorda;
+        if (CopyrigthSong)
+        {
+            BackgroundSource.PlayOneShot(BackgroundAudio[0]);
+        }
+        yield return new WaitForSeconds(BackgroundAudio[0].length-2f);
+        SpawnEnemies();
     }
 }

@@ -153,6 +153,7 @@ public class EnemyController : MonoBehaviour
             dead = true;
             Destroy(gameObject, 20f);
             HitboxLeft.SetActive(false);
+            GameManager.Instance.zombiesActuales -= 1;
         }
     }
 }

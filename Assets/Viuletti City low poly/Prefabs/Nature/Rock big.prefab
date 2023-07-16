@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 33877286897437412}
   - component: {fileID: 23043952638402572}
   - component: {fileID: 2327403046899205251}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rock big
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,9 +108,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380900357793344}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rock big
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -21,4 +21,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 266b7fd726411cd4184e9faac8ce378f, type: 3}
   shootDistance: 4
   balasCargador: 12
-  balas: 60
+  balas: 96

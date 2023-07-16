@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tipo: Prisionero
   Speed: 2
-  AwakeRadio: 100
+  AwakeRadio: 10000
   AttackRadio: 0.5
   Health: 5
   Damage: 1

@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { private set; get; }
     [SerializeField]
     private float WalkingSpeed;
-
     private float RunnigMultiplier;
 
     private float speed = 0f;
@@ -102,8 +101,8 @@ public class PlayerController : MonoBehaviour
     public GameObject DeadSelectedButton;
     private bool changedSelectedGameObject = false;
 
-    //TODO: poner sonidos de recarga y de caminar y sonidos de daño
-    //TODO: que el jugador recoja balas del suelo dropeadas por los zombies
+    [SerializeField]
+    private List<AudioClip> voicesReload;
     //TODO: voice acting
     private void Awake()
     {
@@ -340,7 +339,7 @@ public class PlayerController : MonoBehaviour
 
     private void reloading()
     {
-        
+        PlayReload();
         isReloading = true;
         if (aimShotgun.WeaponActive)
         {
@@ -636,5 +635,10 @@ public class PlayerController : MonoBehaviour
         {
             corriendo = false;
         }
+    }
+
+    public void PlayReload()
+    {
+        BackgroundSource.PlayOneShot(voicesReload[UnityEngine.Random.Range(0,2)], 10f);
     }
 }

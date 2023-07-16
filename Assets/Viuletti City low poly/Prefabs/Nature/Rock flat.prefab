@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4293500543587454}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rock flat
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 33068216137983898}
   - component: {fileID: 23226691452649188}
   - component: {fileID: 4288758354926894178}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rock flat
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
