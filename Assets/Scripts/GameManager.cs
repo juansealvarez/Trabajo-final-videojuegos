@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject UIReload;
     public GameObject UILowAmmo;
     public GameObject UINoAmmo;
-    private int Ronda = 0;
+    [System.NonSerialized]
+    public int Ronda = 0;
     public GameObject RondaUI;
     public GameObject RondaUI1;
     public GameObject RondaUI2;
@@ -40,6 +41,9 @@ public class GameManager : MonoBehaviour
     private List<GameObject> Spawnpoints;
     [System.NonSerialized]
     public int zombiesActuales = 0;
+    [SerializeField]
+    private Player1Voices player1voices;
+
     private void Awake()
     {
         Instance = this;
@@ -67,7 +71,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Ronda <= 10)
+        if(Ronda <= 9)
         {
             if (zombiesActuales == 0)
             {
@@ -79,7 +83,10 @@ public class GameManager : MonoBehaviour
             }
         }else
         {
-            // aca se habilita el boss fight
+            if (zombiesActuales == 0)
+            {
+                // aca se habilita el boss fight
+            }
         }
         
     }
@@ -103,9 +110,13 @@ public class GameManager : MonoBehaviour
         zombiesActuales = CantidadZombiesPorHorda;
         if (CopyrigthSong)
         {
-            BackgroundSource.PlayOneShot(BackgroundAudio[0]);
+            BackgroundSource.PlayOneShot(BackgroundAudio[0], 0.5f);
         }
         yield return new WaitForSeconds(BackgroundAudio[0].length-2f);
+        if(isSoloGame)
+        {
+            player1voices.AudiosSoloRondas(Ronda);
+        }
         SpawnEnemies();
     }
 }

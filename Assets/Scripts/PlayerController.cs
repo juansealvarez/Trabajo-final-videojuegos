@@ -499,9 +499,9 @@ public class PlayerController : MonoBehaviour
 
         if(col.CompareTag("AmmoCrate"))
         {
-            BackgroundSource.PlayOneShot(balaRecogida[UnityEngine.Random.Range(1,6)]);
+            BackgroundSource.PlayOneShot(balaRecogida[0]);
             Destroy(col.gameObject);
-            scriptGun.balasTotales+=1;
+            scriptGun.balasTotales+=UnityEngine.Random.Range(1,6);
         }
     }
     private void OnPause(InputValue value)

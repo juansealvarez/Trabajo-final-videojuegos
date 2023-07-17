@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   GunName: Remington 870-mcs
-  GunDamage: 1
+  GunDamage: 2
   audioList:
   - {fileID: 8300000, guid: c1af5ee6628e2174a92336161f5ece32, type: 3}
   - {fileID: 8300000, guid: cbeb8f027fabc724781ecf4b9fb7f93c, type: 3}
