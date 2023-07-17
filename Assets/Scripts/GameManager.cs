@@ -84,17 +84,19 @@ public class GameManager : MonoBehaviour
                 RondaUI1.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
                 StartCoroutine(newRound());
             }
-        }
-        else
-        {
-            if (zombiesActuales == 0)
+
+            else
             {
-                // aca se habilita el boss fight
+                if (zombiesActuales == 0)
+                {
+                    // aca se habilita el boss fight
+                    Debug.Log("Entrada a escena de boss");
+                }
             }
         }
         else
         {
-            Debug.Log("Entrada a escena de boss");
+
             SceneManager.LoadScene("BossTransition");
         }
 
