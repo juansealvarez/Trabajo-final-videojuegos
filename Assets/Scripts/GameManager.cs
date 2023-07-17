@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public AimShotgun pistola;
     public TextMeshProUGUI arma;
     public TextMeshProUGUI balas;
-    private float zombies;
+    private int zombies;
     [SerializeField]
     private List<GameObject> Spawnpoints;
     [System.NonSerialized]
@@ -54,7 +54,14 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        zombies = CantidadZombiesPorHorda;
+        if(isSoloGame)
+        {
+            zombies = CantidadZombiesPorHorda;
+        }else
+        {
+            zombies = CantidadZombiesPorHordaCoop;
+        }
+        
         isSoloGame = StateNameController.isSoloMode;
         BackgroundSource = transform
             .GetComponent<AudioSource>();
@@ -105,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        for (int i = 0; i < CantidadZombiesPorHorda; i++)
+        for (int i = 0; i < zombies; i++)
         {
             var LugarRandom = UnityEngine.Random.Range(0, Spawnpoints.Count);
             var instantiatePosition = Spawnpoints[LugarRandom].transform.position;
@@ -119,14 +126,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator newRound()
     {
-        if (isSoloGame)
-        {
-            zombiesActuales = CantidadZombiesPorHorda;
-        }
-        else
-        {
-            zombiesActuales = CantidadZombiesPorHordaCoop;
-        }
+        zombiesActuales = zombies;
         if (CopyrigthSong)
         {
             BackgroundSource.PlayOneShot(BackgroundAudio[0], 0.5f);
