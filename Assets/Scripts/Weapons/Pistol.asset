@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   GunName: Clock-95
-  GunDamage: 0.5
+  GunDamage: 1
   audioList:
   - {fileID: 8300000, guid: 606513ca66ca5b841b6a963d3ff08ef3, type: 3}
   - {fileID: 8300000, guid: cbeb8f027fabc724781ecf4b9fb7f93c, type: 3}

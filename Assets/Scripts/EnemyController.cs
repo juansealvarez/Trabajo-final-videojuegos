@@ -140,7 +140,7 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         salud -= Damage;
-        if (salud  == 0f)
+        if (salud  <= 0f)
         {
             var instantiatePosition = new Vector3(
                 transform.position.x,

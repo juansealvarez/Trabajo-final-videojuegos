@@ -982,7 +982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Zombie Madness
+  m_text: Paciente Zero
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b866cfc9262a954387362971c19b5c6, type: 2}
   m_sharedMaterial: {fileID: -7843412177648282954, guid: 9b866cfc9262a954387362971c19b5c6, type: 2}
