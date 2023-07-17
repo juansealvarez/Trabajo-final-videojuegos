@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> EnemiesToInstantiate;
     public int CantidadZombiesPorHorda = 10;
+    public int CantidadZombiesPorHordaCoop = 15;
     public float SpawnRadius = 5f;
 
     public static GameManager Instance { private set; get; }
@@ -107,7 +108,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator newRound()
     {
-        zombiesActuales = CantidadZombiesPorHorda;
+        if(isSoloGame)
+        {
+            zombiesActuales = CantidadZombiesPorHorda;
+        }else
+        {
+            zombiesActuales = CantidadZombiesPorHordaCoop;
+        }
         if (CopyrigthSong)
         {
             BackgroundSource.PlayOneShot(BackgroundAudio[0], 0.5f);
@@ -116,6 +123,9 @@ public class GameManager : MonoBehaviour
         if(isSoloGame)
         {
             player1voices.AudiosSoloRondas(Ronda);
+        }else
+        {
+            player1voices.AudiosCoopRondas(Ronda);
         }
         SpawnEnemies();
     }
