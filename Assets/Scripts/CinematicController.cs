@@ -30,6 +30,8 @@ public class CinematicController : MonoBehaviour
         // 3. Las rocas pequeñas que están ocultas dentro del modelo de la roca se mueven como si saltaran.
         ActivateSmallRocks();
 
+        character.SetActive(true);
+
         yield return new WaitForSeconds(3);
 
         // REALIZADO
@@ -63,7 +65,7 @@ public class CinematicController : MonoBehaviour
         {
             smallRock.SetActive(true);
             Rigidbody rb = smallRock.GetComponent<Rigidbody>();
-            Vector3 force = new Vector3(Random.Range(-1f, 1f), Random.Range(0.5f, 1f), Random.Range(-1f, 1f)) * 100;
+            Vector3 force = new Vector3(Random.Range(-1f, 1f), Random.Range(0.5f, 1f), Random.Range(-1f, 1f)) * 500;
             rb.AddForce(force);
         }
     }
