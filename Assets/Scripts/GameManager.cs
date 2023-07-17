@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,11 +51,11 @@ public class GameManager : MonoBehaviour
         isSoloGame = StateNameController.isSoloMode;
         BackgroundSource = transform
             .GetComponent<AudioSource>();
-        if(!isSoloGame)
+        if (!isSoloGame)
         {
             UISolo.SetActive(false);
             UICoop.SetActive(true);
-            Player1.transform.Find("Main Camera").GetComponent<Camera>().rect =  new Rect (0, 0.5f, 1, 1);
+            Player1.transform.Find("Main Camera").GetComponent<Camera>().rect = new Rect(0, 0.5f, 1, 1);
             Player2.SetActive(true);
             escopeta.arma = arma;
             escopeta.balas = balas;
@@ -67,35 +68,38 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Ronda <= 10)
+        if (Ronda <= 1)
         {
             if (zombiesActuales == 0)
             {
+                Debug.Log("Ronda iniciada");
                 Ronda++;
                 RondaUI.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
                 RondaUI2.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
                 RondaUI1.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
                 StartCoroutine(newRound());
             }
-        }else
-        {
-            // aca se habilita el boss fight
         }
-        
+        else
+        {
+            Debug.Log("Entrada a escena de boss");
+            SceneManager.LoadScene("BossTransition");
+        }
+
     }
 
     private void SpawnEnemies()
     {
-        for (int i = 0 ; i < CantidadZombiesPorHorda; i++)
+        for (int i = 0; i < CantidadZombiesPorHorda; i++)
         {
             var LugarRandom = UnityEngine.Random.Range(0, Spawnpoints.Count);
             var instantiatePosition = Spawnpoints[LugarRandom].transform.position;
-            int random = UnityEngine.Random.Range(0,2);
+            int random = UnityEngine.Random.Range(0, 2);
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
             enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
             enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
         }
-        
+
     }
 
     IEnumerator newRound()
@@ -105,7 +109,7 @@ public class GameManager : MonoBehaviour
         {
             BackgroundSource.PlayOneShot(BackgroundAudio[0]);
         }
-        yield return new WaitForSeconds(BackgroundAudio[0].length-2f);
+        yield return new WaitForSeconds(BackgroundAudio[0].length - 2f);
         SpawnEnemies();
     }
 }

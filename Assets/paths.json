@@ -1,0 +1,2144 @@
+{
+    ".": {
+        "directories": [
+            "Animation",
+            "Audio",
+            "European Buildings",
+            "Fonts",
+            "InputSystem",
+            "Materials",
+            "Models",
+            "Polygon-Houses",
+            "Polygon-Mega Weapone Kit",
+            "PolygonWar",
+            "Prefabs",
+            "Renderer",
+            "Scenes",
+            "Scripts",
+            "TextMesh Pro",
+            "Textures",
+            "Viuletti City low poly"
+        ],
+        "files": [
+            "InputSystem.inputsettings.asset",
+            "paths.json",
+            "UniversalRenderPipelineGlobalSettings.asset"
+        ]
+    },
+    ".\\Animation": {
+        "directories": [],
+        "files": [
+            "CameraMenuAnimatorController.controller",
+            "Gun2AnimatorController - Copy.controller",
+            "Gun2AnimatorController.controller",
+            "GunAnimatorController - Copy.controller",
+            "GunAnimatorController.controller",
+            "MainMenu.anim",
+            "PistolIdle.anim",
+            "PistolInspecting.anim",
+            "PistolReloading.anim",
+            "PistolShooting.anim",
+            "PlayerAnimController.controller",
+            "PlayerEndgame.anim",
+            "ShotgunIdle.anim",
+            "ShotgunInspecting.anim",
+            "ShotgunReloading.anim",
+            "ShotgunShooting.anim",
+            "StaticCamera.anim"
+        ]
+    },
+    ".\\Audio": {
+        "directories": [
+            "Enemy",
+            "Environment",
+            "GameSong",
+            "Guns",
+            "Main",
+            "Player"
+        ],
+        "files": []
+    },
+    ".\\Audio\\Enemy": {
+        "directories": [],
+        "files": [
+            "zombie-attack-1.mp3",
+            "zombie-attack-2.mp3",
+            "zombie-idle-1.mp3",
+            "zombie-idle-2.mp3"
+        ]
+    },
+    ".\\Audio\\Environment": {
+        "directories": [],
+        "files": []
+    },
+    ".\\Audio\\GameSong": {
+        "directories": [],
+        "files": [
+            "astronaut-says-game-over-73039.mp3",
+            "game_over_copyright.mp3",
+            "NewHorde.mp3",
+            "Round_change..mp3"
+        ]
+    },
+    ".\\Audio\\Guns": {
+        "directories": [
+            "Pistols",
+            "reload sounds",
+            "Shotguns"
+        ],
+        "files": [
+            "gun-click-no-ammo.mp3"
+        ]
+    },
+    ".\\Audio\\Guns\\Pistols": {
+        "directories": [],
+        "files": [
+            "pistol1-shoot.mp3"
+        ]
+    },
+    ".\\Audio\\Guns\\reload sounds": {
+        "directories": [],
+        "files": [
+            "9mm-pistol-load-and-chamber-98830.mp3",
+            "gunreload_9-92134.mp3",
+            "pistol-cock-6014.mp3"
+        ]
+    },
+    ".\\Audio\\Guns\\Shotguns": {
+        "directories": [],
+        "files": [
+            "shotgun1-shoot.mp3"
+        ]
+    },
+    ".\\Audio\\Main": {
+        "directories": [],
+        "files": [
+            "Main.mp3"
+        ]
+    },
+    ".\\Audio\\Player": {
+        "directories": [
+            "Security",
+            "Swat"
+        ],
+        "files": []
+    },
+    ".\\Audio\\Player\\Security": {
+        "directories": [],
+        "files": []
+    },
+    ".\\Audio\\Player\\Swat": {
+        "directories": [],
+        "files": [
+            "Swat_reload_weapon1.mp3",
+            "Swat_reload_weapon2.mp3",
+            "Swat_start_game_solo1.mp3",
+            "Swat_start_game_solo2.mp3"
+        ]
+    },
+    ".\\European Buildings": {
+        "directories": [
+            "Buildings",
+            "Decorations",
+            "FBX",
+            "Materials"
+        ],
+        "files": []
+    },
+    ".\\European Buildings\\Buildings": {
+        "directories": [],
+        "files": [
+            "building_1.prefab",
+            "building_2.prefab",
+            "building_3.prefab",
+            "building_4.prefab",
+            "building_5.prefab",
+            "building_6.prefab",
+            "building_7.prefab",
+            "building_8.prefab"
+        ]
+    },
+    ".\\European Buildings\\Decorations": {
+        "directories": [],
+        "files": [
+            "bench_1_v_1.prefab",
+            "bench_1_v_2.prefab",
+            "bench_1_v_3.prefab",
+            "bench_2_v_1.prefab",
+            "bench_2_v_2.prefab",
+            "bench_2_v_3.prefab",
+            "chair.prefab",
+            "fence_1.prefab",
+            "fence_2.prefab",
+            "patio_platform.prefab",
+            "road.prefab",
+            "road_crosswalk.prefab",
+            "road_intersection_L.prefab",
+            "road_intersection_T.prefab",
+            "road_intersection_X.prefab",
+            "road_stop.prefab",
+            "sign_1.prefab",
+            "sign_2.prefab",
+            "sign_3.prefab",
+            "sign_4.prefab",
+            "sign_5.prefab",
+            "street_lamp_1.prefab",
+            "street_lamp_2.prefab",
+            "street_lamp_3.prefab",
+            "table.prefab",
+            "umbrella.prefab"
+        ]
+    },
+    ".\\European Buildings\\FBX": {
+        "directories": [],
+        "files": [
+            "bench_1_v_1.fbx",
+            "bench_1_v_2.fbx",
+            "bench_1_v_3.fbx",
+            "bench_2_v_1.fbx",
+            "bench_2_v_2.fbx",
+            "bench_2_v_3.fbx",
+            "building_1.fbx",
+            "building_2.fbx",
+            "building_3.fbx",
+            "building_4.fbx",
+            "building_5.fbx",
+            "building_6.fbx",
+            "building_7.fbx",
+            "building_8.fbx",
+            "chair.fbx",
+            "fence_1.fbx",
+            "fence_2.fbx",
+            "patio_platform.fbx",
+            "road.fbx",
+            "road_crosswalk.fbx",
+            "road_intersection_L.fbx",
+            "road_intersection_T.fbx",
+            "road_intersection_X.fbx",
+            "road_stop.fbx",
+            "sign_1.fbx",
+            "sign_2.fbx",
+            "sign_3.fbx",
+            "sign_4.fbx",
+            "sign_5.fbx",
+            "street_lamp_1.fbx",
+            "street_lamp_2.fbx",
+            "street_lamp_3.fbx",
+            "table.fbx",
+            "umbrella.fbx"
+        ]
+    },
+    ".\\European Buildings\\Materials": {
+        "directories": [],
+        "files": [
+            "accent_3.mat",
+            "accent_4.mat",
+            "accent_red.mat",
+            "accent_white.mat",
+            "balcon_1.mat",
+            "balcon_2.mat",
+            "blue.mat",
+            "blue_3.mat",
+            "brick.mat",
+            "bright_yellow.mat",
+            "brown.mat",
+            "chair.mat",
+            "chimney.mat",
+            "door_1.mat",
+            "fasade_1.mat",
+            "fasade_11.mat",
+            "fasade_2.mat",
+            "fasade_3.mat",
+            "fasade_4.mat",
+            "fasade_6.mat",
+            "fasade_7.mat",
+            "fasade_8.mat",
+            "fasade_9.mat",
+            "fasade_9_5.mat",
+            "gray.mat",
+            "gray_2.mat",
+            "green_tab.mat",
+            "lamp_1.mat",
+            "lamp_2.mat",
+            "lamp_3.mat",
+            "line.mat",
+            "mat_005.mat",
+            "mat_006.mat",
+            "mat_032.mat",
+            "red_emiter.mat",
+            "road_color.mat",
+            "roof_1.mat",
+            "roof_2.mat",
+            "roof_3.mat",
+            "roof_4.mat",
+            "stairs_1.mat",
+            "umbrella.mat",
+            "unnamed.mat",
+            "window_accent_1.mat",
+            "window_accent_2.mat",
+            "window_dark.mat",
+            "wood.mat",
+            "wood_2.mat",
+            "wood_3.mat"
+        ]
+    },
+    ".\\Fonts": {
+        "directories": [],
+        "files": [
+            "BleedingPixels SDF.asset",
+            "BleedingPixels.ttf",
+            "PixelDevilsdeal SDF.asset",
+            "PixelDevilsdeal.ttf",
+            "PixelRunes SDF.asset",
+            "PixelRunes.ttf"
+        ]
+    },
+    ".\\InputSystem": {
+        "directories": [],
+        "files": [
+            "UlFPS 1.inputactions",
+            "UlFPS.inputactions"
+        ]
+    },
+    ".\\Materials": {
+        "directories": [],
+        "files": [
+            "ApoSky.mat",
+            "brick_texture.mat",
+            "Default.mat",
+            "doomguyfaces.mat",
+            "ImpactMaterial.mat",
+            "MinimapMaterial.mat",
+            "MinimapMaterialZ1.mat",
+            "MinimapMaterialZ2.mat"
+        ]
+    },
+    ".\\Models": {
+        "directories": [
+            "Enemies",
+            "Players"
+        ],
+        "files": []
+    },
+    ".\\Models\\Enemies": {
+        "directories": [
+            "Boss",
+            "Zombie1",
+            "Zombie2"
+        ],
+        "files": []
+    },
+    ".\\Models\\Enemies\\Boss": {
+        "directories": [],
+        "files": []
+    },
+    ".\\Models\\Enemies\\Zombie1": {
+        "directories": [
+            "Animations",
+            "Materials",
+            "Textures"
+        ],
+        "files": [
+            "Prisoner B Styperek.fbx",
+            "Prisoner B Styperek@Breathing Idle.fbx",
+            "Prisoner B Styperek@Falling Back Death.fbx",
+            "Prisoner B Styperek@Standing Torch Melee Attack 03.fbx",
+            "Prisoner B Styperek@Walking Left Turn.fbx",
+            "Prisoner B Styperek@Walking Right Turn.fbx",
+            "Prisoner B Styperek@Walking.fbx",
+            "Prisoner B Styperek@Zombie Attack.fbx",
+            "Prisoner B Styperek@Zombie Walk.fbx",
+            "Standing Melee Combo Attack Ver. 2.fbx"
+        ]
+    },
+    ".\\Models\\Enemies\\Zombie1\\Animations": {
+        "directories": [],
+        "files": [
+            "Breathing Idle.anim",
+            "Standing Melee Combo Attack Ver 2.anim",
+            "Standing Torch Melee Attack 03.anim",
+            "Walking Left Turn.anim",
+            "Walking Right Turn.anim",
+            "Walking.anim",
+            "Zombie Attack.anim",
+            "Zombie1AnimController.controller"
+        ]
+    },
+    ".\\Models\\Enemies\\Zombie1\\Materials": {
+        "directories": [],
+        "files": [
+            "prisoner_diffuse.mat",
+            "Prisoner_material.mat"
+        ]
+    },
+    ".\\Models\\Enemies\\Zombie1\\Textures": {
+        "directories": [],
+        "files": [
+            "prisoner_diffuse.png",
+            "prisoner_normal.png",
+            "prisoner_specular.png"
+        ]
+    },
+    ".\\Models\\Enemies\\Zombie2": {
+        "directories": [
+            "Animations",
+            "Materials",
+            "Textures"
+        ],
+        "files": [
+            "Pumpkinhulk L Shaw.fbx",
+            "Pumpkinhulk L Shaw@Death.fbx",
+            "Pumpkinhulk L Shaw@Walking Left Turn.fbx",
+            "Pumpkinhulk L Shaw@Walking Right Turn.fbx",
+            "Pumpkinhulk L Shaw@Walking.fbx",
+            "Pumpkinhulk L Shaw@Zombie Attack.fbx",
+            "Pumpkinhulk L Shaw@Zombie Idle.fbx",
+            "Pumpkinhulk L Shaw@Zombie Run.fbx"
+        ]
+    },
+    ".\\Models\\Enemies\\Zombie2\\Animations": {
+        "directories": [],
+        "files": [
+            "Death.anim",
+            "Walking Left Turn.anim",
+            "Walking Right Turn.anim",
+            "Walking.anim",
+            "Zombie Attack.anim",
+            "Zombie Idle.anim",
+            "Zombie Run.anim",
+            "Zombie2AnimController.controller"
+        ]
+    },
+    ".\\Models\\Enemies\\Zombie2\\Materials": {
+        "directories": [],
+        "files": [
+            "PumpkinHulk_Material.mat"
+        ]
+    },
+    ".\\Models\\Enemies\\Zombie2\\Textures": {
+        "directories": [],
+        "files": [
+            "pumpkinHulk_diffuse 1.png",
+            "pumpkinHulk_diffuse.png",
+            "pumpkinHulk_normal 1.png",
+            "pumpkinHulk_normal.png"
+        ]
+    },
+    ".\\Models\\Players": {
+        "directories": [
+            "Security",
+            "Swat"
+        ],
+        "files": []
+    },
+    ".\\Models\\Players\\Security": {
+        "directories": [
+            "Animations",
+            "FPmodels",
+            "Materials",
+            "pistol",
+            "Textures"
+        ],
+        "files": [
+            "Ch18_nonPBR.fbx"
+        ]
+    },
+    ".\\Models\\Players\\Security\\Animations": {
+        "directories": [],
+        "files": [
+            "Pistol Aim.anim",
+            "Pistol Idle.anim",
+            "Pistol Jump.anim",
+            "Pistol Reload.anim",
+            "Pistol Run Reload.anim",
+            "Pistol Run.anim",
+            "Pistol Shoot.anim",
+            "Pistol Strafe Left.anim",
+            "Pistol Strafe Rigth.anim",
+            "Pistol Walk Backward.anim",
+            "SecurityAnimController.controller"
+        ]
+    },
+    ".\\Models\\Players\\Security\\FPmodels": {
+        "directories": [],
+        "files": [
+            "LegAnimController.controller",
+            "Security_Arms.fbx",
+            "Security_Legs.fbx"
+        ]
+    },
+    ".\\Models\\Players\\Security\\Materials": {
+        "directories": [],
+        "files": [
+            "Ch18_Body.mat"
+        ]
+    },
+    ".\\Models\\Players\\Security\\pistol": {
+        "directories": [],
+        "files": [
+            "Ch18_nonPBR@Pistol Idle.fbx",
+            "Ch18_nonPBR@Pistol Run.fbx",
+            "Ch18_nonPBR@Pistol Strafe (1).fbx",
+            "Ch18_nonPBR@Pistol Strafe.fbx",
+            "Ch18_nonPBR@Pistol Walk Backward.fbx"
+        ]
+    },
+    ".\\Models\\Players\\Security\\Textures": {
+        "directories": [],
+        "files": [
+            "Ch18_1001_Diffuse.png",
+            "Ch18_1001_Glossiness.png",
+            "Ch18_1001_Normal.png",
+            "Ch18_1001_Specular.png"
+        ]
+    },
+    ".\\Models\\Players\\Swat": {
+        "directories": [
+            "Animations",
+            "FPmodels",
+            "gun",
+            "Materials",
+            "pistol",
+            "Textures"
+        ],
+        "files": [
+            "Swat.fbx"
+        ]
+    },
+    ".\\Models\\Players\\Swat\\Animations": {
+        "directories": [
+            "Menu"
+        ],
+        "files": [
+            "Base.anim",
+            "Idle Aiming - shotgun.anim",
+            "Jump Loop - shotgun.anim",
+            "Pistol Aim.anim",
+            "Pistol Idle.anim",
+            "Pistol Jump.anim",
+            "Pistol Reload.anim",
+            "Pistol Run Backward.anim",
+            "Pistol Shoot.anim",
+            "Pistol Strafe Left.anim",
+            "Pistol Strafe Rigth.anim",
+            "Pistol Walk Reloading.anim",
+            "Pistol Walk.anim",
+            "Reload Idle - shotgun.anim",
+            "Reload walking - shotgun.anim",
+            "Run Backwards - shotgun.anim",
+            "ShotgunIdle.anim",
+            "ShotgunShoot.anim",
+            "Strafe left - shotgun.anim",
+            "Strafe rigth - shotgun.anim",
+            "SwatAnimController.controller",
+            "SwatAnimController_menu.controller",
+            "Walking - shotgun.anim"
+        ]
+    },
+    ".\\Models\\Players\\Swat\\Animations\\Menu": {
+        "directories": [],
+        "files": [
+            "Idle Aiming - shotgun.anim",
+            "SwatMenuController.controller"
+        ]
+    },
+    ".\\Models\\Players\\Swat\\FPmodels": {
+        "directories": [],
+        "files": [
+            "Idle legs.anim",
+            "Idle_Legs.fbx",
+            "Jump legs.anim",
+            "jump legs.fbx",
+            "LegAnimController.controller",
+            "Legs.fbx",
+            "strafe left legs.anim",
+            "strafe right legs.anim",
+            "strafe_left legs.fbx",
+            "strafe_right legs.fbx",
+            "Swat_Arms.fbx",
+            "walk backwards legs.anim",
+            "walk backwards Legs.fbx",
+            "Walk legs.anim",
+            "walking_legs.fbx"
+        ]
+    },
+    ".\\Models\\Players\\Swat\\gun": {
+        "directories": [],
+        "files": [
+            "Swat@Idle Aiming.fbx",
+            "Swat@Idle.fbx",
+            "Swat@Jump Loop.fbx",
+            "Swat@Reload.fbx",
+            "Swat@Reloading.fbx",
+            "Swat@Run Backwards.fbx",
+            "Swat@Strafe (1).fbx",
+            "Swat@Strafe.fbx",
+            "Swat@Walking.fbx"
+        ]
+    },
+    ".\\Models\\Players\\Swat\\Materials": {
+        "directories": [],
+        "files": [
+            "Soldier_body1.009.mat",
+            "Soldier_body1.mat",
+            "Soldier_head6.mat"
+        ]
+    },
+    ".\\Models\\Players\\Swat\\pistol": {
+        "directories": [],
+        "files": [
+            "Swat@Pistol Idle.fbx",
+            "Swat@Pistol Jump.fbx",
+            "Swat@Pistol Run Backward.fbx",
+            "Swat@Pistol Strafe (1).fbx",
+            "Swat@Pistol Strafe.fbx",
+            "Swat@Pistol Walk.fbx"
+        ]
+    },
+    ".\\Models\\Players\\Swat\\Textures": {
+        "directories": [],
+        "files": [
+            "Soldier_Body_diffuse 1.png",
+            "Soldier_Body_diffuse.png",
+            "Soldier_Body_normal 1.png",
+            "Soldier_Body_normal.png",
+            "Soldier_Body_specular 1.png",
+            "Soldier_Body_specular.png",
+            "Soldier_head_diffuse 1.png",
+            "Soldier_head_diffuse.png",
+            "Soldier_head_normal 1.png",
+            "Soldier_head_normal.png",
+            "Soldier_head_specular 1.png",
+            "Soldier_head_specular.png"
+        ]
+    },
+    ".\\Polygon-Houses": {
+        "directories": [
+            "Animation",
+            "Demo_Day_Profiles",
+            "Demo_Night_Profiles",
+            "Materials",
+            "Models",
+            "Prefabs",
+            "Scenes",
+            "Textures"
+        ],
+        "files": []
+    },
+    ".\\Polygon-Houses\\Animation": {
+        "directories": [],
+        "files": [
+            "Copter_01.anim",
+            "vane_01.controller"
+        ]
+    },
+    ".\\Polygon-Houses\\Demo_Day_Profiles": {
+        "directories": [],
+        "files": [
+            "Day.asset",
+            "Sky.mat"
+        ]
+    },
+    ".\\Polygon-Houses\\Demo_Night_Profiles": {
+        "directories": [],
+        "files": [
+            "Night.asset",
+            "SkyNight.mat"
+        ]
+    },
+    ".\\Polygon-Houses\\Materials": {
+        "directories": [],
+        "files": [
+            "Glass.mat",
+            "GroundSmooth.mat",
+            "Main_Material.mat"
+        ]
+    },
+    ".\\Polygon-Houses\\Models": {
+        "directories": [
+            "Houses",
+            "Street",
+            "Vehicles"
+        ],
+        "files": []
+    },
+    ".\\Polygon-Houses\\Models\\Houses": {
+        "directories": [],
+        "files": [
+            "SM_Barbershop_01.fbx",
+            "SM_Barbershop_02.fbx",
+            "SM_bistro_01_A.fbx",
+            "SM_bistro_01_B.fbx",
+            "SM_Building_01_A.fbx",
+            "SM_Building_01_B.fbx",
+            "SM_Building_02_A.fbx",
+            "SM_Building_02_B.fbx",
+            "SM_Building_03_A.fbx",
+            "SM_Building_03_B.fbx",
+            "SM_Building_04_A.fbx",
+            "SM_Building_04_B.fbx",
+            "SM_buisness_building_01_A.fbx",
+            "SM_buisness_building_01_B.fbx",
+            "SM_cafe_01_A.fbx",
+            "SM_cafe_01_B.fbx",
+            "SM_Circus.fbx",
+            "SM_CopterPlace.fbx",
+            "SM_elite_building_01_A.fbx",
+            "SM_elite_building_01_B.fbx",
+            "SM_factory_01_A.fbx",
+            "SM_factory_01_B.fbx",
+            "SM_factory_01_C.fbx",
+            "SM_Factory_02_A.fbx",
+            "SM_Factory_02_B.fbx",
+            "SM_Garage_01.fbx",
+            "SM_Garage_02.fbx",
+            "SM_Government_01_A.fbx",
+            "SM_Government_01_B.fbx",
+            "SM_Guildhall_01_A.fbx",
+            "SM_Guildhall_01_B.fbx",
+            "SM_Hospital.fbx",
+            "SM_hostel_01_A.fbx",
+            "SM_hostel_01_B.fbx",
+            "SM_Hotel_01_A.fbx",
+            "SM_Hotel_01_B.fbx",
+            "SM_house_01_A.fbx",
+            "SM_house_01_B.fbx",
+            "SM_house_02_A.fbx",
+            "SM_house_02_B.fbx",
+            "SM_house_03_A.fbx",
+            "SM_house_03_B.fbx",
+            "SM_house_04_A.fbx",
+            "SM_house_04_B.fbx",
+            "SM_house_05_A.fbx",
+            "SM_house_05_B.fbx",
+            "SM_house_06_A.fbx",
+            "SM_house_06_B.fbx",
+            "SM_house_35.fbx",
+            "SM_house_36.fbx",
+            "SM_house_37.fbx",
+            "SM_house_38.fbx",
+            "SM_house_39.fbx",
+            "SM_house_40.fbx",
+            "SM_House_78_A.fbx",
+            "SM_House_78_B.fbx",
+            "SM_Market_01_A.fbx",
+            "SM_Market_01_B.fbx",
+            "SM_market_02_B.fbx",
+            "SM_market_03_B.fbx",
+            "SM_Motel_01_A.fbx",
+            "SM_Motel_01_B.fbx",
+            "SM_Museum_01_A.fbx",
+            "SM_Museum_01_B.fbx",
+            "SM_Police_01_A.fbx",
+            "SM_Police_01_B.fbx",
+            "SM_Restaurant_01_A.fbx",
+            "SM_Restaurant_01_B.fbx"
+        ]
+    },
+    ".\\Polygon-Houses\\Models\\Street": {
+        "directories": [],
+        "files": [
+            "SM_floor_01.fbx",
+            "SM_floor_02.fbx",
+            "SM_floor_03.fbx",
+            "SM_floor_04.fbx",
+            "SM_flower_bed.fbx",
+            "SM_road_01.fbx",
+            "SM_road_02.fbx",
+            "SM_road_03.fbx",
+            "SM_road_04.fbx",
+            "SM_road_05.fbx",
+            "SM_sidewalk_01.fbx",
+            "SM_sidewalk_02.fbx",
+            "SM_sidewalk_03.fbx",
+            "SM_street_light.fbx",
+            "SM_Tree_01_A.fbx",
+            "SM_Tree_01_B.fbx",
+            "SM_Tree_01_C.fbx",
+            "SM_Tree_01_D.fbx"
+        ]
+    },
+    ".\\Polygon-Houses\\Models\\Vehicles": {
+        "directories": [],
+        "files": [
+            "SM_car_01.fbx",
+            "SM_car_02.fbx",
+            "SM_car_03.fbx",
+            "SM_car_04.fbx",
+            "SM_car_05.fbx",
+            "SM_helicopter_01.fbx"
+        ]
+    },
+    ".\\Polygon-Houses\\Prefabs": {
+        "directories": [
+            "Houses",
+            "Street",
+            "Vehicles"
+        ],
+        "files": []
+    },
+    ".\\Polygon-Houses\\Prefabs\\Houses": {
+        "directories": [],
+        "files": [
+            "SM_Barbershop_01.prefab",
+            "SM_Barbershop_02.prefab",
+            "SM_bistro_01_A.prefab",
+            "SM_bistro_01_B.prefab",
+            "SM_Building_01_A.prefab",
+            "SM_Building_01_B.prefab",
+            "SM_Building_02_A.prefab",
+            "SM_Building_02_B.prefab",
+            "SM_Building_03_A.prefab",
+            "SM_Building_03_B.prefab",
+            "SM_Building_04_A.prefab",
+            "SM_Building_04_B.prefab",
+            "SM_buisness_building_01_A.prefab",
+            "SM_buisness_building_01_B.prefab",
+            "SM_cafe_01_A.prefab",
+            "SM_cafe_01_B.prefab",
+            "SM_Circus.prefab",
+            "SM_CopterPlace.prefab",
+            "SM_elite_building_01_A.prefab",
+            "SM_elite_building_01_B.prefab",
+            "SM_factory_01_A.prefab",
+            "SM_factory_01_B.prefab",
+            "SM_factory_01_C.prefab",
+            "SM_Factory_02_A.prefab",
+            "SM_Factory_02_B.prefab",
+            "SM_Garage_01.prefab",
+            "SM_Garage_02.prefab",
+            "SM_Government_01_A.prefab",
+            "SM_Government_01_B.prefab",
+            "SM_Guildhall_01_A.prefab",
+            "SM_Guildhall_01_B.prefab",
+            "SM_Hospital.prefab",
+            "SM_hostel_01_A.prefab",
+            "SM_hostel_01_B.prefab",
+            "SM_Hotel_01_A.prefab",
+            "SM_Hotel_01_B.prefab",
+            "SM_house_01_A.prefab",
+            "SM_house_01_B.prefab",
+            "SM_house_02_A.prefab",
+            "SM_house_02_B.prefab",
+            "SM_house_03_A.prefab",
+            "SM_house_03_B.prefab",
+            "SM_house_04_A.prefab",
+            "SM_house_04_B.prefab",
+            "SM_house_05_A.prefab",
+            "SM_house_05_B.prefab",
+            "SM_house_06_A.prefab",
+            "SM_house_06_B.prefab",
+            "SM_house_35.prefab",
+            "SM_house_36.prefab",
+            "SM_house_37.prefab",
+            "SM_house_38.prefab",
+            "SM_house_39.prefab",
+            "SM_house_40.prefab",
+            "SM_House_78_A.prefab",
+            "SM_House_78_B.prefab",
+            "SM_Market_01_A.prefab",
+            "SM_Market_01_B.prefab",
+            "SM_market_02_B.prefab",
+            "SM_market_03_B.prefab",
+            "SM_Motel_01_A.prefab",
+            "SM_Motel_01_B.prefab",
+            "SM_Museum_01_A.prefab",
+            "SM_Museum_01_B.prefab",
+            "SM_Police_01_A.prefab",
+            "SM_Police_01_B.prefab",
+            "SM_Restaurant_01_A.prefab",
+            "SM_Restaurant_01_B.prefab"
+        ]
+    },
+    ".\\Polygon-Houses\\Prefabs\\Street": {
+        "directories": [],
+        "files": [
+            "SM_floor_01.prefab",
+            "SM_floor_02.prefab",
+            "SM_floor_03.prefab",
+            "SM_floor_04.prefab",
+            "SM_flower_bed.prefab",
+            "SM_road_01.prefab",
+            "SM_road_02.prefab",
+            "SM_road_03.prefab",
+            "SM_road_04.prefab",
+            "SM_road_05.prefab",
+            "SM_sidewalk_01.prefab",
+            "SM_sidewalk_02.prefab",
+            "SM_sidewalk_03.prefab",
+            "SM_street_light.prefab",
+            "SM_Tree_01_A.prefab",
+            "SM_Tree_01_B.prefab",
+            "SM_Tree_01_C.prefab",
+            "SM_Tree_01_D.prefab"
+        ]
+    },
+    ".\\Polygon-Houses\\Prefabs\\Vehicles": {
+        "directories": [],
+        "files": [
+            "SM_car_01.prefab",
+            "SM_car_02.prefab",
+            "SM_car_03.prefab",
+            "SM_car_04.prefab",
+            "SM_car_05.prefab",
+            "SM_helicopter_01.prefab"
+        ]
+    },
+    ".\\Polygon-Houses\\Scenes": {
+        "directories": [
+            "Demo",
+            "DemoNight",
+            "Demonstration"
+        ],
+        "files": [
+            "Demo.unity",
+            "DemoNight.unity",
+            "Demonstration.unity"
+        ]
+    },
+    ".\\Polygon-Houses\\Scenes\\Demo": {
+        "directories": [],
+        "files": [
+            "LightingData.asset",
+            "Lightmap-0_comp_dir.png",
+            "Lightmap-0_comp_light.exr",
+            "ReflectionProbe-0.exr"
+        ]
+    },
+    ".\\Polygon-Houses\\Scenes\\DemoNight": {
+        "directories": [],
+        "files": [
+            "LightingData.asset",
+            "ReflectionProbe-0.exr"
+        ]
+    },
+    ".\\Polygon-Houses\\Scenes\\Demonstration": {
+        "directories": [],
+        "files": [
+            "LightingData.asset",
+            "Lightmap-0_comp_dir.png",
+            "Lightmap-0_comp_light.exr",
+            "ReflectionProbe-0.exr"
+        ]
+    },
+    ".\\Polygon-Houses\\Textures": {
+        "directories": [],
+        "files": [
+            "Polygon_Texture.png"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit": {
+        "directories": [
+            "Demo_Day_Profiles",
+            "Materials",
+            "Models",
+            "Prefabs",
+            "Scenes",
+            "Textures"
+        ],
+        "files": []
+    },
+    ".\\Polygon-Mega Weapone Kit\\Demo_Day_Profiles": {
+        "directories": [],
+        "files": [
+            "Day.asset"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit\\Materials": {
+        "directories": [],
+        "files": [
+            "Ground.mat",
+            "MainMaterial.mat"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit\\Models": {
+        "directories": [
+            "AdditionalAmmo",
+            "Ammo"
+        ],
+        "files": [
+            "Assault_Rifle_5.56_Prototype.fbx",
+            "Assault_Rifle_5.56_Prototype_Clean.fbx",
+            "Modern_Pump_Action_Shotgun.fbx",
+            "Sapper_Shovel_01.fbx",
+            "Sapper_Shovel_02.fbx",
+            "SM_Ammo_Box_Closed.fbx",
+            "SM_Ammo_Box_Large_Closed.fbx",
+            "SM_Ammo_Box_Large_Closed_2.fbx",
+            "SM_Ammo_Box_Large_Open.fbx",
+            "SM_Ammo_Box_Large_Open_02.fbx",
+            "SM_Ammo_Box_Open.fbx",
+            "SM_Ammo_Box_Wood_Closed.fbx",
+            "SM_Ammo_Box_Wood_Closed_02.fbx",
+            "SM_Ammo_Box_Wood_Open.fbx",
+            "SM_Ammo_Box_Wood_Open_02.fbx",
+            "SM_Anti_Tank_Mine.fbx",
+            "SM_Army_Pistol.fbx",
+            "SM_Army_Shotgun.fbx",
+            "SM_Army_Sniper_Rifle.fbx",
+            "SM_Army_Submachine_Gun.fbx",
+            "SM_Assault_Rifle_5,45.fbx",
+            "SM_Assault_Rifle_5,45_Clean.fbx",
+            "SM_Assault_Rifle_5,56.fbx",
+            "SM_Assault_Rifle_5,56_Clean.fbx",
+            "SM_Assault_Rifle_9x39.fbx",
+            "SM_Assault_Shotgun.fbx",
+            "SM_Bandolier_Shotgun.fbx",
+            "SM_Bandolier_Sniper_Rifle.fbx",
+            "SM_Barrel_attachment_Shotgun.fbx",
+            "SM_Bayonet_Knife_5.45.fbx",
+            "SM_Bayonet_Knife_5.56.fbx",
+            "SM_Bipod_ForLarge_Caliber_Sniper_Rifle.fbx",
+            "SM_Bipod__ForHigh_Precision_Sniper_Rifle.fbx",
+            "SM_Bulpam_Assault_Rifle.fbx",
+            "SM_Butt_Of_The_Rifle_For_Special_Submachine_Gun_Clean.fbx",
+            "SM_Cartridge_Box_For_Heavy_Machine_Gun.fbx",
+            "SM_Cartridge_Box_For_Light_Machine_Gun.fbx",
+            "SM_Civilian_Pistol.fbx",
+            "SM_Civilian_Submachine_Gun.fbx",
+            "SM_Collimator_Sight_A_01.fbx",
+            "SM_Collimator_Sight_A_02.fbx",
+            "SM_Collimator_Sight_B_01.fbx",
+            "SM_Collimator_Sight_B_02.fbx",
+            "SM_Collimator_Sight_B_03.fbx",
+            "SM_Collimator_Sight_B_04.fbx",
+            "SM_Combat_Axe.fbx",
+            "SM_Combat_Knife.fbx",
+            "SM_Compensator_For_High_Precision_Sniper_Rifle.fbx",
+            "SM_Compensator_For_Large_Caliber_Sniper_Rifle.fbx",
+            "SM_Cylindrical_Collimator_Sight.fbx",
+            "SM_C_Four_01.fbx",
+            "SM_C_Four_02.fbx",
+            "SM_Flick_Knife.fbx",
+            "SM_Forend_With_Picatinny_Rails_01.fbx",
+            "SM_Forend_With_Picatinny_Rails_02.fbx",
+            "SM_Forend_With_Picatinny_Rails_5.45.fbx",
+            "SM_Forend_With_Picatinny_Rails_5.56_01.fbx",
+            "SM_Forend_With_Picatinny_Rails_Prototype.fbx",
+            "SM_Frag_Grenade.fbx",
+            "SM_Gun_Cabinet.fbx",
+            "SM_Gun_Cabinet_01.fbx",
+            "SM_Gun_Table_01.fbx",
+            "SM_Gun_Table_01_02.fbx",
+            "SM_Gun_Table_02.fbx",
+            "SM_Gun_Table_02_02.fbx",
+            "SM_Handguard_For_Submachine_Gun_01.fbx",
+            "SM_Handguard_For_Submachine_Gun_02.fbx",
+            "SM_Heavy_Machine_Gun.fbx",
+            "SM_High_Magnification_Sight.fbx",
+            "SM_High_Precision_Sniper_Rifle.fbx",
+            "SM_Horizontal_Handle_01.fbx",
+            "SM_Horizontal_Handle_02.fbx",
+            "SM_Horizontal_Handle_03.fbx",
+            "SM_Horizontal_Handle_04.fbx",
+            "SM_Hunting_Pistol.fbx",
+            "SM_Hunting_Sniper_Rifle.fbx",
+            "SM_Infantry_Mine.fbx",
+            "SM_Karambit.fbx",
+            "SM_Kukri.fbx",
+            "SM_Larfe_For_Assault_Rifle_5,56.fbx",
+            "SM_Larfe_For_Assault_Rifle_5,56_Empty.fbx",
+            "SM_Large_Caliber_Sniper_Rifle.fbx",
+            "SM_Large_Magazine_For_Army_Pistol.fbx",
+            "SM_Large_Magazine_For_Army_Pistol_Empty.fbx",
+            "SM_Large_Magazine_For_Assault_Rifle_5,45.fbx",
+            "SM_Large_Magazine_For_Assault_Rifle_5,45_Empty.fbx",
+            "SM_Light_Machine_Gun.fbx",
+            "SM_Machete.fbx",
+            "SM_MagazineFor_Hunting_Pistol.fbx",
+            "SM_MagazineFor_Hunting_Pistol_Empty.fbx",
+            "SM_Magazine_For_Army_Pistol.fbx",
+            "SM_Magazine_For_Army_Pistol_Empty.fbx",
+            "SM_Magazine_For_Army_Sniper_Rifle.fbx",
+            "SM_Magazine_For_Army_Sniper_Rifle_Empty.fbx",
+            "SM_Magazine_For_Army_Submachine_Gun.fbx",
+            "SM_Magazine_For_Army_Submachine_Gun_Empty.fbx",
+            "SM_Magazine_For_Assault_Rifle_5,45.fbx",
+            "SM_Magazine_For_Assault_Rifle_5,45_Empty.fbx",
+            "SM_Magazine_For_Assault_Rifle_5,56.fbx",
+            "SM_Magazine_For_Assault_Rifle_5,56_Empty.fbx",
+            "SM_Magazine_For_Assault_Shotgun.fbx",
+            "SM_Magazine_For_Bulpam_Assault_Rifle_Empty.fbx",
+            "SM_Magazine_For_Civilian_Pistol.fbx",
+            "SM_Magazine_For_Civilian_Pistol_Empty.fbx",
+            "SM_Magazine_For_High_Precision_Sniper_Rifle.fbx",
+            "SM_Magazine_For_High_Precision_Sniper_Rifle_Empty.fbx",
+            "SM_Magazine_For_HuntingSniper_Rifle.fbx",
+            "SM_Magazine_For_Large_Caliber_Sniper_Rifle.fbx",
+            "SM_Magazine_For_Large_Caliber_Sniper_Rifle_Empty.fbx",
+            "SM_Magazine_For_Police_Gun.fbx",
+            "SM_Magazine_For_Police_Gun_Empty.fbx",
+            "SM_Magazine_For_Police_Sniper_Rifle.fbx",
+            "SM_Magazine_For_Police_Sniper_Rifle_Empty.fbx",
+            "SM_Magazine_For_Police_Submachine_Gun.fbx",
+            "SM_Magazine_For_Police_Submachine_Gun_Empty.fbx",
+            "SM_Magazine_For_SM_Assault_Rifle_9x39.fbx",
+            "SM_Magazine_For_SM_Assault_Rifle_9x39_Empty.fbx",
+            "SM_Magazine_For_Special_Submachine_Gun.fbx",
+            "SM_Magazine_For_Special_Submachine_Gun_Empty.fbx",
+            "SM_Magazine_Tactical_Submachine_Gun.fbx",
+            "SM_Magazine_Tactical_Submachine_Gun_Empty.fbx",
+            "SM_Magazine__For_Bulpam_Assault_Rifle.fbx",
+            "SM_Molotov_01.fbx",
+            "SM_Molotov_02.fbx",
+            "SM_Mount_For_Assault_Rifle_9x39_01.fbx",
+            "SM_Mount_For_Assault_Rifle_9x39_02.fbx",
+            "SM_Muffler_01.fbx",
+            "SM_Muffler_02.fbx",
+            "SM_Muffler_03.fbx",
+            "SM_Muffler_04.fbx",
+            "SM_Muffler_05.fbx",
+            "SM_Muzzle_Assault_Rifle_5.56_Prototype_Clean_01.fbx",
+            "SM_Muzzle_Assault_Rifle_5.56_Prototype_Clean_02.fbx",
+            "SM_Muzzle_Brake_Compensator_01.fbx",
+            "SM_Muzzle_Brake_Compensator_02.fbx",
+            "SM_Muzzle_Brake_Compensator_03.fbx",
+            "SM_Muzzle_Brake_Compensator_04.fbx",
+            "SM_Muzzle_Brake_Compensator_05.fbx",
+            "SM_Muzzle_Brake_Compensator_06.fbx",
+            "SM_Muzzle_Brake_Compensator_07.fbx",
+            "SM_Muzzle_Large_Caliber_Sniper_Rifle_01.fbx",
+            "SM_Muzzle_Large_Caliber_Sniper_Rifle_02.fbx",
+            "SM_Optical_Sight_01.fbx",
+            "SM_Paired_For_Assault_Rifle_5,45.fbx",
+            "SM_Paired_For_Assault_Rifle_5,45_Empty.fbx",
+            "SM_Pallet_01.fbx",
+            "SM_Pallet_02.fbx",
+            "SM_Pallet_03.fbx",
+            "SM_Pistol_Grip_01_5.45.fbx",
+            "SM_Pistol_Grip_01_5.56.fbx",
+            "SM_Pistol_Grip_Prototype.fbx",
+            "SM_Police_Gun.fbx",
+            "SM_Police_Shotgun.fbx",
+            "SM_Police_Sniper_Rifle.fbx",
+            "SM_Police_Submachine_Gun.fbx",
+            "SM_Polymer_Handle.fbx",
+            "SM_Portable_Ammo_Box_01.fbx",
+            "SM_Portable_Ammo_Box_01_02.fbx",
+            "SM_Portable_Ammo_Box_02.fbx",
+            "SM_Portable_Ammo_Box_02_01.fbx",
+            "SM_Reflex_Sight.fbx",
+            "SM_Revolver.fbx",
+            "SM_Rocket_For_Rocket_Launchers_01.fbx",
+            "SM_Rocket_Launchers_01.fbx",
+            "SM_Rocket_Launchers_02.fbx",
+            "SM_Scope_For_Police_Sniper_Rifle.fbx",
+            "SM_Side_Handle.fbx",
+            "SM_Sighting_Device.fbx",
+            "SM_Sight_Mount.fbx",
+            "SM_Smoke_Grenade.fbx",
+            "SM_SM_Sight_Bulpam_Assault_Rifle.fbx",
+            "SM_Sniper_Scope.fbx",
+            "SM_Special_Submachine_Gun.fbx",
+            "SM_Special_Submachine_Gun_Clean.fbx",
+            "SM_Square_Dot_Sight.fbx",
+            "SM_Stun_Grenade.fbx",
+            "SM_Tactical_Block.fbx",
+            "SM_Tactical_Flashlight_01.fbx",
+            "SM_Tactical_Flashlight_02.fbx",
+            "SM_Tactical_Flashlight_03.fbx",
+            "SM_Tactical_Laser_Designator.fbx",
+            "SM_Tactical_Submachine_Gun.fbx",
+            "SM_Telescopic_Stock.fbx",
+            "SM_Telescopic_Universal_Butt_01.fbx",
+            "SM_Throwing_Knife.fbx",
+            "SM_Vertical_Handle_01.fbx",
+            "SM_Vertical_Handle_02.fbx",
+            "SM_Weapon_Stand_01.fbx",
+            "SM_Weapon_Stand_01_01.fbx",
+            "SM_Weapon_Stand_02.fbx",
+            "SM_Weapon_Stand_02_02.fbx",
+            "SM_Weapon_Stand_03.fbx",
+            "SM_Weapon_Stand_03_01.fbx",
+            "SM_Wooden_Butt_01.fbx",
+            "SM_Wooden_Forend.fbx"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit\\Models\\AdditionalAmmo": {
+        "directories": [],
+        "files": [
+            "SMSleeve_5_56_TRACER_ONE.fbx",
+            "SM_12_Buckshot.fbx",
+            "SM_12_BULLET.fbx",
+            "SM_12_RUBBER.fbx",
+            "SM_Bullet_0_380_ONE.fbx",
+            "SM_Bullet_300_ONE.fbx",
+            "SM_Bullet_357_ONE.fbx",
+            "SM_Bullet_45_ONE.fbx",
+            "SM_Bullet_50_APC_ONE.fbx",
+            "SM_Bullet_50_ONE.fbx",
+            "SM_Bullet_5_56_APC_ONE.fbx",
+            "SM_Bullet_5_56_FMJ_ONE.fbx",
+            "SM_Bullet_5_56_TRACER_ONE.fbx",
+            "SM_Bullet_5_7_ONE.fbx",
+            "SM_Bullet_7_62_54_APC_ONE.fbx",
+            "SM_Bullet_7_62_54_FMG_ONE.fbx",
+            "SM_Bullet_7_62_54_TRACER_ONE.fbx",
+            "SM_Bullet_9_39_SPECIAL_CHUCK_APC_ONE.fbx",
+            "SM_Bullet_9_39_SPECIAL_CHUCK_FMJ_ONE.fbx",
+            "SM_Bullet_9_39_SPECIAL_CHUCK_TRACER_ONE.fbx",
+            "SM_Bullet_9_ONE.fbx",
+            "SM_Sleeve_0_380_ONE.fbx",
+            "SM_Sleeve_12_Buckshot_ONE.fbx",
+            "SM_Sleeve_12_BULLET_ONE.fbx",
+            "SM_Sleeve_12_RUBBER_ONE.fbx",
+            "SM_Sleeve_300_ONE.fbx",
+            "SM_Sleeve_357_ONE.fbx",
+            "SM_Sleeve_45_ONE.fbx",
+            "SM_Sleeve_50_APC_ONE.fbx",
+            "SM_Sleeve_50_ONE.fbx",
+            "SM_Sleeve_5_56_APC_ONE.fbx",
+            "SM_Sleeve_5_56_FMJ_ONE.fbx",
+            "SM_Sleeve_5_7_ONE.fbx",
+            "SM_Sleeve_7_62_54_APC_ONE.fbx",
+            "SM_Sleeve_7_62_54_FMG_ONE.fbx",
+            "SM_Sleeve_7_62_54_TRACER_ONE.fbx",
+            "SM_Sleeve_9_39_SPECIAL_CHUCK_APC_ONE.fbx",
+            "SM_Sleeve_9_39_SPECIAL_CHUCK_FMJ_ONE.fbx",
+            "SM_Sleeve_9_39_SPECIAL_CHUCK_TRACER_ONE.fbx",
+            "SM_Sleeve_9_ONE.fbx"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit\\Models\\Ammo": {
+        "directories": [],
+        "files": [
+            "SM_Cartridges_.50.fbx",
+            "SM_Cartridges_.50_APC.fbx",
+            "SM_Cartridges_.50_APC_ONE.fbx",
+            "SM_Cartridges_.50_ONE.fbx",
+            "SM_Cartridges_0,380.fbx",
+            "SM_Cartridges_0,380_ONE.fbx",
+            "SM_Cartridges_12_Buckshot.fbx",
+            "SM_Cartridges_12_Buckshot_ONE.fbx",
+            "SM_Cartridges_12_BULLET .fbx",
+            "SM_Cartridges_12_BULLET_ONE.fbx",
+            "SM_Cartridges_12_RUBBER.fbx",
+            "SM_Cartridges_12_RUBBER_ONE.fbx",
+            "SM_Cartridges_300.fbx",
+            "SM_Cartridges_300_ONE.fbx",
+            "SM_Cartridges_357.fbx",
+            "SM_Cartridges_357_ONE.fbx",
+            "SM_Cartridges_45.fbx",
+            "SM_Cartridges_45_ONE.fbx",
+            "SM_Cartridges_5,7.fbx",
+            "SM_Cartridges_5,7_ONE.fbx",
+            "SM_Cartridges_5.56_APC.fbx",
+            "SM_Cartridges_5.56_APC_ONE.fbx",
+            "SM_Cartridges_5.56_FMJ.fbx",
+            "SM_Cartridges_5.56_FMJ_ONE.fbx",
+            "SM_Cartridges_5.56_TRACER.fbx",
+            "SM_Cartridges_5.56_TRACER_ONE.fbx",
+            "SM_Cartridges_7.62_54_APC.fbx",
+            "SM_Cartridges_7.62_54_APC_ONE.fbx",
+            "SM_Cartridges_7.62_54_FMG.fbx",
+            "SM_Cartridges_7.62_54_FMG_ONE.fbx",
+            "SM_Cartridges_7.62_54_TRACER.fbx",
+            "SM_Cartridges_7.62_54_TRACER_ONE.fbx",
+            "SM_Cartridges_9.19.fbx",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_APC.fbx",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_APC_ONE.fbx",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_FMJ.fbx",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_FMJ_ONE.fbx",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_TRACER.fbx",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_TRACER_ONE.fbx",
+            "SM_Cartridges_9_ONE.fbx",
+            "SM_Chuck_Box_.50.fbx",
+            "SM_Chuck_Box_.50_APC.fbx",
+            "SM_Chuck_Box_.50_APC_CLOSED.fbx",
+            "SM_Chuck_Box_.50_APC_EMPTY.fbx",
+            "SM_Chuck_Box_.50_CLOSED.fbx",
+            "SM_Chuck_Box_.50__EMPTY.fbx",
+            "SM_Chuck_Box_12_Buckshot.fbx",
+            "SM_Chuck_Box_12_Buckshot_CLOSED.fbx",
+            "SM_Chuck_Box_12_Buckshot_EMPTY.fbx",
+            "SM_Chuck_Box_12_BULLET.fbx",
+            "SM_Chuck_Box_12_BULLET_CLOSED.fbx",
+            "SM_Chuck_Box_12_BULLET__EMPTY.fbx",
+            "SM_Chuck_Box_12_RUBBER.fbx",
+            "SM_Chuck_Box_12_RUBBER_CLOSED.fbx",
+            "SM_Chuck_Box_12_RUBBER__EMPTY.fbx",
+            "SM_Chuck_Box_300.fbx",
+            "SM_Chuck_Box_300_CLOSED.fbx",
+            "SM_Chuck_Box_300_EMPTY.fbx",
+            "SM_Chuck_Box_357.fbx",
+            "SM_Chuck_Box_357_CLOSED.fbx",
+            "SM_Chuck_Box_357_EMPTY.fbx",
+            "SM_Chuck_Box_45.fbx",
+            "SM_Chuck_Box_45_CLOSED.fbx",
+            "SM_Chuck_Box_45_EMPTY.fbx",
+            "SM_Chuck_Box_5.56_APC.fbx",
+            "SM_Chuck_Box_5.56_APC_CLOSED.fbx",
+            "SM_Chuck_Box_5.56_APC_EMPTY.fbx",
+            "SM_Chuck_Box_5.56_FMJ.fbx",
+            "SM_Chuck_Box_5.56_FMJ_CLOSED.fbx",
+            "SM_Chuck_Box_5.56_FMJ_EMPTY.fbx",
+            "SM_Chuck_Box_5.56_TRACER.fbx",
+            "SM_Chuck_Box_5.56_TRACER_CLOSED.fbx",
+            "SM_Chuck_Box_5.56_TRACER__EMPTY.fbx",
+            "SM_Chuck_Box_5.7.fbx",
+            "SM_Chuck_Box_5.7_CLOSED.fbx",
+            "SM_Chuck_Box_5_EMPTY.fbx",
+            "SM_Chuck_Box_7.62_54_APC.fbx",
+            "SM_Chuck_Box_7.62_54_APC_CLOSED.fbx",
+            "SM_Chuck_Box_7.62_54_APC_EMPTY.fbx",
+            "SM_Chuck_Box_7.62_54_FMG.fbx",
+            "SM_Chuck_Box_7.62_54_FMG_CLOSED.fbx",
+            "SM_Chuck_Box_7.62_54_FMG_EMPTY.fbx",
+            "SM_Chuck_Box_7.62_54_TRACER.fbx",
+            "SM_Chuck_Box_7.62_54_TRACER_CLOSED.fbx",
+            "SM_Chuck_Box_7.62_54_TRACER__EMPTY.fbx",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_APC.fbx",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_APC_CLOSED.fbx",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_APC_EMPTY.fbx",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_FMJ.fbx",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_FMJ_CLOSED.fbx",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_FMJ_EMPTY.fbx",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_TRACER.fbx",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_TRACER_CLOSED.fbx",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_TRACER_EMPTY.fbx",
+            "SM_Chuck_Pistol_Box_.380.fbx",
+            "SM_Chuck_Pistol_Box_9.19.fbx",
+            "SM_Chuck_Pistol_Box_9_CLOSED.fbx",
+            "SM_Chuck_Pistol_Box_9_EMPTY.fbx",
+            "SM_Chuck_Pistol_Box_CLOSED.fbx",
+            "SM_Chuck_Pistol_Box__EMPTY.fbx"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit\\Prefabs": {
+        "directories": [
+            "AdditionalAmmo",
+            "Ammo"
+        ],
+        "files": [
+            "Assault_Rifle_5.56_Prototype.prefab",
+            "Assault_Rifle_5.56_Prototype_Clean.prefab",
+            "Assault_Rifle_Grip_01_5.45.prefab",
+            "Modern_Pump_Action_Shotgun.prefab",
+            "Sapper_Shovel_01.prefab",
+            "Sapper_Shovel_02.prefab",
+            "SM_Ammo_Box_Closed.prefab",
+            "SM_Ammo_Box_Large_Closed.prefab",
+            "SM_Ammo_Box_Large_Closed_2.prefab",
+            "SM_Ammo_Box_Large_Open.prefab",
+            "SM_Ammo_Box_Large_Open_02.prefab",
+            "SM_Ammo_Box_Open.prefab",
+            "SM_Ammo_Box_Wood_Closed.prefab",
+            "SM_Ammo_Box_Wood_Closed_02.prefab",
+            "SM_Ammo_Box_Wood_Open.prefab",
+            "SM_Ammo_Box_Wood_Open_02.prefab",
+            "SM_Anti_Tank_Mine.prefab",
+            "SM_Army_Pistol.prefab",
+            "SM_Army_Shotgun.prefab",
+            "SM_Army_Sniper_Rifle.prefab",
+            "SM_Army_Submachine_Gun.prefab",
+            "SM_Assault_Rifle_5,45.prefab",
+            "SM_Assault_Rifle_5,45_Clean.prefab",
+            "SM_Assault_Rifle_5,56.prefab",
+            "SM_Assault_Rifle_5,56_Clean.prefab",
+            "SM_Assault_Rifle_9x39.prefab",
+            "SM_Assault_Shotgun.prefab",
+            "SM_Bandolier_Shotgun.prefab",
+            "SM_Bandolier_Sniper_Rifle.prefab",
+            "SM_Barrel_attachment_Shotgun.prefab",
+            "SM_Bayonet_Knife_5.45.prefab",
+            "SM_Bayonet_Knife_5.56.prefab",
+            "SM_Bipod_ForLarge_Caliber_Sniper_Rifle.prefab",
+            "SM_Bipod__ForHigh_Precision_Sniper_Rifle.prefab",
+            "SM_Bulpam_Assault_Rifle.prefab",
+            "SM_Butt_Of_The_Rifle_For_Special_Submachine_Gun_Clean.prefab",
+            "SM_Cartridge_Box_For_Heavy_Machine_Gun.prefab",
+            "SM_Cartridge_Box_For_Light_Machine_Gun.prefab",
+            "SM_Civilian_Pistol.prefab",
+            "SM_Civilian_Submachine_Gun.prefab",
+            "SM_Collimator_Sight_A_01.prefab",
+            "SM_Collimator_Sight_A_02.prefab",
+            "SM_Collimator_Sight_B_01.prefab",
+            "SM_Collimator_Sight_B_02.prefab",
+            "SM_Collimator_Sight_B_03.prefab",
+            "SM_Collimator_Sight_B_04.prefab",
+            "SM_Combat_Axe.prefab",
+            "SM_Combat_Knife.prefab",
+            "SM_Compensator_For_High_Precision_Sniper_Rifle.prefab",
+            "SM_Compensator_For_Large_Caliber_Sniper_Rifle.prefab",
+            "SM_Cylindrical_Collimator_Sight.prefab",
+            "SM_C_Four_01.prefab",
+            "SM_C_Four_02.prefab",
+            "SM_Flick_Knife.prefab",
+            "SM_Forend_With_Picatinny_Rails_01.prefab",
+            "SM_Forend_With_Picatinny_Rails_02.prefab",
+            "SM_Forend_With_Picatinny_Rails_5.45.prefab",
+            "SM_Forend_With_Picatinny_Rails_5.56_01.prefab",
+            "SM_Forend_With_Picatinny_Rails_Prototype.prefab",
+            "SM_Frag_Grenade.prefab",
+            "SM_Gun_Cabinet.prefab",
+            "SM_Gun_Cabinet_01.prefab",
+            "SM_Gun_Table_01.prefab",
+            "SM_Gun_Table_01_02.prefab",
+            "SM_Gun_Table_02.prefab",
+            "SM_Gun_Table_02_02.prefab",
+            "SM_Handguard_For_Submachine_Gun_01.prefab",
+            "SM_Handguard_For_Submachine_Gun_02.prefab",
+            "SM_Heavy_Machine_Gun.prefab",
+            "SM_High_Magnification_Sight.prefab",
+            "SM_High_Precision_Sniper_Rifle.prefab",
+            "SM_Horizontal_Handle_01.prefab",
+            "SM_Horizontal_Handle_02.prefab",
+            "SM_Horizontal_Handle_03.prefab",
+            "SM_Horizontal_Handle_04.prefab",
+            "SM_Hunting_Pistol.prefab",
+            "SM_Hunting_Sniper_Rifle.prefab",
+            "SM_Infantry_Mine.prefab",
+            "SM_Karambit.prefab",
+            "SM_Kukri.prefab",
+            "SM_Larfe_For_Assault_Rifle_5,56.prefab",
+            "SM_Larfe_For_Assault_Rifle_5,56_Empty.prefab",
+            "SM_Large_Caliber_Sniper_Rifle.prefab",
+            "SM_Large_Magazine_For_Army_Pistol.prefab",
+            "SM_Large_Magazine_For_Army_Pistol_Empty.prefab",
+            "SM_Large_Magazine_For_Assault_Rifle_5,45.prefab",
+            "SM_Large_Magazine_For_Assault_Rifle_5,45_Empty.prefab",
+            "SM_Light_Machine_Gun.prefab",
+            "SM_Machete.prefab",
+            "SM_MagazineFor_Hunting_Pistol.prefab",
+            "SM_MagazineFor_Hunting_Pistol_Empty.prefab",
+            "SM_Magazine_For_Army_Pistol.prefab",
+            "SM_Magazine_For_Army_Pistol_Empty.prefab",
+            "SM_Magazine_For_Army_Sniper_Rifle.prefab",
+            "SM_Magazine_For_Army_Sniper_Rifle_Empty.prefab",
+            "SM_Magazine_For_Army_Submachine_Gun.prefab",
+            "SM_Magazine_For_Army_Submachine_Gun_Empty.prefab",
+            "SM_Magazine_For_Assault_Rifle_5,45.prefab",
+            "SM_Magazine_For_Assault_Rifle_5,45_Empty.prefab",
+            "SM_Magazine_For_Assault_Rifle_5,56.prefab",
+            "SM_Magazine_For_Assault_Rifle_5,56_Empty.prefab",
+            "SM_Magazine_For_Assault_Shotgun.prefab",
+            "SM_Magazine_For_Bulpam_Assault_Rifle_Empty.prefab",
+            "SM_Magazine_For_Civilian_Pistol.prefab",
+            "SM_Magazine_For_Civilian_Pistol_Empty.prefab",
+            "SM_Magazine_For_High_Precision_Sniper_Rifle.prefab",
+            "SM_Magazine_For_High_Precision_Sniper_Rifle_Empty.prefab",
+            "SM_Magazine_For_HuntingSniper_Rifle.prefab",
+            "SM_Magazine_For_Large_Caliber_Sniper_Rifle.prefab",
+            "SM_Magazine_For_Large_Caliber_Sniper_Rifle_Empty.prefab",
+            "SM_Magazine_For_Police_Gun.prefab",
+            "SM_Magazine_For_Police_Gun_Empty.prefab",
+            "SM_Magazine_For_Police_Sniper_Rifle.prefab",
+            "SM_Magazine_For_Police_Sniper_Rifle_Empty.prefab",
+            "SM_Magazine_For_Police_Submachine_Gun.prefab",
+            "SM_Magazine_For_Police_Submachine_Gun_Empty.prefab",
+            "SM_Magazine_For_Special_Submachine_Gun.prefab",
+            "SM_Magazine_For_Special_Submachine_Gun_Empty.prefab",
+            "SM_Magazine_Tactical_Submachine_Gun.prefab",
+            "SM_Magazine_Tactical_Submachine_Gun_Empty.prefab",
+            "SM_Magazine__For_Bulpam_Assault_Rifle.prefab",
+            "SM_Molotov_01.prefab",
+            "SM_Molotov_02.prefab",
+            "SM_Mount_For_Assault_Rifle_9x39_01.prefab",
+            "SM_Mount_For_Assault_Rifle_9x39_02.prefab",
+            "SM_Muffler_01.prefab",
+            "SM_Muffler_02.prefab",
+            "SM_Muffler_03.prefab",
+            "SM_Muffler_04.prefab",
+            "SM_Muffler_05.prefab",
+            "SM_Muzzle_Assault_Rifle_5.56_Prototype_Clean_01.prefab",
+            "SM_Muzzle_Assault_Rifle_5.56_Prototype_Clean_02.prefab",
+            "SM_Muzzle_Brake_Compensator_01.prefab",
+            "SM_Muzzle_Brake_Compensator_02.prefab",
+            "SM_Muzzle_Brake_Compensator_03.prefab",
+            "SM_Muzzle_Brake_Compensator_04.prefab",
+            "SM_Muzzle_Brake_Compensator_05.prefab",
+            "SM_Muzzle_Brake_Compensator_06.prefab",
+            "SM_Muzzle_Brake_Compensator_07.prefab",
+            "SM_Muzzle_Large_Caliber_Sniper_Rifle_01.prefab",
+            "SM_Muzzle_Large_Caliber_Sniper_Rifle_02.prefab",
+            "SM_Optical_Sight_01.prefab",
+            "SM_Paired_For_Assault_Rifle_5,45.prefab",
+            "SM_Paired_For_Assault_Rifle_5,45_Empty.prefab",
+            "SM_Pallet_01.prefab",
+            "SM_Pallet_02.prefab",
+            "SM_Pallet_03.prefab",
+            "SM_Pistol_Grip_01_5.45.prefab",
+            "SM_Pistol_Grip_01_5.56.prefab",
+            "SM_Pistol_Grip_Prototype.prefab",
+            "SM_Police_Gun.prefab",
+            "SM_Police_Shotgun.prefab",
+            "SM_Police_Sniper_Rifle.prefab",
+            "SM_Police_Submachine_Gun.prefab",
+            "SM_Polymer_Handle.prefab",
+            "SM_Portable_Ammo_Box_01.prefab",
+            "SM_Portable_Ammo_Box_01_02.prefab",
+            "SM_Portable_Ammo_Box_02.prefab",
+            "SM_Portable_Ammo_Box_02_01.prefab",
+            "SM_Reflex_Sight.prefab",
+            "SM_Revolver.prefab",
+            "SM_Rocket_For_Rocket_Launchers_01.prefab",
+            "SM_Rocket_Launchers_01.prefab",
+            "SM_Rocket_Launchers_02.prefab",
+            "SM_Scope_For_Police_Sniper_Rifle.prefab",
+            "SM_Side_Handle.prefab",
+            "SM_Sighting_Device.prefab",
+            "SM_Sight_Mount.prefab",
+            "SM_Smoke_Grenade.prefab",
+            "SM_SM_Sight_Bulpam_Assault_Rifle.prefab",
+            "SM_Sniper_Scope.prefab",
+            "SM_Special_Submachine_Gun.prefab",
+            "SM_Special_Submachine_Gun_Clean.prefab",
+            "SM_Square_Dot_Sight.prefab",
+            "SM_Stun_Grenade.prefab",
+            "SM_Tactical_Block.prefab",
+            "SM_Tactical_Flashlight_01.prefab",
+            "SM_Tactical_Flashlight_02.prefab",
+            "SM_Tactical_Flashlight_03.prefab",
+            "SM_Tactical_Laser_Designator.prefab",
+            "SM_Tactical_Submachine_Gun.prefab",
+            "SM_Telescopic_Stock.prefab",
+            "SM_Telescopic_Universal_Butt_01.prefab",
+            "SM_Throwing_Knife.prefab",
+            "SM_Vertical_Handle_01.prefab",
+            "SM_Vertical_Handle_02.prefab",
+            "SM_Weapon_Stand_01.prefab",
+            "SM_Weapon_Stand_01_01.prefab",
+            "SM_Weapon_Stand_02.prefab",
+            "SM_Weapon_Stand_02_02.prefab",
+            "SM_Weapon_Stand_03.prefab",
+            "SM_Weapon_Stand_03_01.prefab",
+            "SM_Wooden_Butt_01.prefab",
+            "SM_Wooden_Forend.prefab"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit\\Prefabs\\AdditionalAmmo": {
+        "directories": [],
+        "files": [
+            "SMSleeve_5_56_TRACER_ONE.prefab",
+            "SM_12_Buckshot.prefab",
+            "SM_12_BULLET.prefab",
+            "SM_12_RUBBER.prefab",
+            "SM_Bullet_0_380_ONE.prefab",
+            "SM_Bullet_300_ONE.prefab",
+            "SM_Bullet_357_ONE.prefab",
+            "SM_Bullet_45_ONE.prefab",
+            "SM_Bullet_50_APC_ONE.prefab",
+            "SM_Bullet_50_ONE.prefab",
+            "SM_Bullet_5_56_APC_ONE.prefab",
+            "SM_Bullet_5_56_FMJ_ONE.prefab",
+            "SM_Bullet_5_56_TRACER_ONE.prefab",
+            "SM_Bullet_5_7_ONE.prefab",
+            "SM_Bullet_7_62_54_APC_ONE.prefab",
+            "SM_Bullet_7_62_54_FMG_ONE.prefab",
+            "SM_Bullet_7_62_54_TRACER_ONE.prefab",
+            "SM_Bullet_9_39_SPECIAL_CHUCK_APC_ONE.prefab",
+            "SM_Bullet_9_39_SPECIAL_CHUCK_FMJ_ONE.prefab",
+            "SM_Bullet_9_39_SPECIAL_CHUCK_TRACER_ONE.prefab",
+            "SM_Bullet_9_ONE.prefab",
+            "SM_Sleeve_0_380_ONE.prefab",
+            "SM_Sleeve_12_Buckshot_ONE.prefab",
+            "SM_Sleeve_12_BULLET_ONE.prefab",
+            "SM_Sleeve_12_RUBBER_ONE.prefab",
+            "SM_Sleeve_300_ONE.prefab",
+            "SM_Sleeve_357_ONE.prefab",
+            "SM_Sleeve_45_ONE.prefab",
+            "SM_Sleeve_50_APC_ONE.prefab",
+            "SM_Sleeve_50_ONE.prefab",
+            "SM_Sleeve_5_56_APC_ONE.prefab",
+            "SM_Sleeve_5_56_FMJ_ONE.prefab",
+            "SM_Sleeve_5_7_ONE.prefab",
+            "SM_Sleeve_7_62_54_APC_ONE.prefab",
+            "SM_Sleeve_7_62_54_FMG_ONE.prefab",
+            "SM_Sleeve_7_62_54_TRACER_ONE.prefab",
+            "SM_Sleeve_9_39_SPECIAL_CHUCK_APC_ONE.prefab",
+            "SM_Sleeve_9_39_SPECIAL_CHUCK_FMJ_ONE.prefab",
+            "SM_Sleeve_9_39_SPECIAL_CHUCK_TRACER_ONE.prefab",
+            "SM_Sleeve_9_ONE.prefab"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit\\Prefabs\\Ammo": {
+        "directories": [],
+        "files": [
+            "SM_Cartridges_.50.prefab",
+            "SM_Cartridges_.50_APC.prefab",
+            "SM_Cartridges_.50_APC_ONE.prefab",
+            "SM_Cartridges_.50_ONE.prefab",
+            "SM_Cartridges_0,380 (1).prefab",
+            "SM_Cartridges_0,380_ONE.prefab",
+            "SM_Cartridges_12_Buckshot.prefab",
+            "SM_Cartridges_12_Buckshot_ONE.prefab",
+            "SM_Cartridges_12_BULLET .prefab",
+            "SM_Cartridges_12_BULLET_ONE.prefab",
+            "SM_Cartridges_12_RUBBER.prefab",
+            "SM_Cartridges_12_RUBBER_ONE.prefab",
+            "SM_Cartridges_300.prefab",
+            "SM_Cartridges_300_ONE.prefab",
+            "SM_Cartridges_357 (1).prefab",
+            "SM_Cartridges_357_ONE.prefab",
+            "SM_Cartridges_45 (1).prefab",
+            "SM_Cartridges_45_ONE.prefab",
+            "SM_Cartridges_5,7 (1).prefab",
+            "SM_Cartridges_5,7_ONE.prefab",
+            "SM_Cartridges_5.56_APC.prefab",
+            "SM_Cartridges_5.56_APC_ONE.prefab",
+            "SM_Cartridges_5.56_FMJ.prefab",
+            "SM_Cartridges_5.56_FMJ_ONE.prefab",
+            "SM_Cartridges_5.56_TRACER.prefab",
+            "SM_Cartridges_5.56_TRACER_ONE.prefab",
+            "SM_Cartridges_7.62_54_APC.prefab",
+            "SM_Cartridges_7.62_54_APC_ONE.prefab",
+            "SM_Cartridges_7.62_54_FMG.prefab",
+            "SM_Cartridges_7.62_54_FMG_ONE.prefab",
+            "SM_Cartridges_7.62_54_TRACER.prefab",
+            "SM_Cartridges_7.62_54_TRACER_ONE.prefab",
+            "SM_Cartridges_9.19 (3).prefab",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_APC.prefab",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_APC_ONE.prefab",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_FMJ.prefab",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_FMJ_ONE.prefab",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_TRACER.prefab",
+            "SM_Cartridges_9.39_SPECIAL_CHUCK_TRACER_ONE.prefab",
+            "SM_Cartridges_9_ONE.prefab",
+            "SM_Chuck_Box_.50.prefab",
+            "SM_Chuck_Box_.50_APC.prefab",
+            "SM_Chuck_Box_.50_APC_CLOSED.prefab",
+            "SM_Chuck_Box_.50_APC_EMPTY.prefab",
+            "SM_Chuck_Box_.50_CLOSED.prefab",
+            "SM_Chuck_Box_.50__EMPTY.prefab",
+            "SM_Chuck_Box_12_Buckshot.prefab",
+            "SM_Chuck_Box_12_Buckshot_CLOSED.prefab",
+            "SM_Chuck_Box_12_Buckshot_EMPTY.prefab",
+            "SM_Chuck_Box_12_BULLET.prefab",
+            "SM_Chuck_Box_12_BULLET_CLOSED.prefab",
+            "SM_Chuck_Box_12_BULLET__EMPTY.prefab",
+            "SM_Chuck_Box_12_RUBBER.prefab",
+            "SM_Chuck_Box_12_RUBBER_CLOSED.prefab",
+            "SM_Chuck_Box_12_RUBBER__EMPTY.prefab",
+            "SM_Chuck_Box_300.prefab",
+            "SM_Chuck_Box_300_CLOSED.prefab",
+            "SM_Chuck_Box_300_EMPTY.prefab",
+            "SM_Chuck_Box_357.prefab",
+            "SM_Chuck_Box_357_CLOSED.prefab",
+            "SM_Chuck_Box_357_EMPTY.prefab",
+            "SM_Chuck_Box_45.prefab",
+            "SM_Chuck_Box_45_CLOSED.prefab",
+            "SM_Chuck_Box_45_EMPTY.prefab",
+            "SM_Chuck_Box_5.56_APC.prefab",
+            "SM_Chuck_Box_5.56_APC_CLOSED.prefab",
+            "SM_Chuck_Box_5.56_APC_EMPTY.prefab",
+            "SM_Chuck_Box_5.56_FMJ.prefab",
+            "SM_Chuck_Box_5.56_FMJ_CLOSED.prefab",
+            "SM_Chuck_Box_5.56_FMJ_EMPTY.prefab",
+            "SM_Chuck_Box_5.56_TRACER.prefab",
+            "SM_Chuck_Box_5.56_TRACER_CLOSED.prefab",
+            "SM_Chuck_Box_5.56_TRACER__EMPTY.prefab",
+            "SM_Chuck_Box_5.7.prefab",
+            "SM_Chuck_Box_5.7_CLOSED.prefab",
+            "SM_Chuck_Box_5_EMPTY.prefab",
+            "SM_Chuck_Box_7.62_54_APC.prefab",
+            "SM_Chuck_Box_7.62_54_APC_CLOSED.prefab",
+            "SM_Chuck_Box_7.62_54_APC_EMPTY.prefab",
+            "SM_Chuck_Box_7.62_54_FMG.prefab",
+            "SM_Chuck_Box_7.62_54_FMG_CLOSED.prefab",
+            "SM_Chuck_Box_7.62_54_FMG_EMPTY.prefab",
+            "SM_Chuck_Box_7.62_54_TRACER.prefab",
+            "SM_Chuck_Box_7.62_54_TRACER_CLOSED.prefab",
+            "SM_Chuck_Box_7.62_54_TRACER__EMPTY.prefab",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_APC.prefab",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_APC_CLOSED.prefab",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_APC_EMPTY.prefab",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_FMJ.prefab",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_FMJ_CLOSED.prefab",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_FMJ_EMPTY.prefab",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_TRACER.prefab",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_TRACER_CLOSED.prefab",
+            "SM_Chuck_Box_9.39_SPECIAL_CHUCK_TRACER_EMPTY.prefab",
+            "SM_Chuck_Pistol_Box_.380.prefab",
+            "SM_Chuck_Pistol_Box_9.19.prefab",
+            "SM_Chuck_Pistol_Box_9_CLOSED.prefab",
+            "SM_Chuck_Pistol_Box_9_EMPTY.prefab",
+            "SM_Chuck_Pistol_Box_CLOSED.prefab",
+            "SM_Chuck_Pistol_Box__EMPTY.prefab",
+            "SM_Magazine_For_SM_Assault_Rifle_9x39.prefab",
+            "SM_Magazine_For_SM_Assault_Rifle_9x39_Empty.prefab"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit\\Scenes": {
+        "directories": [],
+        "files": [
+            "Demo.unity"
+        ]
+    },
+    ".\\Polygon-Mega Weapone Kit\\Textures": {
+        "directories": [],
+        "files": [
+            "Polygon_Texture.png"
+        ]
+    },
+    ".\\PolygonWar": {
+        "directories": [
+            "Prefabs"
+        ],
+        "files": []
+    },
+    ".\\PolygonWar\\Prefabs": {
+        "directories": [
+            "FX"
+        ],
+        "files": []
+    },
+    ".\\PolygonWar\\Prefabs\\FX": {
+        "directories": [],
+        "files": [
+            "BloodSplat_FX.prefab",
+            "GunShot_Smoke_FX.prefab"
+        ]
+    },
+    ".\\Prefabs": {
+        "directories": [
+            "Resources",
+            "World"
+        ],
+        "files": []
+    },
+    ".\\Prefabs\\Resources": {
+        "directories": [],
+        "files": [
+            "BalaPrueba.prefab",
+            "BloodSplat_FX Variant.prefab",
+            "DebugImpactSphere.prefab",
+            "GunShot_Smoke_FX Variant.prefab",
+            "Player 2.prefab",
+            "Player.prefab",
+            "Zombie1.prefab",
+            "Zombie2.prefab"
+        ]
+    },
+    ".\\Prefabs\\World": {
+        "directories": [],
+        "files": [
+            "World.prefab"
+        ]
+    },
+    ".\\Renderer": {
+        "directories": [],
+        "files": [
+            "URP_asset.asset",
+            "URP_asset_Renderer.asset"
+        ]
+    },
+    ".\\Scenes": {
+        "directories": [
+            "MainMenu",
+            "MainScene"
+        ],
+        "files": [
+            "DemoSettings.lighting",
+            "MainMenu.unity",
+            "MainScene.unity",
+            "SampleScene.unity"
+        ]
+    },
+    ".\\Scenes\\MainMenu": {
+        "directories": [],
+        "files": [
+            "LightingData.asset",
+            "ReflectionProbe-0.exr"
+        ]
+    },
+    ".\\Scenes\\MainScene": {
+        "directories": [],
+        "files": [
+            "NavMesh-NavMesh.asset"
+        ]
+    },
+    ".\\Scripts": {
+        "directories": [
+            "Enemies",
+            "Menu",
+            "ScriptableObjects",
+            "UI",
+            "Voices",
+            "Weapons"
+        ],
+        "files": [
+            "AimShotgun.cs",
+            "BalaSpawn.cs",
+            "CameraMovement.cs",
+            "DeathBarrier.cs",
+            "EnemyAttack.cs",
+            "EnemyController.cs",
+            "GameManager.cs",
+            "PlayerController.cs",
+            "script.py",
+            "StateNameController.cs"
+        ]
+    },
+    ".\\Scripts\\Enemies": {
+        "directories": [],
+        "files": [
+            "Zombie1.asset",
+            "Zombie2.asset"
+        ]
+    },
+    ".\\Scripts\\Menu": {
+        "directories": [],
+        "files": [
+            "MenuButtons.cs",
+            "MenuEndgame.cs",
+            "MenuPausa.cs"
+        ]
+    },
+    ".\\Scripts\\ScriptableObjects": {
+        "directories": [],
+        "files": [
+            "EnemySO.cs",
+            "WeaponsSO.cs"
+        ]
+    },
+    ".\\Scripts\\UI": {
+        "directories": [],
+        "files": [
+            "BloodEffectUI.cs"
+        ]
+    },
+    ".\\Scripts\\Voices": {
+        "directories": [],
+        "files": [
+            "Player1Voices.cs"
+        ]
+    },
+    ".\\Scripts\\Weapons": {
+        "directories": [],
+        "files": [
+            "Pistol.asset",
+            "Shotgun.asset"
+        ]
+    },
+    ".\\TextMesh Pro": {
+        "directories": [
+            "Documentation",
+            "Fonts",
+            "Resources",
+            "Shaders",
+            "Sprites"
+        ],
+        "files": []
+    },
+    ".\\TextMesh Pro\\Documentation": {
+        "directories": [],
+        "files": [
+            "TextMesh Pro User Guide 2016.pdf"
+        ]
+    },
+    ".\\TextMesh Pro\\Fonts": {
+        "directories": [],
+        "files": [
+            "LiberationSans - OFL.txt",
+            "LiberationSans.ttf"
+        ]
+    },
+    ".\\TextMesh Pro\\Resources": {
+        "directories": [
+            "Fonts & Materials",
+            "Sprite Assets",
+            "Style Sheets"
+        ],
+        "files": [
+            "LineBreaking Following Characters.txt",
+            "LineBreaking Leading Characters.txt",
+            "TMP Settings.asset"
+        ]
+    },
+    ".\\TextMesh Pro\\Resources\\Fonts & Materials": {
+        "directories": [],
+        "files": [
+            "LiberationSans SDF - Drop Shadow.mat",
+            "LiberationSans SDF - Fallback.asset",
+            "LiberationSans SDF - Outline.mat",
+            "LiberationSans SDF.asset"
+        ]
+    },
+    ".\\TextMesh Pro\\Resources\\Sprite Assets": {
+        "directories": [],
+        "files": [
+            "EmojiOne.asset"
+        ]
+    },
+    ".\\TextMesh Pro\\Resources\\Style Sheets": {
+        "directories": [],
+        "files": [
+            "Default Style Sheet.asset"
+        ]
+    },
+    ".\\TextMesh Pro\\Shaders": {
+        "directories": [],
+        "files": [
+            "TMPro.cginc",
+            "TMPro_Mobile.cginc",
+            "TMPro_Properties.cginc",
+            "TMPro_Surface.cginc",
+            "TMP_Bitmap-Custom-Atlas.shader",
+            "TMP_Bitmap-Mobile.shader",
+            "TMP_Bitmap.shader",
+            "TMP_SDF Overlay.shader",
+            "TMP_SDF SSD.shader",
+            "TMP_SDF-Mobile Masking.shader",
+            "TMP_SDF-Mobile Overlay.shader",
+            "TMP_SDF-Mobile SSD.shader",
+            "TMP_SDF-Mobile.shader",
+            "TMP_SDF-Surface-Mobile.shader",
+            "TMP_SDF-Surface.shader",
+            "TMP_SDF.shader",
+            "TMP_Sprite.shader"
+        ]
+    },
+    ".\\TextMesh Pro\\Sprites": {
+        "directories": [],
+        "files": [
+            "EmojiOne Attribution.txt",
+            "EmojiOne.json",
+            "EmojiOne.png"
+        ]
+    },
+    ".\\Textures": {
+        "directories": [],
+        "files": [
+            "BloodOverlay.png",
+            "brick_texture.jpg",
+            "doomguyfaces.png",
+            "frame.png",
+            "MinimapTexture.renderTexture"
+        ]
+    },
+    ".\\Viuletti City low poly": {
+        "directories": [
+            "DemoScene",
+            "Materials",
+            "Models",
+            "Prefabs"
+        ],
+        "files": [
+            "Viuletti assets.pdf"
+        ]
+    },
+    ".\\Viuletti City low poly\\DemoScene": {
+        "directories": [],
+        "files": [
+            "SampleScene.unity"
+        ]
+    },
+    ".\\Viuletti City low poly\\Materials": {
+        "directories": [
+            "Buildings",
+            "Nature"
+        ],
+        "files": []
+    },
+    ".\\Viuletti City low poly\\Materials\\Buildings": {
+        "directories": [],
+        "files": [
+            "Aparment bottom.mat",
+            "Aparment decoration.mat",
+            "Aparment door.mat",
+            "Aparment roof door.mat",
+            "Aparment roof.mat",
+            "Aparment wall.mat",
+            "Aparment window frame.mat",
+            "Aparment window.mat",
+            "Bank building.mat",
+            "Bank door frame.mat",
+            "Bank door window.mat",
+            "Bank entrance pillars.mat",
+            "Bank entrance sign.mat",
+            "Bank entrance.mat",
+            "Bank ground.mat",
+            "Bank roof pipe.mat",
+            "Bank roof.mat",
+            "Bank walls.mat",
+            "Bank window frame.mat",
+            "Bank window.mat",
+            "Building brown.mat",
+            "Building door glass.mat",
+            "Building roof light gray.mat",
+            "Building window frame.mat",
+            "Building window.mat",
+            "Glass building ground.mat",
+            "Glass building roof.mat",
+            "Glass building vent roof.mat",
+            "Glass building vent.mat",
+            "Glass building walls.mat",
+            "Glass building window frame.mat",
+            "Glass building window.mat",
+            "High building barrier.mat",
+            "High building door.mat",
+            "High building wall.mat",
+            "High building window.mat",
+            "Office door frame.mat",
+            "Office ground.mat",
+            "Office walls.mat",
+            "Office windows.mat",
+            "Outside storage container inner.mat",
+            "Outside storage container.mat",
+            "Outside storage fence.mat",
+            "Round building ground.mat",
+            "Round building pole.mat",
+            "Round building roof.mat",
+            "Round building wall even.mat",
+            "Round building walls.mat",
+            "Round building warning light.mat",
+            "Round building window frame.mat",
+            "Round building windows.mat",
+            "Shop box.mat",
+            "Shop door.mat",
+            "Shop roof.mat",
+            "Shop shade even.mat",
+            "Shop shade odd.mat",
+            "Shop walls.mat",
+            "Shop window.mat",
+            "Small building door.mat",
+            "Small building main.mat",
+            "Store building.mat",
+            "Store bush bark.mat",
+            "Store bush pot.mat",
+            "Store bush.mat",
+            "Store door frame.mat",
+            "Store door.mat",
+            "Store ground.mat",
+            "Store roof.mat",
+            "Store stairs.mat",
+            "Store vent.mat",
+            "Store window frame.mat",
+            "Store window.mat",
+            "Warehouse bottom.mat",
+            "Warehouse long building.mat",
+            "Warehouse long roof.mat",
+            "Warehouse top.mat"
+        ]
+    },
+    ".\\Viuletti City low poly\\Materials\\Nature": {
+        "directories": [],
+        "files": [
+            "Bark.mat",
+            "Ground dark.mat",
+            "Ground green.mat",
+            "Ground light gray.mat",
+            "Ground light green.mat",
+            "Lane paint.mat",
+            "Lane.mat",
+            "Leaf green.mat",
+            "Leaf light green.mat",
+            "Rock dark.mat",
+            "Rock grey.mat",
+            "Rock light.mat",
+            "Water.mat"
+        ]
+    },
+    ".\\Viuletti City low poly\\Models": {
+        "directories": [
+            "Buildings",
+            "Nature",
+            "Roads"
+        ],
+        "files": []
+    },
+    ".\\Viuletti City low poly\\Models\\Buildings": {
+        "directories": [],
+        "files": [
+            "Apartments.fbx",
+            "Bank.fbx",
+            "Building two color.fbx",
+            "Building with antenna.fbx",
+            "Glass building.fbx",
+            "High building 2.fbx",
+            "High building.fbx",
+            "High Office Building.fbx",
+            "Outside storage.fbx",
+            "Shop.fbx",
+            "Small building.fbx",
+            "Store.fbx",
+            "Warehouse long.fbx",
+            "Warehouse.fbx"
+        ]
+    },
+    ".\\Viuletti City low poly\\Models\\Nature": {
+        "directories": [],
+        "files": [
+            "Empty ground clean.fbx",
+            "Empty ground.fbx",
+            "Pond.fbx",
+            "Rock big.fbx",
+            "Rock flat.fbx",
+            "Rock pile.fbx",
+            "Rock slide.fbx",
+            "Tree birch small.fbx",
+            "Tree oak.fbx",
+            "Tree pine.fbx",
+            "Tree spruce 2.fbx",
+            "Tree spruce small.fbx",
+            "Tree spruce.fbx"
+        ]
+    },
+    ".\\Viuletti City low poly\\Models\\Roads": {
+        "directories": [],
+        "files": [
+            "Height parking lot 15.fbx",
+            "Height Road crossing.fbx",
+            "Height Road straight.fbx",
+            "Height Road T crossing.fbx",
+            "Height Road turn.fbx"
+        ]
+    },
+    ".\\Viuletti City low poly\\Prefabs": {
+        "directories": [
+            "Buildings",
+            "Nature",
+            "Roads"
+        ],
+        "files": []
+    },
+    ".\\Viuletti City low poly\\Prefabs\\Buildings": {
+        "directories": [],
+        "files": [
+            "Apartments.prefab",
+            "Bank.prefab",
+            "Building two color.prefab",
+            "Building with antenna.prefab",
+            "Glass building.prefab",
+            "High building 2.prefab",
+            "High office.prefab",
+            "Outside storage.prefab",
+            "Shop.prefab",
+            "Small building.prefab",
+            "Store.prefab",
+            "Warehouse long.prefab",
+            "Warehouse.prefab"
+        ]
+    },
+    ".\\Viuletti City low poly\\Prefabs\\Nature": {
+        "directories": [],
+        "files": [
+            "Birch small.prefab",
+            "Empty Grass big.prefab",
+            "Empty grass.prefab",
+            "Empty ground clean.prefab",
+            "Empty ground.prefab",
+            "Oak.prefab",
+            "Pine.prefab",
+            "Pond.prefab",
+            "Rock big.prefab",
+            "Rock flat.prefab",
+            "Rock pile.prefab",
+            "Rock slide.prefab",
+            "Spruce small.prefab",
+            "Spruce.prefab"
+        ]
+    },
+    ".\\Viuletti City low poly\\Prefabs\\Roads": {
+        "directories": [],
+        "files": [
+            "Crossing T.prefab",
+            "Crossing.prefab",
+            "Parking lot 15.prefab",
+            "Road 4 tiles.prefab",
+            "Road 8 tiles.prefab",
+            "Straight.prefab",
+            "Turn.prefab"
+        ]
+    }
+}

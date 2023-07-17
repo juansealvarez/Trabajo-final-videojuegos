@@ -8,6 +8,7 @@ TagManager:
   - EnemyAttack
   - AmmoCrate
   - Suelo
+  - Boss
   layers:
   - Default
   - TransparentFX
