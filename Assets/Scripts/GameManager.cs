@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
     public int zombiesActuales = 0;
     [SerializeField]
     private Player1Voices player1voices;
+    public CinematicController cinecontrol;
+    private bool bossIniciado = false;
 
     private void Awake()
     {
@@ -73,31 +75,30 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Ronda <= 9)
+        if (Ronda <= 1)
         {
             if (zombiesActuales == 0)
             {
-                Debug.Log("Ronda iniciada");
                 Ronda++;
                 RondaUI.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
                 RondaUI2.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
                 RondaUI1.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
                 StartCoroutine(newRound());
             }
-
-            else
-            {
-                if (zombiesActuales == 0)
-                {
-                    // aca se habilita el boss fight
-                    Debug.Log("Entrada a escena de boss");
-                }
-            }
         }
         else
         {
+            if (zombiesActuales == 0)
+            {
+                // aca se habilita el boss fight
 
-            SceneManager.LoadScene("BossTransition");
+                if (!bossIniciado)
+                {
+                    cinecontrol.IniciarCinematica();
+                    bossIniciado = true;
+                }
+
+            }
         }
 
     }
