@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour
     private float salud;
     public GameObject Bullet;
 
+    private bool HizoDeadAnimation = false;
+
     private void Start()
     {
         mRb = GetComponent<Rigidbody>();
@@ -78,6 +80,15 @@ public class EnemyController : MonoBehaviour
                 mAnimator.SetBool("IsWalking", false);
                 navMeshAgent.isStopped = true;
             }
+            if(StateNameController.isBossDead && !HizoDeadAnimation)
+            {
+                mAnimator.SetTrigger("Die");
+                mCollider.enabled = false;
+                dead = true;
+                Destroy(gameObject, 20f);
+                HizoDeadAnimation = true;
+                HitboxLeft.SetActive(false);
+            }
         }else
         {
             Destroy(gameObject, 5f);
@@ -100,7 +111,7 @@ public class EnemyController : MonoBehaviour
         if (colliders.Length == 1) return colliders[0];
         else if (colliders2.Length == 1) return colliders2[0];
         else return null;
-        //TODO: que el zombie sepa que jugador esta mas cerca para ir a atacarlo
+        //TODO: que el zombie sepa qué jugador esta mas cerca para ir a atacarlo
     }
 
     private Collider IsPlayerInAttackArea()

@@ -16,10 +16,14 @@ public class CinematicController : MonoBehaviour
     public Material skyNight;
     public Material skyDay;
     public GameObject ligth;
-
+    public PlayerController playerController;
+    private GameManager gameManager;
+    private AudioSource mAudioSource;
+    public AudioClip explosion;
 
     public void IniciarCinematica()
     {
+        mAudioSource = GetComponent<AudioSource>();
         StartCoroutine(PlayScene());
     }
     public void HacerDia()
@@ -31,6 +35,11 @@ public class CinematicController : MonoBehaviour
     IEnumerator PlayScene()
     {
         yield return new WaitForSeconds(2);
+        PlayerController.mPlayerInput.enabled = false;
+        playerController.mAudioSource.enabled = false;
+        playerController.pAudioSource.enabled = false;
+        playerController.BackgroundSource.enabled = false;
+        gameManager.UItoActivateAndActivate.SetActive(false);
         ligth.SetActive(false);
         RenderSettings.skybox = skyNight;
         camara.SetActive(true);
@@ -45,6 +54,7 @@ public class CinematicController : MonoBehaviour
 
         character.SetActive(true);
         bigRock.SetActive(false);
+        mAudioSource.PlayOneShot(explosion);
 
         // 3. Las rocas pequeñas que están ocultas dentro del modelo de la roca se mueven como si saltaran.
 

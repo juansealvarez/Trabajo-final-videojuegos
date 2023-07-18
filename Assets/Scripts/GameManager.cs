@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int rondaMaxima;
     public BossController bossController;
+    public Transform boss;
 
     private void Awake()
     {
@@ -106,7 +107,6 @@ public class GameManager : MonoBehaviour
 
                 if (!bossIniciado)
                 {
-                    UItoActivateAndActivate.SetActive(false);
                     cinecontrol.IniciarCinematica();
                     bossIniciado = true;
                 }
@@ -135,9 +135,9 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < bossController.zombiesToSpawn; i++)
         {
             var instantiatePosition = new Vector3(
-                UnityEngine.Random.Range(transform.position.x + bossController.SpawnRadius, transform.position.x - bossController.SpawnRadius),
+                UnityEngine.Random.Range(boss.position.x + bossController.SpawnRadius, boss.position.x - bossController.SpawnRadius),
                 0f,
-                UnityEngine.Random.Range(transform.position.z + bossController.SpawnRadius, transform.position.z - bossController.SpawnRadius)
+                UnityEngine.Random.Range(boss.position.z + bossController.SpawnRadius, boss.position.z - bossController.SpawnRadius)
             );
             int random = UnityEngine.Random.Range(0,2);
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
@@ -164,5 +164,11 @@ public class GameManager : MonoBehaviour
             player1voices.AudiosCoopRondas(Ronda);
         }
         SpawnEnemies();
+    }
+
+    public void goToEndScene()
+    {
+        PlayerController.mPlayerInput.SwitchCurrentActionMap("MenuAndEndgame");
+        SceneManager.LoadScene("Victory");
     }
 }

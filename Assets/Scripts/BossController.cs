@@ -7,6 +7,7 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     public static BossController Instance { private set; get; }
+
     public GameObject camara;
 
     private Animator mAnimator;
@@ -15,7 +16,8 @@ public class BossController : MonoBehaviour
     private Vector2 mDirection;  // XZ
 
     private bool mIsAttacking = false;
-    private bool dead = false;
+    [System.NonSerialized]
+    public bool dead = false;
 
     private AudioSource mAudioSource;
     [SerializeField]
@@ -44,6 +46,8 @@ public class BossController : MonoBehaviour
     private List<GameObject> EnemiesToInstantiate;
 
     public float SpawnRadius;
+    public Player1Voices player1voices;
+    public GameObject canvasEnd;
 
     private void Start()
     {
@@ -83,11 +87,21 @@ public class BossController : MonoBehaviour
                 //     return;
                 // }
                 delaySpawnZombies -= Time.deltaTime;
-                if (delaySpawnZombies <= 0)
+                if (delaySpawnZombies <= 0 && !mIsAttacking && !dead)
                 {
+                    mRb.velocity = new Vector3(
+                        0f,
+                        0f,
+                        0f
+                    );
+                    mIsAttacking = true;
+                    navMeshAgent.isStopped = true;
+                    mAnimator.SetBool("IsWalking", false);
                     //Spawnear Zombies
+                    mAnimator.SetTrigger("SummonEnemies");
                     gameManager.SpawnEnemiesFromBoss();
                     delaySpawnZombies = cooldownSpawnZombies;
+                    return;
                 }
 
 
@@ -115,14 +129,18 @@ public class BossController : MonoBehaviour
         }
 
     }
-
-    private object Instantiate(object value, object instantiatePosition, Quaternion identity)
+    private void EndSummoning()
     {
-        throw new NotImplementedException();
+        mAnimator.SetBool("IsWalking", true);
+        mIsAttacking = false;
     }
 
     public void DisableCamera()
     {
+        PlayerController.mPlayerInput.enabled = true;
+        playerController.mAudioSource.enabled = true;
+        playerController.pAudioSource.enabled = true;
+        playerController.BackgroundSource.enabled = true;
         gameManager.UItoActivateAndActivate.SetActive(true);
         endedCinematic = true;
         camara.SetActive(false);
@@ -149,7 +167,7 @@ public class BossController : MonoBehaviour
         if (colliders.Length == 1) return colliders[0];
         else if (colliders2.Length == 1) return colliders2[0];
         else return null;
-        //TODO: que el zombie sepa que jugador esta mas cerca para ir a atacarlo
+        //TODO: que el boss sepa qué jugador esta mas cerca para ir a atacarlo
     }
 
     private Collider IsPlayerInAttackArea()
@@ -167,7 +185,7 @@ public class BossController : MonoBehaviour
         if (colliders.Length == 1) return colliders[0];
         else if (colliders2.Length == 1) return colliders2[0];
         else return null;
-        //TODO: que el zombie sepa que jugador esta mas cerca para atacarlo
+        //TODO: que el boss sepa qué jugador esta mas cerca para atacarlo
     }
 
     public void StartAttack()
@@ -195,10 +213,28 @@ public class BossController : MonoBehaviour
             mAnimator.SetTrigger("Die");
             mCollider.enabled = false;
             dead = true;
+            StateNameController.isBossDead = true;
             cinematicController.HacerDia();
-            // Destroy(gameObject, 20f);
+            StartCoroutine(MenuEndgame());
+            Destroy(gameObject, 20f);
             // HitboxLeft.SetActive(false);
         }
     }
 
+    IEnumerator MenuEndgame()
+    {
+        if(gameManager.isSoloGame)
+        {
+            player1voices.playSoloBossDead();
+        }else
+        {
+            player1voices.playCoopBossDead();
+        }
+        yield return new WaitForSeconds(7);
+        // Reproducir sonido de fin
+        gameManager.UItoActivateAndActivate.SetActive(false);
+        canvasEnd.SetActive(true);
+        yield return new WaitForSeconds(3);
+        gameManager.goToEndScene();
+    }
 }

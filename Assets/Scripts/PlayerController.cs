@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
     private Animator mAnimator;
 
     private Animator CameraAnimator;
-
-    private AudioSource mAudioSource;
+    [System.NonSerialized]
+    public AudioSource mAudioSource;
     //[SerializeField]
     //private List<AudioClip> audioList;
     [System.NonSerialized]
@@ -43,15 +43,16 @@ public class PlayerController : MonoBehaviour
     public GameObject UI;
 
     public List<AudioClip> BackgroundAudio;
-    private AudioSource BackgroundSource;
+    [System.NonSerialized]
+    public AudioSource BackgroundSource;
     private bool songPlayed = false;
     private AimShotgun aimShotgun;
     private AimShotgun aimPistol;
-    private AudioSource pAudioSource;
+    [System.NonSerialized]
+    public AudioSource pAudioSource;
     private Animator pAnimator;
     [SerializeField]
     private GameManager gameManager;
-    [System.NonSerialized]
     public static PlayerInput mPlayerInput;
     [SerializeField]
     private Animator modelAnimator;
