@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
+    public static BossController Instance { private set; get; }
     public GameObject camara;
 
     private Animator mAnimator;
@@ -85,7 +86,7 @@ public class BossController : MonoBehaviour
                 if (delaySpawnZombies <= 0)
                 {
                     //Spawnear Zombies
-                    SpawnEnemies();
+                    gameManager.SpawnEnemiesFromBoss();
                     delaySpawnZombies = cooldownSpawnZombies;
                 }
 
@@ -111,23 +112,6 @@ public class BossController : MonoBehaviour
         else
         {
             Destroy(gameObject, 5f);
-        }
-
-    }
-
-    private void SpawnEnemies()
-    {
-        for (int i = 0; i < zombiesToSpawn; i++)
-        {
-            var instantiatePosition = new Vector3(
-                UnityEngine.Random.Range(transform.position.x + SpawnRadius, transform.position.x - SpawnRadius),
-                0f,
-                UnityEngine.Random.Range(transform.position.z + SpawnRadius, transform.position.z - SpawnRadius)
-            );
-            int random = UnityEngine.Random.Range(0,2);
-            var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
-            enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
-            enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
         }
 
     }

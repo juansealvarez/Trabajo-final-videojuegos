@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     private bool bossIniciado = false;
     [SerializeField]
     private int rondaMaxima;
+    public BossController bossController;
 
     private void Awake()
     {
@@ -122,6 +123,23 @@ public class GameManager : MonoBehaviour
             var LugarRandom = UnityEngine.Random.Range(0, Spawnpoints.Count);
             var instantiatePosition = Spawnpoints[LugarRandom].transform.position;
             int random = UnityEngine.Random.Range(0, 2);
+            var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
+            enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
+            enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
+        }
+
+    }
+
+    public void SpawnEnemiesFromBoss()
+    {
+        for (int i = 0; i < bossController.zombiesToSpawn; i++)
+        {
+            var instantiatePosition = new Vector3(
+                UnityEngine.Random.Range(transform.position.x + bossController.SpawnRadius, transform.position.x - bossController.SpawnRadius),
+                0f,
+                UnityEngine.Random.Range(transform.position.z + bossController.SpawnRadius, transform.position.z - bossController.SpawnRadius)
+            );
+            int random = UnityEngine.Random.Range(0,2);
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
             enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
             enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
