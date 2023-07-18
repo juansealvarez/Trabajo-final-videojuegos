@@ -26,7 +26,14 @@ public class BossController : MonoBehaviour
     public EnemySO EnemyType;
     public static float damage;
     private float salud;
+    
     private bool endedCinematic = false;
+    public Transform finalPosition;
+
+    public float MovingSpeed;
+    
+    private float moving;
+    public GameManager gameManager;
 
     private void Start()
     {
@@ -38,6 +45,7 @@ public class BossController : MonoBehaviour
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         damage = EnemyType.Damage;
         salud = EnemyType.Health;
+        moving = MovingSpeed * Time.deltaTime;
     }
 
     private void Update()
@@ -92,10 +100,15 @@ public class BossController : MonoBehaviour
 
     public void DisableCamera()
     {
+        gameManager.UItoActivateAndActivate.SetActive(true);
         endedCinematic = true;
         camara.SetActive(false);
     }
-    // Start is called before the first frame update
+
+    public void MoveBoss()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, finalPosition.position, moving);
+    }
 
 
     private Collider IsPlayerNearby()

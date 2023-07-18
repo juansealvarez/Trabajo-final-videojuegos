@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     public List<GameObject> EnemiesToInstantiate;
     public int CantidadZombiesPorHorda = 10;
     public int CantidadZombiesPorHordaCoop = 15;
-    public float SpawnRadius = 5f;
 
     public static GameManager Instance { private set; get; }
     public GameObject UIReload;
@@ -39,6 +38,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI arma;
     public TextMeshProUGUI balas;
     private int zombies;
+    [System.NonSerialized]
+    public GameObject UItoActivateAndActivate;
+
     [SerializeField]
     private List<GameObject> Spawnpoints;
     [System.NonSerialized]
@@ -47,6 +49,8 @@ public class GameManager : MonoBehaviour
     private Player1Voices player1voices;
     public CinematicController cinecontrol;
     private bool bossIniciado = false;
+    [SerializeField]
+    private int rondaMaxima;
 
     private void Awake()
     {
@@ -54,15 +58,16 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        isSoloGame = StateNameController.isSoloMode;
         if(isSoloGame)
         {
             zombies = CantidadZombiesPorHorda;
+            UItoActivateAndActivate = UISolo;
         }else
         {
             zombies = CantidadZombiesPorHordaCoop;
+            UItoActivateAndActivate = UICoop;
         }
-        
-        isSoloGame = StateNameController.isSoloMode;
         BackgroundSource = transform
             .GetComponent<AudioSource>();
         if (!isSoloGame)
@@ -82,7 +87,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Ronda <= 1)
+        if (Ronda <= (rondaMaxima-1))
         {
             if (zombiesActuales == 0)
             {
@@ -97,10 +102,10 @@ public class GameManager : MonoBehaviour
         {
             if (zombiesActuales == 0)
             {
-                // aca se habilita el boss fight
 
                 if (!bossIniciado)
                 {
+                    UItoActivateAndActivate.SetActive(false);
                     cinecontrol.IniciarCinematica();
                     bossIniciado = true;
                 }
