@@ -48,6 +48,8 @@ public class BossController : MonoBehaviour
     public float SpawnRadius;
     public Player1Voices player1voices;
     public GameObject canvasEnd;
+    public AudioClip soundEnd;
+    public GameObject canvasInstruction;
 
     private void Start()
     {
@@ -152,7 +154,12 @@ public class BossController : MonoBehaviour
         playerController.BackgroundSource.enabled = true;
         gameManager.UItoActivateAndActivate.SetActive(true);
         endedCinematic = true;
+        canvasInstruction.SetActive(true);
         camara.SetActive(false);
+    }
+    public void DeactivateInstructions()
+    {
+        canvasInstruction.SetActive(false);
     }
 
     public void MoveBoss()
@@ -240,7 +247,7 @@ public class BossController : MonoBehaviour
             player1voices.playCoopBossDead();
         }
         yield return new WaitForSeconds(7);
-        // Reproducir sonido de fin
+        playerController.BackgroundSource.PlayOneShot(soundEnd, 20f);
         gameManager.UItoActivateAndActivate.SetActive(false);
         canvasEnd.SetActive(true);
         yield return new WaitForSeconds(3);
