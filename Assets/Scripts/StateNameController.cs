@@ -6,4 +6,5 @@ public class StateNameController : MonoBehaviour
 {
     public static bool isSoloMode = true;
     public static bool isBossDead = false;
+    public static bool isHardcoreMode = false;
 }

@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour
             zombies = CantidadZombiesPorHordaCoop;
             UItoActivateAndActivate = UICoop;
         }
+        if(StateNameController.isHardcoreMode)
+        {
+            zombies+=5;
+        }
         BackgroundSource = transform
             .GetComponent<AudioSource>();
         if (!isSoloGame)

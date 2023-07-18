@@ -38,6 +38,13 @@ public class EnemyController : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         damage = EnemyType.Damage;
         salud = EnemyType.Health;
+        navMeshAgent.speed = EnemyType.Speed;
+        if(StateNameController.isHardcoreMode)
+        {
+            salud*=1.5f;
+            navMeshAgent.speed*=3.5f;
+            damage*=1.2f;
+        }
     }
 
     private void Update()

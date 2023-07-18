@@ -17,7 +17,7 @@ public class CinematicController : MonoBehaviour
     public Material skyDay;
     public GameObject ligth;
     public PlayerController playerController;
-    private GameManager gameManager;
+    public GameManager gameManager;
     private AudioSource mAudioSource;
     public AudioClip explosion;
 

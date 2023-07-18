@@ -60,6 +60,15 @@ public class BossController : MonoBehaviour
         damage = EnemyType.Damage;
         salud = EnemyType.Health;
         moving = MovingSpeed * Time.deltaTime;
+        navMeshAgent.speed = EnemyType.Speed;
+        if(StateNameController.isHardcoreMode)
+        {
+            salud*=1.5f;
+            navMeshAgent.speed*=3.5f;
+            damage*=1.2f;
+            cooldownSpawnZombies*=0.7f;
+            zombiesToSpawn+=5;
+        }
         delaySpawnZombies = cooldownSpawnZombies;
     }
 
@@ -100,7 +109,6 @@ public class BossController : MonoBehaviour
                     //Spawnear Zombies
                     mAnimator.SetTrigger("SummonEnemies");
                     gameManager.SpawnEnemiesFromBoss();
-                    delaySpawnZombies = cooldownSpawnZombies;
                     return;
                 }
 
@@ -133,6 +141,7 @@ public class BossController : MonoBehaviour
     {
         mAnimator.SetBool("IsWalking", true);
         mIsAttacking = false;
+        delaySpawnZombies = cooldownSpawnZombies;
     }
 
     public void DisableCamera()
