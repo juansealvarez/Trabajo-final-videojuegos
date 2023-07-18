@@ -34,6 +34,7 @@ public class BossController : MonoBehaviour
     
     private float moving;
     public GameManager gameManager;
+    public CinematicController cinematicController;
 
     private void Start()
     {
@@ -172,6 +173,7 @@ public class BossController : MonoBehaviour
             mAnimator.SetTrigger("Die");
             mCollider.enabled = false;
             dead = true;
+            cinematicController.HacerDia();
             // Destroy(gameObject, 20f);
             // HitboxLeft.SetActive(false);
         }
