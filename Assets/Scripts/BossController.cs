@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,13 @@ public class BossController : MonoBehaviour
     private float moving;
     public GameManager gameManager;
     public CinematicController cinematicController;
+    public float cooldownSpawnZombies;
+    private float delaySpawnZombies;
+    public int zombiesToSpawn;
+    [SerializeField]
+    private List<GameObject> EnemiesToInstantiate;
+
+    public float SpawnRadius;
 
     private void Start()
     {
@@ -47,6 +55,7 @@ public class BossController : MonoBehaviour
         damage = EnemyType.Damage;
         salud = EnemyType.Health;
         moving = MovingSpeed * Time.deltaTime;
+        delaySpawnZombies = cooldownSpawnZombies;
     }
 
     private void Update()
@@ -72,6 +81,13 @@ public class BossController : MonoBehaviour
                 //     mAnimator.SetInteger("RandomAttack", Random.Range(0, 3));
                 //     return;
                 // }
+                delaySpawnZombies -= Time.deltaTime;
+                if (delaySpawnZombies <= 0)
+                {
+                    //Spawnear Zombies
+                    SpawnEnemies();
+                    delaySpawnZombies = cooldownSpawnZombies;
+                }
 
 
                 var collider2 = IsPlayerNearby();
@@ -97,6 +113,28 @@ public class BossController : MonoBehaviour
             Destroy(gameObject, 5f);
         }
 
+    }
+
+    private void SpawnEnemies()
+    {
+        for (int i = 0; i < zombiesToSpawn; i++)
+        {
+            var instantiatePosition = new Vector3(
+                UnityEngine.Random.Range(transform.position.x + SpawnRadius, transform.position.x - SpawnRadius),
+                0f,
+                UnityEngine.Random.Range(transform.position.z + SpawnRadius, transform.position.z - SpawnRadius)
+            );
+            int random = UnityEngine.Random.Range(0,2);
+            var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
+            enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
+            enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
+        }
+
+    }
+
+    private object Instantiate(object value, object instantiatePosition, Quaternion identity)
+    {
+        throw new NotImplementedException();
     }
 
     public void DisableCamera()
