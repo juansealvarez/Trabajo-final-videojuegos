@@ -103,6 +103,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private List<AudioClip> voicesReload;
+    [SerializeField]
+    private BossController bossController;
+    [SerializeField]
+    private Player1Voices player1Voices;
+
     //TODO: voice acting
     private void Awake()
     {
@@ -339,7 +344,10 @@ public class PlayerController : MonoBehaviour
 
     private void reloading()
     {
-        PlayReload();
+        if (!player1Voices.isPlayingRoundAudios)
+        {
+            PlayReload();
+        }
         isReloading = true;
         if (aimShotgun.WeaponActive)
         {
@@ -459,6 +467,12 @@ public class PlayerController : MonoBehaviour
                 Destroy(bloodPS, 3f);
                 var enemyController = hit.collider.GetComponent<EnemyController>();
                 enemyController.TakeDamage(scriptGun.Weapon.GunDamage);
+            }else if(hit.collider.CompareTag("Boss"))
+            {
+                var bloodPS = Instantiate(bloodObjectParticles, hit.point, Quaternion.identity);
+                Destroy(bloodPS, 3f);
+                var enemyController = hit.collider.GetComponent<EnemyController>();
+                bossController.TakeDamage(scriptGun.Weapon.GunDamage);
             }else
             {
                 var otherPS = Instantiate(otherObjectParticles, hit.point, Quaternion.identity);
@@ -524,7 +538,6 @@ public class PlayerController : MonoBehaviour
         {
             if(value.isPressed)
             {
-                Debug.Log("se presiono play");
                 Cursor.lockState = CursorLockMode.Locked;
                 MenuPausa.Instance.ReanudarJuego();
             }

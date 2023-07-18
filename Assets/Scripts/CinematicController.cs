@@ -13,16 +13,26 @@ public class CinematicController : MonoBehaviour
     public GameObject[] smallRocks; // Ahora es un array
     public GameObject character;
     public GameObject camara;
+    public Material skyNight;
+    public Material skyDay;
+    public GameObject ligth;
 
 
     public void IniciarCinematica()
     {
         StartCoroutine(PlayScene());
     }
+    public void HacerDia()
+    {
+        ligth.SetActive(true);
+        RenderSettings.skybox = skyDay;
+    }
 
     IEnumerator PlayScene()
     {
         yield return new WaitForSeconds(2);
+        ligth.SetActive(false);
+        RenderSettings.skybox = skyNight;
         camara.SetActive(true);
         // 1. Aparecen partículas de humo
         chispasParticles.SetActive(true);
