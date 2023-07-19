@@ -23,8 +23,6 @@ public class BossController : MonoBehaviour
     public bool dead = false;
 
     private AudioSource mAudioSource;
-    [SerializeField]
-    private List<AudioClip> audioList;
     public GameObject HitboxLeft;
     public GameObject HitboxRight;
     private CapsuleCollider mCollider;
@@ -38,7 +36,7 @@ public class BossController : MonoBehaviour
     private bool endedCinematic = false;
     public Transform finalPosition;
 
-    public float MovingSpeed;
+    private float MovingSpeed = 3f;
     
     private float moving;
     public GameManager gameManager;
@@ -55,6 +53,9 @@ public class BossController : MonoBehaviour
     public AudioClip soundEnd;
     public GameObject canvasInstruction;
     private float randomRoar;
+    private float speedFinal;
+    private bool isRunning = false;
+
     private void Start()
     {
         mRb = GetComponent<Rigidbody>();
@@ -76,7 +77,8 @@ public class BossController : MonoBehaviour
             zombiesToSpawn+=5;
         }
         delaySpawnZombies = cooldownSpawnZombies;
-        randomRoar = UnityEngine.Random.Range(5f, 10f);
+        randomRoar = UnityEngine.Random.Range(10f, 20f);
+        speedFinal = navMeshAgent.speed;
     }
 
     private void Update()
@@ -101,7 +103,7 @@ public class BossController : MonoBehaviour
                     return;
                 }
                 delaySpawnZombies -= Time.deltaTime;
-                if (delaySpawnZombies <= 0 && !mIsAttacking && !dead)
+                if (delaySpawnZombies <= 0 && !mIsAttacking && !dead && !isRunning && randomRoar!=delaySpawnZombies)
                 {
                     mRb.velocity = new Vector3(
                         0f,
@@ -141,7 +143,13 @@ public class BossController : MonoBehaviour
                     mAnimator.SetTrigger("HasHalfLife");
                 }
 
-
+                if (isRunning)
+                {
+                    navMeshAgent.speed*=2;
+                }else
+                {
+                    navMeshAgent.speed = speedFinal;
+                }
                 var collider2 = IsPlayerNearby();
 
                 if (collider2 != null && !mIsAttacking && !dead)
@@ -157,10 +165,10 @@ public class BossController : MonoBehaviour
                     mAnimator.SetBool("IsWalking", false);
                     navMeshAgent.isStopped = true;
                 }
-                if (randomRoar > 0)
+                if (randomRoar > 0  && !isRunning)
                 {
                     randomRoar-=Time.deltaTime;
-                }else
+                }else if (randomRoar <= 0 && !isRunning)
                 {
                     if (!mIsAttacking && !dead)
                     {
@@ -169,6 +177,7 @@ public class BossController : MonoBehaviour
                         mAnimator.SetTrigger("Roaring");
                     }
                 }
+                Debug.Log(isRunning);
             }
         }
         else
@@ -177,10 +186,18 @@ public class BossController : MonoBehaviour
         }
 
     }
-    private void StopRoaring()
+    private void StartTimerToWalkAgain()
     {
-        randomRoar = UnityEngine.Random.Range(5f, 10f);
         navMeshAgent.isStopped = false;
+        isRunning = true;
+        randomRoar = UnityEngine.Random.Range(10f, 20f);
+        StartCoroutine(stopRunning());
+    }
+    IEnumerator stopRunning()
+    {
+        yield return new WaitForSeconds(7f);
+        mAnimator.SetTrigger("StopRunning");
+        isRunning = false;
     }
     private void EndSummoning()
     {
@@ -218,15 +235,26 @@ public class BossController : MonoBehaviour
             EnemyType.AwakeRadio,
             LayerMask.GetMask("Player")
         );
-        var colliders2 = Physics.OverlapSphere(
-            transform.position,
-            EnemyType.AttackRadio,
-            LayerMask.GetMask("Player2")
-        );
-        if (colliders.Length == 1) return colliders[0];
-        else if (colliders2.Length == 1) return colliders2[0];
-        else return null;
-        //TODO: que el boss sepa qué jugador esta mas cerca para ir a atacarlo (Comparar distancias)
+        if (colliders.Length == 1)
+        {
+            return colliders[0];
+        }else if (colliders.Length == 2)
+        {
+            Vector3 player1pos = colliders[0].gameObject.transform.position;
+            Vector3 player2pos = colliders[1].gameObject.transform.position;
+            var distance1 = Vector3.Distance(transform.position, player1pos);
+            var distance2 = Vector3.Distance(transform.position, player2pos);
+            if (distance1 < distance2)
+            {
+                return colliders[0];
+            }else
+            {
+                return colliders[1];
+            }
+        }else
+        {
+            return null;
+        }
     }
 
     private Collider IsPlayerInAttackArea()
@@ -241,10 +269,26 @@ public class BossController : MonoBehaviour
             EnemyType.AttackRadio,
             LayerMask.GetMask("Player2")
         );
-        if (colliders.Length == 1) return colliders[0];
-        else if (colliders2.Length == 1) return colliders2[0];
-        else return null;
-        //TODO: que el boss sepa qué jugador esta mas cerca para atacarlo (Comparar distancias)
+        if (colliders.Length == 1)
+        {
+            return colliders[0];
+        }else if (colliders.Length == 2)
+        {
+            Vector3 player1pos = colliders[0].gameObject.transform.position;
+            Vector3 player2pos = colliders[1].gameObject.transform.position;
+            var distance1 = Vector3.Distance(transform.position, player1pos);
+            var distance2 = Vector3.Distance(transform.position, player2pos);
+            if (distance1 < distance2)
+            {
+                return colliders[0];
+            }else
+            {
+                return colliders[1];
+            }
+        }else
+        {
+            return null;
+        }
     }
 
     public void StartAttack()
