@@ -235,15 +235,26 @@ public class BossController : MonoBehaviour
             EnemyType.AwakeRadio,
             LayerMask.GetMask("Player")
         );
-        var colliders2 = Physics.OverlapSphere(
-            transform.position,
-            EnemyType.AttackRadio,
-            LayerMask.GetMask("Player2")
-        );
-        if (colliders.Length == 1) return colliders[0];
-        else if (colliders2.Length == 1) return colliders2[0];
-        else return null;
-        //TODO: que el boss sepa qué jugador esta mas cerca para ir a atacarlo (Comparar distancias)
+        if (colliders.Length == 1)
+        {
+            return colliders[0];
+        }else if (colliders.Length == 2)
+        {
+            Vector3 player1pos = colliders[0].gameObject.transform.position;
+            Vector3 player2pos = colliders[1].gameObject.transform.position;
+            var distance1 = Vector3.Distance(transform.position, player1pos);
+            var distance2 = Vector3.Distance(transform.position, player2pos);
+            if (distance1 < distance2)
+            {
+                return colliders[0];
+            }else
+            {
+                return colliders[1];
+            }
+        }else
+        {
+            return null;
+        }
     }
 
     private Collider IsPlayerInAttackArea()
@@ -258,10 +269,26 @@ public class BossController : MonoBehaviour
             EnemyType.AttackRadio,
             LayerMask.GetMask("Player2")
         );
-        if (colliders.Length == 1) return colliders[0];
-        else if (colliders2.Length == 1) return colliders2[0];
-        else return null;
-        //TODO: que el boss sepa qué jugador esta mas cerca para atacarlo (Comparar distancias)
+        if (colliders.Length == 1)
+        {
+            return colliders[0];
+        }else if (colliders.Length == 2)
+        {
+            Vector3 player1pos = colliders[0].gameObject.transform.position;
+            Vector3 player2pos = colliders[1].gameObject.transform.position;
+            var distance1 = Vector3.Distance(transform.position, player1pos);
+            var distance2 = Vector3.Distance(transform.position, player2pos);
+            if (distance1 < distance2)
+            {
+                return colliders[0];
+            }else
+            {
+                return colliders[1];
+            }
+        }else
+        {
+            return null;
+        }
     }
 
     public void StartAttack()
