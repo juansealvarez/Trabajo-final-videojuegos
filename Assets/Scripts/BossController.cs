@@ -57,6 +57,9 @@ public class BossController : MonoBehaviour
     private bool isRunning = false;
     public List<AudioClip> Audios;
     private bool audioPlaying;
+    private bool aSource = true;
+    private bool audio2Playing = false;
+    private bool audio3Playing = false;
 
     private void Start()
     {
@@ -91,6 +94,11 @@ public class BossController : MonoBehaviour
         {
             if (endedCinematic)
             {
+                if(aSource)
+                {
+                    mAudioSource.Play();
+                    aSource = false;
+                }
                 var collider1 = IsPlayerInAttackArea();
                 if (collider1 != null && !mIsAttacking && !dead)
                 {
@@ -118,6 +126,12 @@ public class BossController : MonoBehaviour
                     mAnimator.SetBool("IsWalking", false);
                     //Spawnear Zombies
                     mAnimator.SetTrigger("SummonEnemies");
+                    if (!audio3Playing)
+                    {
+                        audio3Playing = true;
+                        mAudioSource.PlayOneShot(Audios[4]);
+                        StartCoroutine(stopPlaying(4, audio3Playing));
+                    }
                     gameManager.SpawnEnemiesFromBoss();
                     return;
                 }
@@ -132,6 +146,12 @@ public class BossController : MonoBehaviour
                     mIsAttacking = true;
                     navMeshAgent.isStopped = true;
                     mAnimator.SetTrigger("HasHalfLife");
+                    if (!audio2Playing)
+                    {
+                        audio2Playing = true;
+                        mAudioSource.PlayOneShot(Audios[2]);
+                        StartCoroutine(stopPlaying(2, audio2Playing));
+                    }
                 }
                 if (salud <= EnemyType.Health/4f && !PlayingQuarterLifeAnim)
                 {
@@ -144,6 +164,12 @@ public class BossController : MonoBehaviour
                     mIsAttacking = true;
                     navMeshAgent.isStopped = true;
                     mAnimator.SetTrigger("HasHalfLife");
+                    if (!audio2Playing)
+                    {
+                        audio2Playing = true;
+                        mAudioSource.PlayOneShot(Audios[2]);
+                        StartCoroutine(stopPlaying(2, audio2Playing));
+                    }
                 }
 
                 if (isRunning)
@@ -182,7 +208,7 @@ public class BossController : MonoBehaviour
                         {
                             audioPlaying = true;
                             mAudioSource.PlayOneShot(Audios[1]);
-                            StartCoroutine(stopPlaying(1));
+                            StartCoroutine(stopPlaying(1, audioPlaying));
                         }
                         
                     }
@@ -196,10 +222,14 @@ public class BossController : MonoBehaviour
         }
 
     }
-    IEnumerator stopPlaying(int numero)
+    IEnumerator stopPlaying(int numero, bool audioPlaying)
     {
         yield return new WaitForSeconds(Audios[numero].length);
         audioPlaying = false;
+    }
+    private void FallJumping()
+    {
+        mAudioSource.PlayOneShot(Audios[3]);
     }
     private void StartTimerToWalkAgain()
     {
