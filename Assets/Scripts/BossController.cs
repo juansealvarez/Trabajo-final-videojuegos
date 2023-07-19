@@ -55,6 +55,8 @@ public class BossController : MonoBehaviour
     private float randomRoar;
     private float speedFinal;
     private bool isRunning = false;
+    public List<AudioClip> Audios;
+    private bool audioPlaying;
 
     private void Start()
     {
@@ -79,6 +81,7 @@ public class BossController : MonoBehaviour
         delaySpawnZombies = cooldownSpawnZombies;
         randomRoar = UnityEngine.Random.Range(10f, 20f);
         speedFinal = navMeshAgent.speed;
+        mAudioSource.PlayOneShot(Audios[0]);
     }
 
     private void Update()
@@ -175,6 +178,13 @@ public class BossController : MonoBehaviour
                         mRb.velocity = Vector3.zero;
                         navMeshAgent.isStopped = true;
                         mAnimator.SetTrigger("Roaring");
+                        if (!audioPlaying)
+                        {
+                            audioPlaying = true;
+                            mAudioSource.PlayOneShot(Audios[1]);
+                            StartCoroutine(stopPlaying(1));
+                        }
+                        
                     }
                 }
                 Debug.Log(isRunning);
@@ -185,6 +195,11 @@ public class BossController : MonoBehaviour
             Destroy(gameObject, 5f);
         }
 
+    }
+    IEnumerator stopPlaying(int numero)
+    {
+        yield return new WaitForSeconds(Audios[numero].length);
+        audioPlaying = false;
     }
     private void StartTimerToWalkAgain()
     {
