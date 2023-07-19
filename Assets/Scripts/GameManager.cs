@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int CantidadZombiesPorHordaCoop = 15;
 
     public static GameManager Instance { private set; get; }
+    public GameObject UIRockText;
+
     public GameObject UIReload;
     public GameObject UILowAmmo;
     public GameObject UINoAmmo;
@@ -89,6 +91,7 @@ public class GameManager : MonoBehaviour
             PlayerController.UIReload = UIReload;
             PlayerController.UILowAmmo = UILowAmmo;
             PlayerController.UINoAmmo = UINoAmmo;
+            PlayerController.RockText = UIRockText;
         }
     }
     private void Update()
