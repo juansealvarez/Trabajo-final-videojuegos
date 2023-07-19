@@ -23,8 +23,6 @@ public class BossController : MonoBehaviour
     public bool dead = false;
 
     private AudioSource mAudioSource;
-    [SerializeField]
-    private List<AudioClip> audioList;
     public GameObject HitboxLeft;
     public GameObject HitboxRight;
     private CapsuleCollider mCollider;
@@ -38,7 +36,7 @@ public class BossController : MonoBehaviour
     private bool endedCinematic = false;
     public Transform finalPosition;
 
-    public float MovingSpeed;
+    private float MovingSpeed = 3f;
     
     private float moving;
     public GameManager gameManager;
@@ -55,6 +53,9 @@ public class BossController : MonoBehaviour
     public AudioClip soundEnd;
     public GameObject canvasInstruction;
     private float randomRoar;
+    private float speedFinal;
+    private bool isRunning = false;
+
     private void Start()
     {
         mRb = GetComponent<Rigidbody>();
@@ -76,7 +77,8 @@ public class BossController : MonoBehaviour
             zombiesToSpawn+=5;
         }
         delaySpawnZombies = cooldownSpawnZombies;
-        randomRoar = UnityEngine.Random.Range(5f, 10f);
+        randomRoar = UnityEngine.Random.Range(10f, 20f);
+        speedFinal = navMeshAgent.speed;
     }
 
     private void Update()
@@ -101,7 +103,7 @@ public class BossController : MonoBehaviour
                     return;
                 }
                 delaySpawnZombies -= Time.deltaTime;
-                if (delaySpawnZombies <= 0 && !mIsAttacking && !dead)
+                if (delaySpawnZombies <= 0 && !mIsAttacking && !dead && !isRunning && randomRoar!=delaySpawnZombies)
                 {
                     mRb.velocity = new Vector3(
                         0f,
@@ -141,7 +143,13 @@ public class BossController : MonoBehaviour
                     mAnimator.SetTrigger("HasHalfLife");
                 }
 
-
+                if (isRunning)
+                {
+                    navMeshAgent.speed*=2;
+                }else
+                {
+                    navMeshAgent.speed = speedFinal;
+                }
                 var collider2 = IsPlayerNearby();
 
                 if (collider2 != null && !mIsAttacking && !dead)
@@ -157,10 +165,10 @@ public class BossController : MonoBehaviour
                     mAnimator.SetBool("IsWalking", false);
                     navMeshAgent.isStopped = true;
                 }
-                if (randomRoar > 0)
+                if (randomRoar > 0  && !isRunning)
                 {
                     randomRoar-=Time.deltaTime;
-                }else
+                }else if (randomRoar <= 0 && !isRunning)
                 {
                     if (!mIsAttacking && !dead)
                     {
@@ -169,6 +177,7 @@ public class BossController : MonoBehaviour
                         mAnimator.SetTrigger("Roaring");
                     }
                 }
+                Debug.Log(isRunning);
             }
         }
         else
@@ -177,10 +186,18 @@ public class BossController : MonoBehaviour
         }
 
     }
-    private void StopRoaring()
+    private void StartTimerToWalkAgain()
     {
-        randomRoar = UnityEngine.Random.Range(5f, 10f);
         navMeshAgent.isStopped = false;
+        isRunning = true;
+        randomRoar = UnityEngine.Random.Range(10f, 20f);
+        StartCoroutine(stopRunning());
+    }
+    IEnumerator stopRunning()
+    {
+        yield return new WaitForSeconds(7f);
+        mAnimator.SetTrigger("StopRunning");
+        isRunning = false;
     }
     private void EndSummoning()
     {

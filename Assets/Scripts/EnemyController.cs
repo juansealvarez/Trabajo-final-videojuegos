@@ -14,8 +14,6 @@ public class EnemyController : MonoBehaviour
     private bool dead = false;
 
     private AudioSource mAudioSource;
-    [SerializeField]
-    private List<AudioClip> audioList;
     public GameObject HitboxLeft;
     private CapsuleCollider mCollider;
     private NavMeshAgent navMeshAgent;
