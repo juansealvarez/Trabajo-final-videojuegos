@@ -8,7 +8,8 @@ public class MenuButtons : MonoBehaviour
     public void ChangeScene(string escena)
     {
         //PlayerController.mPlayerInput.SwitchCurrentActionMap("Player");
-        SceneManager.LoadScene(escena);
+        //SceneManager.LoadScene(escena);
+        CargaNivel.NivelCarga(escena);
     }
     public void TypeOfGame(bool isSolo)
     {
