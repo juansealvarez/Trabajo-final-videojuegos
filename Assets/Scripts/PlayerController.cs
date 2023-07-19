@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { private set; get; }
+    public GameObject RockText;
+
     [SerializeField]
     private float WalkingSpeed;
     private float RunnigMultiplier;
@@ -523,6 +525,18 @@ public class PlayerController : MonoBehaviour
             Destroy(col.gameObject);
             scriptGun.balasTotales+=UnityEngine.Random.Range(1,6);
         }
+
+        if(col.CompareTag("Rock"))
+        {
+            RockText.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider col)
+    {
+       if(col.CompareTag("Rock"))
+        {
+            RockText.SetActive(false);
+        } 
     }
     private void OnPause(InputValue value)
     {
