@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   Tipo: Jefe
-  Speed: 1
+  Speed: 10
   AwakeRadio: 100000
-  AttackRadio: 5
+  AttackRadio: 2
   Health: 25
   Damage: 10

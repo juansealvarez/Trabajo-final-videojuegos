@@ -25,7 +25,8 @@ public class BossController : MonoBehaviour
     private AudioSource mAudioSource;
     [SerializeField]
     private List<AudioClip> audioList;
-    // public GameObject HitboxLeft;
+    public GameObject HitboxLeft;
+    public GameObject HitboxRight;
     private CapsuleCollider mCollider;
     private UnityEngine.AI.NavMeshAgent navMeshAgent;
 
@@ -85,22 +86,20 @@ public class BossController : MonoBehaviour
         {
             if (endedCinematic)
             {
-                //mAudioSource.PlayOneShot(audioList[Random.Range(0,2)]);
-                // var collider1 = IsPlayerInAttackArea();
-                // if (collider1 != null && !mIsAttacking && !dead)
-                // {
-                //     mRb.velocity = new Vector3(
-                //         0f,
-                //         0f,
-                //         0f
-                //     );
-                //     //mAudioSource.PlayOneShot(audioList[Random.Range(2,4)]);
-                //     navMeshAgent.isStopped = true;
-                //     mAnimator.SetBool("IsWalking", false);
-                //     mAnimator.SetTrigger("Attacking");
-                //     mAnimator.SetInteger("RandomAttack", Random.Range(0, 3));
-                //     return;
-                // }
+                var collider1 = IsPlayerInAttackArea();
+                if (collider1 != null && !mIsAttacking && !dead)
+                {
+                    mRb.velocity = new Vector3(
+                        0f,
+                        0f,
+                        0f
+                    );
+                    navMeshAgent.isStopped = true;
+                    mAnimator.SetBool("IsWalking", false);
+                    mAnimator.SetTrigger("Attacking");
+                    mAnimator.SetInteger("RandomAttack", UnityEngine.Random.Range(0, 2));
+                    return;
+                }
                 delaySpawnZombies -= Time.deltaTime;
                 if (delaySpawnZombies <= 0 && !mIsAttacking && !dead)
                 {
@@ -150,7 +149,6 @@ public class BossController : MonoBehaviour
                     mAnimator.SetBool("IsWalking", true);
                     navMeshAgent.isStopped = false;
                     navMeshAgent.SetDestination(collider2.transform.position);
-                    //Walk(collider2);
                 }
                 else
                 {
@@ -164,9 +162,12 @@ public class BossController : MonoBehaviour
                     randomRoar-=Time.deltaTime;
                 }else
                 {
-                    mRb.velocity = Vector3.zero;
-                    navMeshAgent.isStopped = true;
-                    mAnimator.SetTrigger("Roaring");
+                    if (!mIsAttacking && !dead)
+                    {
+                        mRb.velocity = Vector3.zero;
+                        navMeshAgent.isStopped = true;
+                        mAnimator.SetTrigger("Roaring");
+                    }
                 }
             }
         }
@@ -225,7 +226,7 @@ public class BossController : MonoBehaviour
         if (colliders.Length == 1) return colliders[0];
         else if (colliders2.Length == 1) return colliders2[0];
         else return null;
-        //TODO: que el boss sepa qué jugador esta mas cerca para ir a atacarlo
+        //TODO: que el boss sepa qué jugador esta mas cerca para ir a atacarlo (Comparar distancias)
     }
 
     private Collider IsPlayerInAttackArea()
@@ -243,7 +244,7 @@ public class BossController : MonoBehaviour
         if (colliders.Length == 1) return colliders[0];
         else if (colliders2.Length == 1) return colliders2[0];
         else return null;
-        //TODO: que el boss sepa qué jugador esta mas cerca para atacarlo
+        //TODO: que el boss sepa qué jugador esta mas cerca para atacarlo (Comparar distancias)
     }
 
     public void StartAttack()
@@ -251,15 +252,20 @@ public class BossController : MonoBehaviour
         mIsAttacking = true;
     }
 
-    public void EnableHitbox()
+    public void EnableHitboxLeft()
     {
-        // HitboxLeft.SetActive(true);
+        HitboxLeft.SetActive(true);
+    }
+    public void EnableHitboxRight()
+    {
+        HitboxRight.SetActive(true);
     }
 
     public void StopAttack()
     {
         mIsAttacking = false;
-        // HitboxLeft.SetActive(false);
+        HitboxLeft.SetActive(false);
+        HitboxRight.SetActive(false);
     }
 
     public void TakeDamage(float Damage)

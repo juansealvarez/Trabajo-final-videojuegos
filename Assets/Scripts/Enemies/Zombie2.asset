@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zombie2
   m_EditorClassIdentifier: 
   Tipo: Monstruo
-  Speed: 1
+  Speed: 5
   AwakeRadio: 10000
   AttackRadio: 0.5
   Health: 5

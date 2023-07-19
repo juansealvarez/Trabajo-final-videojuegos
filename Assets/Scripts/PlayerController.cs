@@ -507,7 +507,12 @@ public class PlayerController : MonoBehaviour
             isBeingDamaged = true;
             var damage = col.gameObject.GetComponentInParent<EnemyController>().EnemyType.Damage;
             TakeDamage(damage);
-        }else
+        }else if (col.CompareTag("BossAttack"))
+        {
+            isBeingDamaged = true;
+            var damage = col.gameObject.GetComponentInParent<BossController>().EnemyType.Damage;
+            TakeDamage(damage);
+        }
         {
             isBeingDamaged = false;
         }

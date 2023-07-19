@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
         if(StateNameController.isHardcoreMode)
         {
             salud*=1.5f;
-            navMeshAgent.speed*=3.5f;
+            navMeshAgent.speed*=1.5f;
             damage*=1.2f;
         }
     }
@@ -52,7 +52,6 @@ public class EnemyController : MonoBehaviour
         
         if (!playerController.IsDead)
         {
-            //mAudioSource.PlayOneShot(audioList[Random.Range(0,2)]);
 
             var collider1 = IsPlayerInAttackArea();
             if (collider1 != null && !mIsAttacking && !dead)
@@ -62,7 +61,6 @@ public class EnemyController : MonoBehaviour
                     0f,
                     0f
                 );
-                //mAudioSource.PlayOneShot(audioList[Random.Range(2,4)]);
                 navMeshAgent.isStopped = true;
                 mAnimator.SetBool("IsWalking", false);
                 mAnimator.SetTrigger("Attacking");
@@ -78,7 +76,6 @@ public class EnemyController : MonoBehaviour
                 mAnimator.SetBool("IsWalking", true);
                 navMeshAgent.isStopped = false;
                 navMeshAgent.SetDestination(collider2.transform.position);
-                //Walk(collider2);
             }
             else
             {
@@ -118,7 +115,7 @@ public class EnemyController : MonoBehaviour
         if (colliders.Length == 1) return colliders[0];
         else if (colliders2.Length == 1) return colliders2[0];
         else return null;
-        //TODO: que el zombie sepa qué jugador esta mas cerca para ir a atacarlo
+        //TODO: que el zombie sepa qué jugador esta mas cerca para ir a atacarlo (Comparar distancias)
     }
 
     private Collider IsPlayerInAttackArea()
@@ -136,7 +133,7 @@ public class EnemyController : MonoBehaviour
         if (colliders.Length == 1) return colliders[0];
         else if (colliders2.Length == 1) return colliders2[0];
         else return null;
-        //TODO: que el zombie sepa que jugador esta mas cerca para atacarlo
+        //TODO: que el zombie sepa que jugador esta mas cerca para atacarlo (Comparar distancias)
     }
 
     public void StartAttack()
