@@ -7,6 +7,9 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     public static BossController Instance { private set; get; }
+    private bool PlayingQuarterLifeAnim = false;
+
+    private bool PlayingHalfLifeAnim = false;
 
     public GameObject camara;
 
@@ -50,7 +53,7 @@ public class BossController : MonoBehaviour
     public GameObject canvasEnd;
     public AudioClip soundEnd;
     public GameObject canvasInstruction;
-
+    private float randomRoar;
     private void Start()
     {
         mRb = GetComponent<Rigidbody>();
@@ -72,6 +75,7 @@ public class BossController : MonoBehaviour
             zombiesToSpawn+=5;
         }
         delaySpawnZombies = cooldownSpawnZombies;
+        randomRoar = UnityEngine.Random.Range(5f, 10f);
     }
 
     private void Update()
@@ -113,6 +117,30 @@ public class BossController : MonoBehaviour
                     gameManager.SpawnEnemiesFromBoss();
                     return;
                 }
+                if (salud <= EnemyType.Health/2f && !PlayingHalfLifeAnim)
+                {
+                    PlayingHalfLifeAnim = true;
+                    mRb.velocity = new Vector3(
+                        0f,
+                        0f,
+                        0f
+                    );
+                    mIsAttacking = true;
+                    navMeshAgent.isStopped = true;
+                    mAnimator.SetTrigger("HasHalfLife");
+                }
+                if (salud <= EnemyType.Health/4f && !PlayingQuarterLifeAnim)
+                {
+                    PlayingQuarterLifeAnim = true;
+                    mRb.velocity = new Vector3(
+                        0f,
+                        0f,
+                        0f
+                    );
+                    mIsAttacking = true;
+                    navMeshAgent.isStopped = true;
+                    mAnimator.SetTrigger("HasHalfLife");
+                }
 
 
                 var collider2 = IsPlayerNearby();
@@ -131,6 +159,15 @@ public class BossController : MonoBehaviour
                     mAnimator.SetBool("IsWalking", false);
                     navMeshAgent.isStopped = true;
                 }
+                if (randomRoar > 0)
+                {
+                    randomRoar-=Time.deltaTime;
+                }else
+                {
+                    mRb.velocity = Vector3.zero;
+                    navMeshAgent.isStopped = true;
+                    mAnimator.SetTrigger("Roaring");
+                }
             }
         }
         else
@@ -138,6 +175,11 @@ public class BossController : MonoBehaviour
             Destroy(gameObject, 5f);
         }
 
+    }
+    private void StopRoaring()
+    {
+        randomRoar = UnityEngine.Random.Range(5f, 10f);
+        navMeshAgent.isStopped = false;
     }
     private void EndSummoning()
     {
