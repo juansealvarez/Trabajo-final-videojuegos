@@ -69,7 +69,7 @@ public class BossController : MonoBehaviour
         navMeshAgent.speed = EnemyType.Speed;
         if(StateNameController.isHardcoreMode)
         {
-            salud*=1.5f;
+            salud*=1.1f;
             navMeshAgent.speed*=3.5f;
             damage*=1.2f;
             cooldownSpawnZombies*=0.7f;
