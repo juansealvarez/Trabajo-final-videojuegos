@@ -16,5 +16,5 @@ MonoBehaviour:
   Speed: 1
   AwakeRadio: 100000
   AttackRadio: 2
-  Health: 100
+  Health: 75
   Damage: 10

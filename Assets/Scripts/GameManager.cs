@@ -92,6 +92,9 @@ public class GameManager : MonoBehaviour
             PlayerController.UILowAmmo = UILowAmmo;
             PlayerController.UINoAmmo = UINoAmmo;
             PlayerController.RockText = UIRockText;
+        }else
+        {
+            UISolo.SetActive(true);
         }
     }
     private void Update()
