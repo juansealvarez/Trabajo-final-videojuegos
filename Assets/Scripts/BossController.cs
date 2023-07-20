@@ -370,6 +370,7 @@ public class BossController : MonoBehaviour
             cinematicController.HacerDia();
             StartCoroutine(MenuEndgame());
             Destroy(gameObject, 20f);
+            mAudioSource.PlayOneShot(Audios[6]);
             HitboxLeft.SetActive(false);
             HitboxRight.SetActive(false);
         }
