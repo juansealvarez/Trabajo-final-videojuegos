@@ -114,7 +114,6 @@ public class BossController : MonoBehaviour
                     mAnimator.SetInteger("RandomAttack", UnityEngine.Random.Range(0, 2));
                     return;
                 }
-                Debug.Log(audioPlaying);
                 delaySpawnZombies -= Time.deltaTime;
                 if (delaySpawnZombies <= 0 && !mIsAttacking && !dead && !isRunning && randomRoar!=delaySpawnZombies)
                 {
@@ -215,7 +214,6 @@ public class BossController : MonoBehaviour
                         
                     }
                 }
-                Debug.Log(isRunning);
             }
         }
         else
@@ -381,6 +379,7 @@ public class BossController : MonoBehaviour
     IEnumerator MenuEndgame()
     {
         CineController.AudioBoss.SetActive(false);
+        CineController.AudioBoss.GetComponent<AudioSource>().Stop();
         if(gameManager.isSoloGame)
         {
             player1voices.playSoloBossDead();
