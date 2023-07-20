@@ -7,6 +7,8 @@ public class CinematicController : MonoBehaviour
 {
 
     public static CinematicController Instance { private set; get; }
+    public GameObject AudioRounds;
+
     public GameObject AudioBoss;
 
     public GameObject smokeParticles;
@@ -44,6 +46,8 @@ public class CinematicController : MonoBehaviour
     IEnumerator PlayScene()
     {
         yield return new WaitForSeconds(2);
+        AudioRounds.GetComponent<AudioSource>().Stop();
+        AudioRounds.SetActive(false);
         AudioBoss.SetActive(true);
         PlayerController.mPlayerInput.enabled = false;
         playerController.mAudioSource.enabled = false;
