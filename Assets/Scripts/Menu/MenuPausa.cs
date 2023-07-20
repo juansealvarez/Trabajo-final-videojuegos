@@ -54,6 +54,7 @@ public class MenuPausa : MonoBehaviour
     {
         PlayerController.mPlayerInput.SwitchCurrentActionMap("MenuAndEndgame");
         Time.timeScale = 1f;
+        StateNameController.isStartRound = false;
         SceneManager.LoadScene("MainMenu");
     }
 }
