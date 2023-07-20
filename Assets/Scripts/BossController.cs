@@ -7,6 +7,8 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     public static BossController Instance { private set; get; }
+    public CinematicController CineController;
+
     private bool PlayingQuarterLifeAnim = false;
 
     private bool PlayingHalfLifeAnim = false;
@@ -370,7 +372,7 @@ public class BossController : MonoBehaviour
             cinematicController.HacerDia();
             StartCoroutine(MenuEndgame());
             Destroy(gameObject, 20f);
-            mAudioSource.PlayOneShot(Audios[6]);
+            mAudioSource.PlayOneShot(Audios[5]);
             HitboxLeft.SetActive(false);
             HitboxRight.SetActive(false);
         }
@@ -378,6 +380,7 @@ public class BossController : MonoBehaviour
 
     IEnumerator MenuEndgame()
     {
+        CineController.AudioBoss.SetActive(false);
         if(gameManager.isSoloGame)
         {
             player1voices.playSoloBossDead();

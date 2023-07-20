@@ -87,6 +87,7 @@ public class EnemyController : MonoBehaviour
                 mAnimator.SetTrigger("Die");
                 mCollider.enabled = false;
                 dead = true;
+                mAudioSource.Stop();
                 Destroy(gameObject, 20f);
                 HizoDeadAnimation = true;
                 HitboxLeft.SetActive(false);
