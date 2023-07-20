@@ -111,9 +111,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
 
     // Control de la granada ______________________________
-    private Grenade grenadePrefab;
+    // private Grenade grenadePrefab;
 
-    public GameObject grenadeVisual;
+    // public GameObject grenadeVisual;
     // Fin de granada ______________________________________
     private Player1Voices player1Voices;
 
@@ -710,10 +710,22 @@ public class PlayerController : MonoBehaviour
         BackgroundSource.PlayOneShot(voicesReload[UnityEngine.Random.Range(0, 2)], 10f);
     }
 
-    // public void ThrowGrenade()
-    // {
-    //     grenadeVisual.SetActive(false);
-    //     Grenade clone = Instantiate(grenadePrefab, grenadeVisual.position, grenadeVisual.rotation);
-    //     clone.Throw();
-    // }
+    public void OnThrowGrenade(InputValue value)
+    {
+        if (!IsDead)
+        {
+            if (!MenuPausa.isPaused)
+            {
+                if (value.isPressed)
+                {
+                    Debug.Log("Lanzar granada");
+                    // grenadeVisual.SetActive(false);
+                    // Grenade clone = Instantiate(grenadePrefab, grenadeVisual.position, grenadeVisual.rotation);
+                    // clone.Throw();
+                }
+            }
+        }
+    }
+
+
 }
