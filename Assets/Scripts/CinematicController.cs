@@ -7,6 +7,8 @@ public class CinematicController : MonoBehaviour
 {
 
     public static CinematicController Instance { private set; get; }
+    public GameObject AudioBoss;
+
     public GameObject smokeParticles;
     public GameObject chispasParticles;
     public GameObject bigRock;
@@ -31,10 +33,25 @@ public class CinematicController : MonoBehaviour
         ligth.SetActive(true);
         RenderSettings.skybox = skyDay;
     }
+    public void Update()
+    {
+        if(PlayerController.Instance.IsDead)
+        {
+            AudioBoss.SetActive(false);
+        }
+        if(MenuPausa.isPaused)
+        {
+            AudioBoss.GetComponent<AudioSource>().Pause();
+        }else
+        {
+            AudioBoss.GetComponent<AudioSource>().Play();
+        }
+    }
 
     IEnumerator PlayScene()
     {
         yield return new WaitForSeconds(2);
+        AudioBoss.SetActive(true);
         PlayerController.mPlayerInput.enabled = false;
         playerController.mAudioSource.enabled = false;
         playerController.pAudioSource.enabled = false;

@@ -21,8 +21,8 @@ public class BossController : MonoBehaviour
     private bool mIsAttacking = false;
     [System.NonSerialized]
     public bool dead = false;
-
-    private AudioSource mAudioSource;
+    [System.NonSerialized]
+    public AudioSource mAudioSource;
     public GameObject HitboxLeft;
     public GameObject HitboxRight;
     private CapsuleCollider mCollider;
@@ -58,8 +58,7 @@ public class BossController : MonoBehaviour
     public List<AudioClip> Audios;
     private bool audioPlaying;
     private bool aSource = true;
-    private bool audio2Playing = false;
-    private bool audio3Playing = false;
+    public AudioSource audioBossFight;
 
     private void Start()
     {
@@ -113,6 +112,7 @@ public class BossController : MonoBehaviour
                     mAnimator.SetInteger("RandomAttack", UnityEngine.Random.Range(0, 2));
                     return;
                 }
+                Debug.Log(audioPlaying);
                 delaySpawnZombies -= Time.deltaTime;
                 if (delaySpawnZombies <= 0 && !mIsAttacking && !dead && !isRunning && randomRoar!=delaySpawnZombies)
                 {
@@ -126,11 +126,11 @@ public class BossController : MonoBehaviour
                     mAnimator.SetBool("IsWalking", false);
                     //Spawnear Zombies
                     mAnimator.SetTrigger("SummonEnemies");
-                    if (!audio3Playing)
+                    if (!audioPlaying)
                     {
-                        audio3Playing = true;
+                        audioPlaying = true;
                         mAudioSource.PlayOneShot(Audios[4]);
-                        StartCoroutine(stopPlaying(4, audio3Playing));
+                        StartCoroutine(stopPlaying(4));
                     }
                     gameManager.SpawnEnemiesFromBoss();
                     return;
@@ -146,12 +146,12 @@ public class BossController : MonoBehaviour
                     mIsAttacking = true;
                     navMeshAgent.isStopped = true;
                     mAnimator.SetTrigger("HasHalfLife");
-                    if (!audio2Playing)
-                    {
-                        audio2Playing = true;
-                        mAudioSource.PlayOneShot(Audios[2]);
-                        StartCoroutine(stopPlaying(2, audio2Playing));
-                    }
+                    if (!audioPlaying)
+                        {
+                            audioPlaying = true;
+                            mAudioSource.PlayOneShot(Audios[2]);
+                            StartCoroutine(stopPlaying(2));
+                        }
                 }
                 if (salud <= EnemyType.Health/4f && !PlayingQuarterLifeAnim)
                 {
@@ -164,12 +164,12 @@ public class BossController : MonoBehaviour
                     mIsAttacking = true;
                     navMeshAgent.isStopped = true;
                     mAnimator.SetTrigger("HasHalfLife");
-                    if (!audio2Playing)
-                    {
-                        audio2Playing = true;
-                        mAudioSource.PlayOneShot(Audios[2]);
-                        StartCoroutine(stopPlaying(2, audio2Playing));
-                    }
+                    if (!audioPlaying)
+                        {
+                            audioPlaying = true;
+                            mAudioSource.PlayOneShot(Audios[2]);
+                            StartCoroutine(stopPlaying(2));
+                        }
                 }
 
                 if (isRunning)
@@ -208,7 +208,7 @@ public class BossController : MonoBehaviour
                         {
                             audioPlaying = true;
                             mAudioSource.PlayOneShot(Audios[1]);
-                            StartCoroutine(stopPlaying(1, audioPlaying));
+                            StartCoroutine(stopPlaying(1));
                         }
                         
                     }
@@ -222,9 +222,9 @@ public class BossController : MonoBehaviour
         }
 
     }
-    IEnumerator stopPlaying(int numero, bool audioPlaying)
+    IEnumerator stopPlaying(int numero)
     {
-        yield return new WaitForSeconds(Audios[numero].length);
+        yield return new WaitForSeconds(Audios[1].length);
         audioPlaying = false;
     }
     private void FallJumping()
@@ -370,7 +370,8 @@ public class BossController : MonoBehaviour
             cinematicController.HacerDia();
             StartCoroutine(MenuEndgame());
             Destroy(gameObject, 20f);
-            // HitboxLeft.SetActive(false);
+            HitboxLeft.SetActive(false);
+            HitboxRight.SetActive(false);
         }
     }
 
@@ -384,10 +385,24 @@ public class BossController : MonoBehaviour
             player1voices.playCoopBossDead();
         }
         yield return new WaitForSeconds(7);
+        StartCoroutine(FadeOut(audioBossFight, 1f));
         playerController.BackgroundSource.PlayOneShot(soundEnd, 20f);
         gameManager.UItoActivateAndActivate.SetActive(false);
         canvasEnd.SetActive(true);
         yield return new WaitForSeconds(3);
         gameManager.goToEndScene();
+    }
+
+    IEnumerator FadeOut (AudioSource audioSource, float FadeTime) {
+        float startVolume = audioSource.volume;
+ 
+        while (audioSource.volume > 0) {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+ 
+            yield return null;
+        }
+ 
+        audioSource.Stop ();
+        audioSource.volume = startVolume;
     }
 }

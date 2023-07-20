@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4949857326894348}
   - component: {fileID: 33724900168946380}
   - component: {fileID: 23901797350188284}
+  - component: {fileID: 1048739515830343878}
   m_Layer: 0
   m_Name: Empty ground
   m_TagString: Suelo
@@ -84,6 +85,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1048739515830343878
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075696995327186}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.0000024, y: 0.25000012, z: 4.000001}
+  m_Center: {x: -0.000019013882, y: 0.1249848, z: 0.0000023245811}
 --- !u!1 &1117195683513802
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +109,7 @@ GameObject:
   - component: {fileID: 4381933573941554}
   - component: {fileID: 33455254187012836}
   - component: {fileID: 23390312838091864}
+  - component: {fileID: 7849370309983552562}
   m_Layer: 0
   m_Name: Empty ground (1)
   m_TagString: Suelo
@@ -168,6 +183,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7849370309983552562
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117195683513802}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.9999995, y: 0.25000012, z: 4.000002}
+  m_Center: {x: 0.000000059604645, y: 0.1249848, z: 0.000015676022}
 --- !u!1 &1510392566370538
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +242,7 @@ GameObject:
   - component: {fileID: 4694748885587736}
   - component: {fileID: 33274867902337828}
   - component: {fileID: 23996542069953220}
+  - component: {fileID: 6298404715120006076}
   m_Layer: 0
   m_Name: Empty ground (3)
   m_TagString: Suelo
@@ -287,6 +316,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6298404715120006076
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639558921158894}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.0000024, y: 0.25000012, z: 4.000001}
+  m_Center: {x: -0.000022828579, y: 0.1249848, z: 0.0000023245811}
 --- !u!1 &1770015980116070
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +340,7 @@ GameObject:
   - component: {fileID: 4716077468617306}
   - component: {fileID: 33158972118621064}
   - component: {fileID: 23203519337254738}
+  - component: {fileID: 7891642487320291289}
   m_Layer: 0
   m_Name: Empty ground (2)
   m_TagString: Suelo
@@ -371,3 +414,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7891642487320291289
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770015980116070}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.9999995, y: 0.25000012, z: 4.000002}
+  m_Center: {x: 0.000000059604645, y: 0.1249848, z: 0.000015676022}
