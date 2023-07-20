@@ -373,6 +373,7 @@ public class BossController : MonoBehaviour
             mAudioSource.PlayOneShot(Audios[5]);
             HitboxLeft.SetActive(false);
             HitboxRight.SetActive(false);
+            StateNameController.isStartRound = false;
         }
     }
 

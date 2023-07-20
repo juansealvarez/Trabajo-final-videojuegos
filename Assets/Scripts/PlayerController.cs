@@ -499,6 +499,7 @@ public class PlayerController : MonoBehaviour
                 OtherPlayer.CameraAnimator.SetBool("IsDead", true);
             }
             IsDead = true;
+            StateNameController.isStartRound = false;
         }
     }
 
