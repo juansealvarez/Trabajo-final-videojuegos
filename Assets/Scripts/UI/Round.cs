@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Round : MonoBehaviour
 {
     private Animator mAnimator;
-    // Start is called before the first frame update
+    
     void Start()
     {
         Debug.Log(StateNameController.isStartRound);

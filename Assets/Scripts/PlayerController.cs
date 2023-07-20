@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
 
     public CinematicController cinemaController;
     // Fin de granada ______________________________________
+    [SerializeField]
     private Player1Voices player1Voices;
 
     //TODO: voice acting
