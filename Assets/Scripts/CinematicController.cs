@@ -25,10 +25,16 @@ public class CinematicController : MonoBehaviour
     private AudioSource mAudioSource;
     public AudioClip explosion;
 
+    [System.NonSerialized]
+    public bool isBossFight = false;
+
     public void IniciarCinematica()
     {
         mAudioSource = GetComponent<AudioSource>();
+        isBossFight = true;
         StartCoroutine(PlayScene());
+
+
     }
     public void HacerDia()
     {
@@ -37,7 +43,7 @@ public class CinematicController : MonoBehaviour
     }
     public void Update()
     {
-        if(PlayerController.Instance.IsDead)
+        if (PlayerController.Instance.IsDead)
         {
             AudioBoss.SetActive(false);
         }

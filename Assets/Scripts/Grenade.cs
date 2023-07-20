@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    public float delay = 3f;
+    public float delay = 10f;
     public float radius = 5f;
     public float force = 700f;
     public GameObject explosionEffectFire;
@@ -12,17 +12,26 @@ public class Grenade : MonoBehaviour
     public GameObject explosionEffectChispas;
 
     private Rigidbody mRb;
-    private float throwForce = 0f;
+    // private float throwForce = 0f;
 
-    float countdown;
+    float countdown = 5f;
     bool hasExploded = false;
 
+    public float ExplodeRadio = 20f;
 
-    void Update()
+
+
+    private void Start()
+    {
+
+    }
+
+    private void Update()
     {
         countdown -= Time.deltaTime;
         if (countdown <= 0f && !hasExploded)
         {
+            Debug.Log("Explode update called");
             Explode();
             hasExploded = true;
         }
@@ -31,14 +40,58 @@ public class Grenade : MonoBehaviour
     public void Awake()
     {
         mRb = GetComponent<Rigidbody>();
+        if (mRb == null)
+        {
+            Debug.Log("Rigidbody is null in start");
+        }
+        else
+        {
+            Debug.Log("Rigidbody is not null in start");
+        }
     }
-    void Throw()
+    public void Throw(Vector3 dir, float throwForce)
     {
-        // mRb.AddForce(dir * throwForce);
-        mRb.AddForce(transform.up * throwForce / 2);
+        // Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        // mRb.AddForce(randomDirection.normalized * force / 2);
+
+        Debug.Log("Throwing grenade in grende script");
+
+        mRb.AddForce(dir * throwForce);
+        mRb.AddForce(transform.up * force / 2);
     }
 
-    void Explode()
+    private void IsZombieNearby()
+    {
+        var colliders = Physics.OverlapSphere(
+            transform.position,
+            ExplodeRadio,
+            LayerMask.GetMask("Enemies")
+        );
+        if (colliders.Length >= 1)
+        {
+            foreach (var collider in colliders)
+            {
+                var enemy = collider.gameObject.GetComponent<EnemyController>();
+                if (enemy != null)
+                {
+                    Debug.Log("Enemigo dañado por granada");
+                    enemy.TakeDamage(100f);
+                }
+                else
+                {
+                    Debug.Log("NO HAY ENEMIGOS EN EL RANGO");
+                }
+            }
+
+        }
+        else
+        {
+            Debug.Log("NO HAY ENEMIGOS EN EL RANGO");
+        }
+
+    }
+
+    public void Explode()
     {
         // Show explosion effects
         GameObject fire = Instantiate(explosionEffectFire, transform.position, transform.rotation);
@@ -51,24 +104,7 @@ public class Grenade : MonoBehaviour
         chispas.GetComponent<ParticleSystem>().Play();
 
         // Apply force to nearby objects
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
-        foreach (Collider nearbyObject in colliders)
-        {
-            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddExplosionForce(force, transform.position, radius);
-            }
-
-            // // Add damage to nearby enemies
-            // Zombie zombie = nearbyObject.GetComponent<Zombie>();
-            // if (zombie != null)
-            // {
-            //     // Calculate damage based on distance from the grenade
-            //     float damage = 100f * (1f - (transform.position - zombie.transform.position).magnitude / radius);
-            //     zombie.TakeDamage(damage);
-            // }
-        }
+        IsZombieNearby();
 
         // Destroy grenade and explosion effects after a delay
         Destroy(fire, 1f);

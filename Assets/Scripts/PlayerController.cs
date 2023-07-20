@@ -111,9 +111,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
 
     // Control de la granada ______________________________
-    // private Grenade grenadePrefab;
+    private Grenade grenadePrefab;
 
-    // public GameObject grenadeVisual;
+    public float cooldownGrenade = 5f;
+    private float grenadeCooldown;
+    private bool canThrowGrenade = true;
+
+    public CinematicController cinemaController;
     // Fin de granada ______________________________________
     private Player1Voices player1Voices;
 
@@ -125,6 +129,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        grenadeCooldown = 0f;
+
         mRb = GetComponent<Rigidbody>();
         cameraMain = transform.Find("Main Camera");
 
@@ -164,6 +170,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         if (!isBeingDamaged)
         {
             if (PlayerHealth < maxPlayerHealth)
@@ -192,6 +199,17 @@ public class PlayerController : MonoBehaviour
                 Vector3 PosicionSalto = transform.position + new Vector3(0f, playerHeight, 0f);
                 grounded = Physics.Raycast(PosicionSalto, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
                 SpeedControl();
+                grenadeCooldown -= Time.deltaTime;
+
+                if (grenadeCooldown <= 0)
+                {
+                    canThrowGrenade = true;
+                }
+                else
+                {
+                    canThrowGrenade = false;
+                }
+
                 if (grounded)
                 {
                     mRb.drag = groundDrag;
@@ -456,9 +474,11 @@ public class PlayerController : MonoBehaviour
                         {
                             mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[1]);
                         }
+
                     }
                     else
                     {
+                        // MODIFICACIÓN: Se añade la validación sobre si está en estado de granada o no
                         if (!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
                             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
@@ -710,6 +730,8 @@ public class PlayerController : MonoBehaviour
         BackgroundSource.PlayOneShot(voicesReload[UnityEngine.Random.Range(0, 2)], 10f);
     }
 
+    // Código de granada _____________________________________________________________
+
     public void OnThrowGrenade(InputValue value)
     {
         if (!IsDead)
@@ -718,14 +740,31 @@ public class PlayerController : MonoBehaviour
             {
                 if (value.isPressed)
                 {
-                    Debug.Log("Lanzar granada");
-                    // grenadeVisual.SetActive(false);
-                    // Grenade clone = Instantiate(grenadePrefab, grenadeVisual.position, grenadeVisual.rotation);
-                    // clone.Throw();
+                    if (cinemaController.isBossFight)
+                    {
+                        if (canThrowGrenade)
+                        {
+                            grenadeCooldown = cooldownGrenade;
+                            canThrowGrenade = false;
+                            Debug.Log("Lanzar granada");
+                            var clone = Instantiate(grenadePrefab, cameraMain.transform.position, Quaternion.identity);
+                            clone.Throw(Vector3.forward, 50f);
+                        }
+                    }
+
+
                 }
             }
         }
     }
 
+    // public void ThrowGrenade()
+    // {
+    //     grenadeVisual.SetActive(false);
+    //     Grenade clone = Instantiate(grenadePrefab, grenadeVisual.transform.position, grenadeVisual.transform.rotation);
+    //     clone.Throw();
+    // }
+
+    // Fin código de granada _________________________________________________________
 
 }

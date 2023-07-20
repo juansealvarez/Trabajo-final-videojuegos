@@ -1435,7 +1435,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.077, y: 0.01, z: 0.44}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2135516417974445722}
   - {fileID: 2135516418837793216}
@@ -1498,7 +1498,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 315b189272399e945af7b8bacd7b51e9, type: 3}
   - {fileID: 8300000, guid: 5d4a9d269bff6074b8ad6855a972543e, type: 3}
   bossController: {fileID: 0}
-  player1Voices: {fileID: 0}
+  grenadePrefab: {fileID: 611694493916061730, guid: aa7e27bb84ea93348b18696e994bdade, type: 3}
+  cooldownGrenade: 5
+  cinemaController: {fileID: 0}
 --- !u!114 &2135516418314264315
 MonoBehaviour:
   m_ObjectHideFlags: 0
