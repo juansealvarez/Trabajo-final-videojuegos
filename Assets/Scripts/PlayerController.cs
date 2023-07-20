@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject modelPistol;
 
-    [SerializeField] 
+    [SerializeField]
     private float jumpForce = 5.0f;
     [System.NonSerialized]
     public bool isReloading = false;
@@ -109,6 +109,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private BossController bossController;
     [SerializeField]
+
+    // Control de la granada ______________________________
+    private Grenade grenadePrefab;
+
+    public GameObject grenadeVisual;
+    // Fin de granada ______________________________________
     private Player1Voices player1Voices;
 
     //TODO: voice acting
@@ -158,22 +164,24 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(!isBeingDamaged)
+        if (!isBeingDamaged)
         {
             if (PlayerHealth < maxPlayerHealth)
             {
                 PlayerHealth += 0.05f;
-            }else if (PlayerHealth >= maxPlayerHealth)
+            }
+            else if (PlayerHealth >= maxPlayerHealth)
             {
                 PlayerHealth = maxPlayerHealth;
             }
         }
-        
+
 
         if (aimShotgun.WeaponActive)
         {
             scriptGun = aimShotgun;
-        }else
+        }
+        else
         {
             scriptGun = aimPistol;
         }
@@ -184,20 +192,23 @@ public class PlayerController : MonoBehaviour
                 Vector3 PosicionSalto = transform.position + new Vector3(0f, playerHeight, 0f);
                 grounded = Physics.Raycast(PosicionSalto, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
                 SpeedControl();
-                if (grounded) {
+                if (grounded)
+                {
                     mRb.drag = groundDrag;
-                }else 
+                }
+                else
                 {
                     mRb.drag = 0f;
                 }
                 if (corriendo)
                 {
                     speed = WalkingSpeed * RunnigMultiplier;
-                }else
+                }
+                else
                 {
                     speed = WalkingSpeed;
                 }
-                
+
                 /*mRb.velocity = mDirection.y * speed * transform.forward
                     + mDirection.x * speed * transform.right;*/
                 MovePlayer();
@@ -206,8 +217,9 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log(control);
                 if (control == "Gamepad" || control == "Player1Controller" || control == "Player2Controller")
                 {
-                    turnSpeed2 = turnSpeed*50;
-                }else
+                    turnSpeed2 = turnSpeed * 50;
+                }
+                else
                 {
                     turnSpeed2 = turnSpeed;
                 }
@@ -234,12 +246,13 @@ public class PlayerController : MonoBehaviour
                     legAnimator.SetBool("IsWalking", false);
                 }
 
-                if(!aimShotgun.WeaponActive)
+                if (!aimShotgun.WeaponActive)
                 {
                     modelAnimator.SetBool("IsShotgun", false);
                     modelPistol.SetActive(true);
                     modelShotgun.SetActive(false);
-                }else
+                }
+                else
                 {
                     modelAnimator.SetBool("IsShotgun", true);
                     modelPistol.SetActive(false);
@@ -249,55 +262,63 @@ public class PlayerController : MonoBehaviour
                 if (aimShotgun.isAiming)
                 {
                     modelAnimator.SetBool("IsAiming", true);
-                }else if (!aimShotgun.isAiming)
+                }
+                else if (!aimShotgun.isAiming)
                 {
                     modelAnimator.SetBool("IsAiming", false);
                 }
                 if (aimPistol.isAiming)
                 {
                     modelAnimator.SetBool("IsAimingPistol", true);
-                }else if (!aimShotgun.isAiming)
+                }
+                else if (!aimShotgun.isAiming)
                 {
                     modelAnimator.SetBool("IsAimingPistol", false);
                 }
-                if (!isReloading && scriptGun.balasActuales==0 && scriptGun.balasTotales>0)
+                if (!isReloading && scriptGun.balasActuales == 0 && scriptGun.balasTotales > 0)
                 {
                     //Recarga
                     reloading();
                 }
-                if(scriptGun.balasActuales <= scriptGun.balasCargador*0.2 && scriptGun.balasTotales!=0)
+                if (scriptGun.balasActuales <= scriptGun.balasCargador * 0.2 && scriptGun.balasTotales != 0)
                 {
                     UIReload.SetActive(true);
                     UILowAmmo.SetActive(false);
                     UINoAmmo.SetActive(false);
-                }else if (scriptGun.balasActuales <= scriptGun.balasCargador*0.2 && scriptGun.balasActuales!=0 && scriptGun.balasTotales==0)
+                }
+                else if (scriptGun.balasActuales <= scriptGun.balasCargador * 0.2 && scriptGun.balasActuales != 0 && scriptGun.balasTotales == 0)
                 {
                     UIReload.SetActive(false);
                     UILowAmmo.SetActive(true);
                     UINoAmmo.SetActive(false);
-                }else if (scriptGun.balasActuales==0 && scriptGun.balasTotales==0)
+                }
+                else if (scriptGun.balasActuales == 0 && scriptGun.balasTotales == 0)
                 {
                     UIReload.SetActive(false);
                     UILowAmmo.SetActive(false);
                     UINoAmmo.SetActive(true);
-                }else
+                }
+                else
                 {
                     UIReload.SetActive(false);
                     UILowAmmo.SetActive(false);
                     UINoAmmo.SetActive(false);
                 }
-                if(grounded){
+                if (grounded)
+                {
                     modelAnimator.SetBool("IsJumping", false);
                     legAnimator.SetBool("IsJumping", false);
-                }else
+                }
+                else
                 {
                     modelAnimator.SetBool("IsJumping", true);
                     legAnimator.SetBool("IsJumping", true);
                 }
             }
-        }else
+        }
+        else
         {
-            if(!changedSelectedGameObject)
+            if (!changedSelectedGameObject)
             {
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(DeadSelectedButton);
@@ -313,11 +334,12 @@ public class PlayerController : MonoBehaviour
             swat.SetActive(false);
             legs.SetActive(false);
             gameManager.enabled = false;
-            if(gameManager.CopyrigthSong && !songPlayed)
+            if (gameManager.CopyrigthSong && !songPlayed)
             {
                 BackgroundSource.PlayOneShot(BackgroundAudio[0]);
                 songPlayed = true;
-            }else if (!gameManager.CopyrigthSong && !songPlayed)
+            }
+            else if (!gameManager.CopyrigthSong && !songPlayed)
             {
                 BackgroundSource.PlayOneShot(BackgroundAudio[1]);
                 songPlayed = true;
@@ -328,9 +350,12 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         Vector3 moveDirection = mDirection.y * transform.forward + mDirection.x * transform.right;
-        if(grounded){
+        if (grounded)
+        {
             mRb.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
-        }else{
+        }
+        else
+        {
             mRb.AddForce(moveDirection.normalized * speed * 10f * airMultiplier, ForceMode.Force);
         }
     }
@@ -338,7 +363,7 @@ public class PlayerController : MonoBehaviour
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(mRb.velocity.x, 0f, mRb.velocity.z);
-        if(flatVel.magnitude > speed)
+        if (flatVel.magnitude > speed)
         {
             Vector3 limitedVel = flatVel.normalized * speed;
             mRb.velocity = new Vector3(limitedVel.x, mRb.velocity.y, limitedVel.z);
@@ -357,39 +382,41 @@ public class PlayerController : MonoBehaviour
             mAudioSource.PlayOneShot(aimPistol.Weapon.audioList[2]);
             modelAnimator.SetTrigger("IsReloading");
             mAnimator.SetTrigger("IsReloading");
-        }else
+        }
+        else
         {
             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[2]);
             modelAnimator.SetTrigger("IsReloading");
             pAnimator.SetTrigger("IsReloading");
         }
-        
+
     }
 
     public void stopReloading()
     {
         var balasARecargar = 0f;
-        balasARecargar = scriptGun.balasCargador-scriptGun.balasActuales;
-        if (scriptGun.balasTotales>=balasARecargar)
+        balasARecargar = scriptGun.balasCargador - scriptGun.balasActuales;
+        if (scriptGun.balasTotales >= balasARecargar)
         {
-            scriptGun.balasTotales-=balasARecargar;
-            scriptGun.balasActuales+=balasARecargar;
-        }else
+            scriptGun.balasTotales -= balasARecargar;
+            scriptGun.balasActuales += balasARecargar;
+        }
+        else
         {
-            scriptGun.balasActuales+=scriptGun.balasTotales;
-            scriptGun.balasTotales-=scriptGun.balasTotales;
+            scriptGun.balasActuales += scriptGun.balasTotales;
+            scriptGun.balasTotales -= scriptGun.balasTotales;
         }
         isReloading = false;
     }
     private void OnReload(InputValue value)
     {
-        if(!IsDead)
+        if (!IsDead)
         {
             if (value.isPressed)
             {
-                if(!MenuPausa.isPaused)
+                if (!MenuPausa.isPaused)
                 {
-                    if (!isInspecting && !isReloading && (scriptGun.balasActuales>0 && scriptGun.balasActuales<scriptGun.balasCargador && scriptGun.balasTotales!=0))
+                    if (!isInspecting && !isReloading && (scriptGun.balasActuales > 0 && scriptGun.balasActuales < scriptGun.balasCargador && scriptGun.balasTotales != 0))
                     {
                         reloading();
                     }
@@ -409,49 +436,52 @@ public class PlayerController : MonoBehaviour
 
     private void OnFire(InputValue value)
     {
-        if(!IsDead)
+        if (!IsDead)
         {
             if (value.isPressed)
             {
-                if(!MenuPausa.isPaused)
+                if (!MenuPausa.isPaused)
                 {
-                    if(aimShotgun.WeaponActive)
+                    if (aimShotgun.WeaponActive)
                     {
-                        if(!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
+                        if (!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
                             mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[0]);
                             mAnimator.SetTrigger("GunShooting");
                             modelAnimator.SetTrigger("IsShooting");
                             shootGunPSModel.Play();
                             Shoot(scriptGun);
-                        }else if(!isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
+                        }
+                        else if (!isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
                         {
                             mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[1]);
                         }
-                    }else
+                    }
+                    else
                     {
-                        if(!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
+                        if (!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
                             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
                             pAnimator.SetTrigger("GunShooting");
                             modelAnimator.SetTrigger("IsShooting");
                             shootPistolPSModel.Play();
                             Shoot(scriptGun);
-                        }else if (!isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
+                        }
+                        else if (!isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
                         {
                             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[1]);
                         }
                     }
                 }
-                
+
             }
         }
-        
+
     }
 
     private void Shoot(AimShotgun scriptGun)
     {
-        scriptGun.balasActuales-=1;
+        scriptGun.balasActuales -= 1;
         scriptGun.shootPS.Play();
 
         RaycastHit hit;
@@ -464,19 +494,21 @@ public class PlayerController : MonoBehaviour
         {
             //var debugSphere = Instantiate(debugImpactSphere, hit.point, Quaternion.identity);
             //Destroy(debugSphere, 3f);
-            if(hit.collider.CompareTag("Enemigos"))
+            if (hit.collider.CompareTag("Enemigos"))
             {
                 var bloodPS = Instantiate(bloodObjectParticles, hit.point, Quaternion.identity);
                 Destroy(bloodPS, 3f);
                 var enemyController = hit.collider.GetComponent<EnemyController>();
                 enemyController.TakeDamage(scriptGun.Weapon.GunDamage);
-            }else if(hit.collider.CompareTag("Boss"))
+            }
+            else if (hit.collider.CompareTag("Boss"))
             {
                 var bloodPS = Instantiate(bloodObjectParticles, hit.point, Quaternion.identity);
                 Destroy(bloodPS, 3f);
                 var enemyController = hit.collider.GetComponent<EnemyController>();
                 bossController.TakeDamage(scriptGun.Weapon.GunDamage);
-            }else
+            }
+            else
             {
                 var otherPS = Instantiate(otherObjectParticles, hit.point, Quaternion.identity);
                 otherPS.GetComponent<ParticleSystem>().Play();
@@ -510,7 +542,8 @@ public class PlayerController : MonoBehaviour
             isBeingDamaged = true;
             var damage = col.gameObject.GetComponentInParent<EnemyController>().EnemyType.Damage;
             TakeDamage(damage);
-        }else if (col.CompareTag("BossAttack"))
+        }
+        else if (col.CompareTag("BossAttack"))
         {
             isBeingDamaged = true;
             var damage = col.gameObject.GetComponentInParent<BossController>().EnemyType.Damage;
@@ -520,30 +553,30 @@ public class PlayerController : MonoBehaviour
             isBeingDamaged = false;
         }
 
-        if(col.CompareTag("AmmoCrate"))
+        if (col.CompareTag("AmmoCrate"))
         {
             BackgroundSource.PlayOneShot(balaRecogida[0]);
             Destroy(col.gameObject);
-            scriptGun.balasTotales+=UnityEngine.Random.Range(1,6);
+            scriptGun.balasTotales += UnityEngine.Random.Range(1, 6);
         }
 
-        if(col.CompareTag("Rock"))
+        if (col.CompareTag("Rock"))
         {
             RockText.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider col)
     {
-       if(col.CompareTag("Rock"))
+        if (col.CompareTag("Rock"))
         {
             RockText.SetActive(false);
-        } 
+        }
     }
     private void OnPause(InputValue value)
     {
-        if(!IsDead)
+        if (!IsDead)
         {
-            if(value.isPressed)
+            if (value.isPressed)
             {
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(PauseSelectedButton);
@@ -551,28 +584,28 @@ public class PlayerController : MonoBehaviour
                 MenuPausa.Instance.PausarJuego();
             }
         }
-        
+
     }
     private void OnPlay(InputValue value)
     {
-        if(!IsDead)
+        if (!IsDead)
         {
-            if(value.isPressed)
+            if (value.isPressed)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 MenuPausa.Instance.ReanudarJuego();
             }
         }
-        
+
     }
 
     private void OnJump(InputValue value)
     {
-        if(!IsDead)
+        if (!IsDead)
         {
-            if(!MenuPausa.isPaused)
+            if (!MenuPausa.isPaused)
             {
-                if(value.isPressed)
+                if (value.isPressed)
                 {
                     if (grounded)
                     {
@@ -591,11 +624,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnSwitchWeapon(InputValue value)
     {
-        if(!IsDead)
+        if (!IsDead)
         {
-            if(!MenuPausa.isPaused && !isInspecting)
+            if (!MenuPausa.isPaused && !isInspecting)
             {
-                if(value.isPressed)
+                if (value.isPressed)
                 {
                     scriptGun.SwitchWeapon();
                 }
@@ -604,17 +637,18 @@ public class PlayerController : MonoBehaviour
     }
     private void OnInspectWeapon(InputValue value)
     {
-        if(!IsDead)
+        if (!IsDead)
         {
-            if(!MenuPausa.isPaused)
+            if (!MenuPausa.isPaused)
             {
-                if(value.isPressed && !isInspecting && !isReloading)
+                if (value.isPressed && !isInspecting && !isReloading)
                 {
                     isInspecting = true;
-                    if(aimShotgun.WeaponActive)
+                    if (aimShotgun.WeaponActive)
                     {
                         mAnimator.SetTrigger("IsInspecting");
-                    }else
+                    }
+                    else
                     {
                         pAnimator.SetTrigger("IsInspecting");
                     }
@@ -626,12 +660,12 @@ public class PlayerController : MonoBehaviour
     {
         isInspecting = false;
     }
-    
+
     private void OnStartAiming(InputValue value)
     {
-        if(!IsDead)
+        if (!IsDead)
         {
-            if(!MenuPausa.isPaused)
+            if (!MenuPausa.isPaused)
             {
                 if (value.isPressed)
                 {
@@ -639,7 +673,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        
+
     }
     private void OnStopAiming(InputValue value)
     {
@@ -651,9 +685,9 @@ public class PlayerController : MonoBehaviour
     }
     private void OnStartSprinting(InputValue value)
     {
-        if(!IsDead)
+        if (!IsDead)
         {
-            if(!MenuPausa.isPaused)
+            if (!MenuPausa.isPaused)
             {
                 if (value.isPressed)
                 {
@@ -661,7 +695,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        
+
     }
     private void OnStopSprinting(InputValue value)
     {
@@ -673,6 +707,13 @@ public class PlayerController : MonoBehaviour
 
     public void PlayReload()
     {
-        BackgroundSource.PlayOneShot(voicesReload[UnityEngine.Random.Range(0,2)], 10f);
+        BackgroundSource.PlayOneShot(voicesReload[UnityEngine.Random.Range(0, 2)], 10f);
     }
+
+    // public void ThrowGrenade()
+    // {
+    //     grenadeVisual.SetActive(false);
+    //     Grenade clone = Instantiate(grenadePrefab, grenadeVisual.position, grenadeVisual.rotation);
+    //     clone.Throw();
+    // }
 }
