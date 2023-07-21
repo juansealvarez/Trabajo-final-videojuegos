@@ -580,7 +580,7 @@
                     "name": "Navigate",
                     "type": "Value",
                     "id": "f54e48f9-309c-4190-bb09-0492664911d5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true

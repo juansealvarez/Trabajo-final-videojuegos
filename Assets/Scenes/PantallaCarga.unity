@@ -745,6 +745,7 @@ MonoBehaviour:
   - Puedes usar tu secundaria para hacer bajas
   - "No malgastes tu munici\xF3n a lo tonto"
   - "El jefe siempre spawnear\xE1 zombies, ten cuidado con ellos"
+  - "Las granadas no da\xF1an el jefe"
   Tip: {fileID: 1118387484}
 --- !u!1 &1942320706
 GameObject:

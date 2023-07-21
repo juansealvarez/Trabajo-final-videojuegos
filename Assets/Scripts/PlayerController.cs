@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { private set; get; }
+    public GameObject RoundSound;
+
     public GameObject RockText;
 
     [SerializeField]
@@ -343,6 +345,8 @@ public class PlayerController : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(DeadSelectedButton);
                 changedSelectedGameObject = true;
             }
+            RoundSound.GetComponent<AudioSource>().Stop();
+            RoundSound.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
             mPlayerInput.SwitchCurrentActionMap("MenuAndEndgame");
             PlayerCapsulle.SetActive(false);
