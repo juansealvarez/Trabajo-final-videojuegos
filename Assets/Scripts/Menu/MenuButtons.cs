@@ -20,4 +20,9 @@ public class MenuButtons : MonoBehaviour
     {
         SceneManager.LoadScene(escena);
     }
+
+    public void X()
+    {
+        Application.Quit();
+    }
 }
