@@ -52,7 +52,7 @@ public class MenuPausa : MonoBehaviour
     }
     public void IrAlMenu()
     {
-        PlayerController.mPlayerInput.SwitchCurrentActionMap("MenuAndEndgame");
+        //PlayerController.mPlayerInput.SwitchCurrentActionMap("MenuAndEndgame");
         Time.timeScale = 1f;
         StateNameController.isStartRound = false;
         SceneManager.LoadScene("MainMenu");

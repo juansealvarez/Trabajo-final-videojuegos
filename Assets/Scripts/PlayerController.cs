@@ -167,11 +167,16 @@ public class PlayerController : MonoBehaviour
         modelAnimator.SetBool("IsShotgun", true);
         scriptGun = aimShotgun;
         turnSpeed2 = turnSpeed;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(PauseSelectedButton);
+        MenuPausa.Instance.PausarJuego();
+        MenuPausa.Instance.ReanudarJuego();
+    
     }
 
     private void Update()
     {
-
         if (!isBeingDamaged)
         {
             if (PlayerHealth < maxPlayerHealth)
@@ -183,8 +188,6 @@ public class PlayerController : MonoBehaviour
                 PlayerHealth = maxPlayerHealth;
             }
         }
-
-
         if (aimShotgun.WeaponActive)
         {
             scriptGun = aimShotgun;
@@ -233,8 +236,7 @@ public class PlayerController : MonoBehaviour
                 MovePlayer();
 
                 var control = GetComponent<PlayerInput>().currentControlScheme;
-                //Debug.Log(control);
-                if (control == "Gamepad" || control == "Player1Controller" || control == "Player2Controller")
+                if (control == "Player1Controller")
                 {
                     turnSpeed2 = turnSpeed * 50;
                 }
