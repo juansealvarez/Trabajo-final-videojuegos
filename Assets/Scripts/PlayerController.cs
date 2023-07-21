@@ -741,7 +741,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (value.isPressed)
                 {
-                    if (cinemaController.isBossFight)
+                    if (!cinemaController.isBossFight)
                     {
                         if (canThrowGrenade)
                         {
@@ -749,7 +749,13 @@ public class PlayerController : MonoBehaviour
                             canThrowGrenade = false;
                             Debug.Log("Lanzar granada");
                             var clone = Instantiate(grenadePrefab, cameraMain.transform.position, Quaternion.identity);
-                            clone.Throw(Vector3.forward, 50f);
+
+                            // Adjust the direction of the throw
+                            Vector3 throwDirection = Vector3.forward;
+                            throwDirection.y *= 0.5f; // reduce the vertical component of the direction
+                            throwDirection = throwDirection.normalized; // re-normalize the direction vector
+
+                            clone.Throw(throwDirection, 50f);
                         }
                     }
 
