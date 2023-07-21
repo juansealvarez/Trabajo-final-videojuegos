@@ -655,7 +655,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!IsDead)
         {
-            if (!MenuPausa.isPaused && !isInspecting)
+            if (!MenuPausa.isPaused && !isInspecting && !isReloading)
             {
                 if (value.isPressed)
                 {
