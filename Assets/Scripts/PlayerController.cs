@@ -111,8 +111,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private BossController bossController;
     [SerializeField]
-
-    // Control de la granada ______________________________
     private Grenade grenadePrefab;
 
     public float cooldownGrenade = 5f;
@@ -120,7 +118,6 @@ public class PlayerController : MonoBehaviour
     private bool canThrowGrenade = true;
 
     public CinematicController cinemaController;
-    // Fin de granada ______________________________________
     [SerializeField]
     private Player1Voices player1Voices;
 
@@ -483,7 +480,6 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        // MODIFICACIÓN: Se añade la validación sobre si está en estado de granada o no
                         if (!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
                             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
@@ -735,7 +731,6 @@ public class PlayerController : MonoBehaviour
         BackgroundSource.PlayOneShot(voicesReload[UnityEngine.Random.Range(0, 2)], 10f);
     }
 
-    // Código de granada _____________________________________________________________
 
     public void OnThrowGrenade(InputValue value)
     {
@@ -745,13 +740,12 @@ public class PlayerController : MonoBehaviour
             {
                 if (value.isPressed)
                 {
-                    if (!cinemaController.isBossFight)
+                    if (cinemaController.isBossFight)
                     {
                         if (canThrowGrenade)
                         {
                             grenadeCooldown = cooldownGrenade;
                             canThrowGrenade = false;
-                            Debug.Log("Lanzar granada");
                             var clone = Instantiate(grenadePrefab, cameraMain.transform.position, Quaternion.identity);
 
                             // Adjust the direction of the throw
@@ -768,14 +762,5 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    // public void ThrowGrenade()
-    // {
-    //     grenadeVisual.SetActive(false);
-    //     Grenade clone = Instantiate(grenadePrefab, grenadeVisual.transform.position, grenadeVisual.transform.rotation);
-    //     clone.Throw();
-    // }
-
-    // Fin código de granada _________________________________________________________
 
 }

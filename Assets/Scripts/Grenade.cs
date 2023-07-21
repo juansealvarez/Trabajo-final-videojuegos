@@ -10,16 +10,10 @@ public class Grenade : MonoBehaviour
     public GameObject explosionEffectFire;
     public GameObject explosionEffectSmoke;
     public GameObject explosionEffectChispas;
-
-
-
-
-    // To show the grenade trajectory _________________________________
     private LineRenderer lineRenderer;
     private Queue<Vector3> positions = new Queue<Vector3>();
     private int maxPositions = 50;
 
-    // End of grenade trajectory ______________________________________
     private Rigidbody mRb;
     // private float throwForce = 0f;
 
@@ -114,19 +108,10 @@ public class Grenade : MonoBehaviour
                 var enemy = collider.gameObject.GetComponent<EnemyController>();
                 if (enemy != null)
                 {
-                    Debug.Log("Enemigo dañado por granada");
                     enemy.TakeDamage(100f);
-                }
-                else
-                {
-                    Debug.Log("NO HAY ENEMIGOS EN EL RANGO");
                 }
             }
 
-        }
-        else
-        {
-            Debug.Log("NO HAY ENEMIGOS EN EL RANGO");
         }
 
     }
