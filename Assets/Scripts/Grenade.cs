@@ -114,6 +114,25 @@ public class Grenade : MonoBehaviour
 
         }
 
+        var colliders2 = Physics.OverlapSphere(
+            transform.position,
+            ExplodeRadio,
+            LayerMask.GetMask("Player")
+        );
+        if (colliders2.Length >= 1 && StateNameController.isHardcoreMode)
+        {
+            //Fuego amigo granada;
+            foreach (var collider in colliders2)
+            {
+                var player = collider.gameObject.GetComponent<PlayerController>();
+                if (player != null)
+                {
+                    player.TakeDamage(7f);
+                }
+            }
+
+        }
+
     }
 
     public void Explode()

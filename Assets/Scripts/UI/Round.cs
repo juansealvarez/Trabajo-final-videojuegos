@@ -9,7 +9,6 @@ public class Round : MonoBehaviour
     
     void Start()
     {
-        Debug.Log(StateNameController.isStartRound);
         mAnimator = GetComponent<Animator>();
         if(!StateNameController.isStartRound){
             StateNameController.isStartRound = true;

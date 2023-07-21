@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { private set; get; }
+
     public GameObject RoundSound;
 
     public GameObject RockText;
@@ -513,8 +514,6 @@ public class PlayerController : MonoBehaviour
             scriptGun.Weapon.shootDistance
         ))
         {
-            //var debugSphere = Instantiate(debugImpactSphere, hit.point, Quaternion.identity);
-            //Destroy(debugSphere, 3f);
             if (hit.collider.CompareTag("Enemigos"))
             {
                 var bloodPS = Instantiate(bloodObjectParticles, hit.point, Quaternion.identity);
@@ -526,8 +525,15 @@ public class PlayerController : MonoBehaviour
             {
                 var bloodPS = Instantiate(bloodObjectParticles, hit.point, Quaternion.identity);
                 Destroy(bloodPS, 3f);
-                var enemyController = hit.collider.GetComponent<EnemyController>();
+                var bossController = hit.collider.GetComponent<BossController>();
                 bossController.TakeDamage(scriptGun.Weapon.GunDamage);
+            }else if (hit.collider.CompareTag("PlayerHardcore") && StateNameController.isHardcoreMode)
+            {
+                //Fuego amigo en hardcore mode
+                var bloodPS = Instantiate(bloodObjectParticles, hit.point, Quaternion.identity);
+                Destroy(bloodPS, 3f);
+                var OtherplayerController = hit.collider.GetComponentInParent<PlayerController>();
+                OtherplayerController.TakeDamage(scriptGun.Weapon.GunDamage);
             }
             else
             {
