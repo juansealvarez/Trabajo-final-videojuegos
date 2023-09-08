@@ -17,12 +17,11 @@ public class Grenade : MonoBehaviour
     private Rigidbody mRb;
     // private float throwForce = 0f;
 
-    float countdown = 5f;
+    public float countdown = 5f;
     bool hasExploded = false;
 
     public float ExplodeRadio = 20f;
-
-
+    public PlayerController playerController;
 
     private void Start()
     {
@@ -109,6 +108,7 @@ public class Grenade : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.TakeDamage(100f);
+                    playerController.puntaje+=50;
                 }
             }
 
@@ -128,6 +128,24 @@ public class Grenade : MonoBehaviour
                 if (player != null)
                 {
                     player.TakeDamage(7f);
+                }
+            }
+
+        }
+
+        var colliders3 = Physics.OverlapSphere(
+            transform.position,
+            ExplodeRadio,
+            LayerMask.GetMask("Boss")
+        );
+        if (colliders3.Length >= 1)
+        {
+            foreach (var collider in colliders3)
+            {
+                var enemy = collider.gameObject.GetComponent<BossController>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(20f);
                 }
             }
 

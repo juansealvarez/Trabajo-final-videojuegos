@@ -56,6 +56,13 @@ public class AimShotgun : MonoBehaviour
             gameObject.SetActive(false);
         }
         aiming = AimingSpeed * Time.deltaTime;
+        if(StateNameController.isNewGame)
+        {
+            animator.SetBool("newGame", true);
+        }else
+        {
+            animator.SetBool("newGame", false);
+        }
     }
 
     private void Update()
@@ -73,6 +80,13 @@ public class AimShotgun : MonoBehaviour
     private void stopReloading()
     {
         PlayerController.stopReloading();
+    }
+
+    private void stopStartingGun()
+    {
+        StateNameController.isNewGame=false;
+        animator.SetBool("newGame", false);
+        PlayerController.stopStartingGun();
     }
     public void SwitchWeapon()
     {

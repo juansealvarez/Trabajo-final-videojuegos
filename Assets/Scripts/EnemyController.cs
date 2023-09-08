@@ -11,7 +11,8 @@ public class EnemyController : MonoBehaviour
     private Vector2 mDirection;  // XZ
 
     private bool mIsAttacking = false;
-    private bool dead = false;
+    [System.NonSerialized]
+    public bool dead = false;
 
     private AudioSource mAudioSource;
     public GameObject HitboxLeft;
@@ -25,6 +26,8 @@ public class EnemyController : MonoBehaviour
     public GameObject Bullet;
 
     private bool HizoDeadAnimation = false;
+    public PlayerController player1Controller;
+    public PlayerController player2Controller;
 
     private void Start()
     {
@@ -191,6 +194,32 @@ public class EnemyController : MonoBehaviour
             HitboxLeft.SetActive(false);
             mAudioSource.Stop();
             GameManager.Instance.zombiesActuales -= 1;
+        }
+    }
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag("KnifeAttack"))
+        {
+            TakeDamage(1f);
+            if (col.GetComponent<KnifeScript>().isFromPlayer1)
+            {
+                if(salud == 0f)
+                {
+                    player1Controller.puntaje+=100;
+                }else
+                {
+                    player1Controller.puntaje+=10;
+                }   
+            }else
+            {
+                if(salud == 0f)
+                {
+                    player2Controller.puntaje+=100;
+                }else
+                {
+                    player2Controller.puntaje+=10;
+                } 
+            }
         }
     }
 }

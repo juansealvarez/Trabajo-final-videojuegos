@@ -12,6 +12,8 @@ TagManager:
   - BossAttack
   - Rock
   - PlayerHardcore
+  - KnifeAttack
+  - Interactable
   layers:
   - Default
   - TransparentFX

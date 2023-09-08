@@ -8,5 +8,6 @@ public class StateNameController : MonoBehaviour
     public static bool isBossDead = false;
     public static bool isHardcoreMode = false;
     public static bool isStartRound = false;
+    public static bool isNewGame = false;
 
 }

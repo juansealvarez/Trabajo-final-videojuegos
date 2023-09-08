@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject Interactable2;
+
+    public TextMeshProUGUI Interactable;
     public Transform Player;
     public GameObject Player1;
     public GameObject Player2;
@@ -18,11 +21,16 @@ public class GameManager : MonoBehaviour
     public int CantidadZombiesPorHordaCoop = 15;
 
     public static GameManager Instance { private set; get; }
+    public List<AudioClip> StartRoundAudio;
+
+    public List<AudioClip> EndRoundAudio;
+
     public GameObject UIRockText;
 
     public GameObject UIReload;
     public GameObject UILowAmmo;
     public GameObject UINoAmmo;
+    public TextMeshProUGUI UIScore;
     [System.NonSerialized]
     public int Ronda = 0;
     public GameObject RondaUI;
@@ -30,7 +38,8 @@ public class GameManager : MonoBehaviour
     public GameObject RondaUI2;
     public bool CopyrigthSong = false;
     public List<AudioClip> BackgroundAudio;
-    private AudioSource BackgroundSource;
+    [System.NonSerialized]
+    public AudioSource BackgroundSource;
     [System.NonSerialized]
     public bool isSoloGame;
     public GameObject UISolo;
@@ -55,13 +64,24 @@ public class GameManager : MonoBehaviour
     private int rondaMaxima;
     public BossController bossController;
     public Transform boss;
+    [System.NonSerialized]
+    public int objetosInteractuados;
+    public int cantidadObjsParaEEMusical;
+    private bool reproduciendoCancionEE;
+    public AudioClip EEMusical;
+    public GameObject bossSound;
+    public AudioClip interactSound;
+    public PlayerController player1Controller;
+    public PlayerController player2Controller;
 
     private void Awake()
     {
         Instance = this;
+        StateNameController.isNewGame = true;
     }
     private void Start()
     {
+        objetosInteractuados = 0;
         isSoloGame = StateNameController.isSoloMode;
         if(isSoloGame)
         {
@@ -92,6 +112,9 @@ public class GameManager : MonoBehaviour
             PlayerController.UILowAmmo = UILowAmmo;
             PlayerController.UINoAmmo = UINoAmmo;
             PlayerController.RockText = UIRockText;
+            PlayerController.UIScore = UIScore;
+            PlayerController.Interactable = Interactable;
+            PlayerController.Interactable2 = Interactable2;
         }else
         {
             UISolo.SetActive(true);
@@ -103,11 +126,18 @@ public class GameManager : MonoBehaviour
         {
             if (zombiesActuales == 0)
             {
-                Ronda++;
-                RondaUI.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
-                RondaUI2.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
-                RondaUI1.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
-                StartCoroutine(newRound());
+                if(Ronda==0)
+                {
+                    Ronda++;
+                    RondaUI.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+                    RondaUI2.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+                    RondaUI1.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+                    StartCoroutine(startGame());
+                }else
+                {
+                    StartCoroutine(newRound());
+                }
+                
             }
         }
         else
@@ -123,7 +153,22 @@ public class GameManager : MonoBehaviour
 
             }
         }
+        if(objetosInteractuados == cantidadObjsParaEEMusical && !reproduciendoCancionEE)
+        {
+            //sonido musica;
+            Debug.Log("se pone cancion");
+            StartCoroutine(PlayEESong());
+            reproduciendoCancionEE = true;
+        }
 
+    }
+
+    IEnumerator PlayEESong()
+    {
+        bossSound.GetComponent<AudioSource>().enabled = false;
+        BackgroundSource.PlayOneShot(EEMusical);
+        yield return new WaitForSeconds(EEMusical.length);
+        bossSound.GetComponent<AudioSource>().enabled = true;
     }
 
     private void SpawnEnemies()
@@ -135,7 +180,9 @@ public class GameManager : MonoBehaviour
             int random = UnityEngine.Random.Range(0, 2);
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
             enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
-            enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
+            enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;   
+            enemy.GetComponent<EnemyController>().player1Controller = GameManager.Instance.player1Controller;
+            enemy.GetComponent<EnemyController>().player2Controller = GameManager.Instance.player2Controller;
         }
 
     }
@@ -153,18 +200,49 @@ public class GameManager : MonoBehaviour
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
             enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
             enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
+            enemy.GetComponent<EnemyController>().player1Controller = GameManager.Instance.player1Controller;
+            enemy.GetComponent<EnemyController>().player2Controller = GameManager.Instance.player2Controller;
         }
 
+    }
+
+    private object GetEndRoundAudio()
+    {
+        return EndRoundAudio;
     }
 
     IEnumerator newRound()
     {
         zombiesActuales = zombies;
-        if (CopyrigthSong)
+        int random = UnityEngine.Random.Range(0, EndRoundAudio.Count);
+        BackgroundSource.PlayOneShot(EndRoundAudio[random], 0.5f);
+        yield return new WaitForSeconds(EndRoundAudio[random].length);
+        Ronda++;
+        RondaUI.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+        RondaUI2.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+        RondaUI1.GetComponent<TextMeshProUGUI>().text = Ronda.ToString();
+        
+        int random2 = UnityEngine.Random.Range(0, StartRoundAudio.Count);
+        BackgroundSource.PlayOneShot(StartRoundAudio[random2], 0.5f);
+        yield return new WaitForSeconds(StartRoundAudio[random2].length );
+        if (isSoloGame)
         {
-            BackgroundSource.PlayOneShot(BackgroundAudio[0], 0.5f);
+            player1voices.AudiosSoloRondas(Ronda);
         }
-        yield return new WaitForSeconds(BackgroundAudio[0].length - 2f);
+        else
+        {
+            player1voices.AudiosCoopRondas(Ronda);
+        }
+        SpawnEnemies();
+    }
+
+    IEnumerator startGame()
+    {
+        zombiesActuales = zombies;
+
+        BackgroundSource.PlayOneShot(BackgroundAudio[0], 0.5f);
+
+        yield return new WaitForSeconds(BackgroundAudio[0].length);
         if (isSoloGame)
         {
             player1voices.AudiosSoloRondas(Ronda);

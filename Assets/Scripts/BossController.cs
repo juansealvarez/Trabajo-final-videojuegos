@@ -409,4 +409,12 @@ public class BossController : MonoBehaviour
         audioSource.Stop ();
         audioSource.volume = startVolume;
     }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag("KnifeAttack"))
+        {
+            TakeDamage(1f);
+        }
+    }
 }

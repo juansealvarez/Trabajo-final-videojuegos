@@ -4,10 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { private set; get; }
+    public List<AudioClip> NoMoney;
+
+    public GameObject Interactable2;
+
+    public TextMeshProUGUI Interactable;
 
     public GameObject RoundSound;
 
@@ -74,6 +81,8 @@ public class PlayerController : MonoBehaviour
     public GameObject UIReload;
     public GameObject UILowAmmo;
     public GameObject UINoAmmo;
+    public TextMeshProUGUI UIScore;
+    public TextMeshProUGUI UIScoreForOtherCamera;
     public ParticleSystem shootGunPSModel;
     public ParticleSystem shootPistolPSModel;
     [SerializeField]
@@ -121,12 +130,36 @@ public class PlayerController : MonoBehaviour
     public CinematicController cinemaController;
     [SerializeField]
     private Player1Voices player1Voices;
+    private bool isKnifing = false;
+    [SerializeField]
+    private GameObject knifeArms;
+    private bool reactivateShotgun;
+    private bool reactivateModelShotgun;
+    [SerializeField]
+    private AudioClip voicesKnife;
+    private bool isStartingGun = true;
+    [SerializeField]
+    private GameObject knife;
+    private bool isModelKnifing;
+    [System.NonSerialized]
+    public int puntaje;
+    private bool isNearInteractable;
+    private GameObject interactedObject;
+    [System.NonSerialized]
 
-    //TODO: voice acting
+    public EESongInteractable EEsongInteractable;
+
+    private bool isEEObject;
+    private CrateBox crateBox;
+    private bool isCrateBox;
+    private bool isPlayingNoMoneyAudio;
+
     private void Awake()
     {
         Instance = this;
         maxPlayerHealth = PlayerHealth;
+        knifeArms.SetActive(false);
+        knife.SetActive(false);
     }
     private void Start()
     {
@@ -201,7 +234,7 @@ public class PlayerController : MonoBehaviour
             if (!MenuPausa.isPaused)
             {
                 Vector3 PosicionSalto = transform.position + new Vector3(0f, playerHeight, 0f);
-                grounded = Physics.Raycast(PosicionSalto, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+                grounded = Physics.Raycast(PosicionSalto, Vector3.down, playerHeight, whatIsGround);
                 SpeedControl();
                 grenadeCooldown -= Time.deltaTime;
 
@@ -267,15 +300,17 @@ public class PlayerController : MonoBehaviour
                     legAnimator.SetBool("IsWalking", false);
                 }
 
-                if (!aimShotgun.WeaponActive)
+                if (!aimShotgun.WeaponActive && !isModelKnifing)
                 {
-                    modelAnimator.SetBool("IsShotgun", false);
+                    modelAnimator.SetLayerWeight(2,1);
+                    modelAnimator.SetLayerWeight(1,0);
                     modelPistol.SetActive(true);
                     modelShotgun.SetActive(false);
                 }
-                else
+                else if(aimShotgun.WeaponActive && !isModelKnifing)
                 {
-                    modelAnimator.SetBool("IsShotgun", true);
+                    modelAnimator.SetLayerWeight(2,0);
+                    modelAnimator.SetLayerWeight(1,1);
                     modelPistol.SetActive(false);
                     modelShotgun.SetActive(true);
                 }
@@ -335,6 +370,8 @@ public class PlayerController : MonoBehaviour
                     modelAnimator.SetBool("IsJumping", true);
                     legAnimator.SetBool("IsJumping", true);
                 }
+                UIScore.text = puntaje.ToString();
+                UIScoreForOtherCamera.text = puntaje.ToString();
             }
         }
         else
@@ -359,12 +396,12 @@ public class PlayerController : MonoBehaviour
             gameManager.enabled = false;
             if (gameManager.CopyrigthSong && !songPlayed)
             {
-                BackgroundSource.PlayOneShot(BackgroundAudio[0]);
+                BackgroundSource.PlayOneShot(BackgroundAudio[0], 5);
                 songPlayed = true;
             }
             else if (!gameManager.CopyrigthSong && !songPlayed)
             {
-                BackgroundSource.PlayOneShot(BackgroundAudio[1]);
+                BackgroundSource.PlayOneShot(BackgroundAudio[1], 5);
                 songPlayed = true;
             }
         }
@@ -439,14 +476,56 @@ public class PlayerController : MonoBehaviour
             {
                 if (!MenuPausa.isPaused)
                 {
-                    if (!isInspecting && !isReloading && (scriptGun.balasActuales > 0 && scriptGun.balasActuales < scriptGun.balasCargador && scriptGun.balasTotales != 0))
+                    if (!isStartingGun && !isInspecting && !isReloading && (scriptGun.balasActuales > 0 && scriptGun.balasActuales < scriptGun.balasCargador && scriptGun.balasTotales != 0))
                     {
                         reloading();
+                    }else if(isNearInteractable)
+                    {
+                        if (isCrateBox)
+                        {
+                            if(puntaje >= crateBox.precio)
+                            {
+                                puntaje-=crateBox.precio;
+                                // refill ammo
+                                BackgroundSource.PlayOneShot(balaRecogida[0]);
+                                scriptGun.balasActuales = scriptGun.Weapon.balasCargador;
+                                scriptGun.balasTotales += scriptGun.Weapon.balas;
+                            }else
+                            {
+                                //reproducir sonidos de "no tengo dinero"
+                                if(!player1Voices.isPlayingRoundAudios)
+                                {
+                                    if(!isPlayingNoMoneyAudio)
+                                    {
+                                        StartCoroutine(PlayNoMoneyAudio());
+                                    }
+                                }
+                            }
+                        }else if(isEEObject)
+                        {
+                            if(!EEsongInteractable.GetComponent<EESongInteractable>().Interacted)
+                            {
+                                gameManager.objetosInteractuados+=1;
+                                gameManager.BackgroundSource.PlayOneShot(gameManager.interactSound, 5);
+                                EEsongInteractable.GetComponent<EESongInteractable>().Interacted = true;
+                            }
+                        }
                     }
                 }
             }
         }
     }
+
+    IEnumerator PlayNoMoneyAudio()
+    {
+        isPlayingNoMoneyAudio = true;
+        int randomAudio = UnityEngine.Random.Range(0,NoMoney.Count);
+        Debug.Log(randomAudio);
+        BackgroundSource.PlayOneShot(NoMoney[randomAudio], 10f);
+        yield return new WaitForSeconds(NoMoney[randomAudio].length);
+        isPlayingNoMoneyAudio = false;
+    }
+
     private void OnMove(InputValue value)
     {
         mDirection = value.Get<Vector2>();
@@ -467,7 +546,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (aimShotgun.WeaponActive)
                     {
-                        if (!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
+                        if (!isStartingGun && !isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
                             mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[0]);
                             mAnimator.SetTrigger("GunShooting");
@@ -475,7 +554,7 @@ public class PlayerController : MonoBehaviour
                             shootGunPSModel.Play();
                             Shoot(scriptGun);
                         }
-                        else if (!isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
+                        else if (!isStartingGun && !isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
                         {
                             mAudioSource.PlayOneShot(aimShotgun.Weapon.audioList[1]);
                         }
@@ -483,7 +562,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        if (!isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
+                        if (!isStartingGun && !isInspecting && !isReloading && (scriptGun.balasTotales > 0 || scriptGun.balasActuales > 0))
                         {
                             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[0]);
                             pAnimator.SetTrigger("GunShooting");
@@ -491,7 +570,7 @@ public class PlayerController : MonoBehaviour
                             shootPistolPSModel.Play();
                             Shoot(scriptGun);
                         }
-                        else if (!isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
+                        else if (!isStartingGun && !isInspecting && !isReloading && (scriptGun.balasTotales == 0 && scriptGun.balasActuales == 0))
                         {
                             pAudioSource.PlayOneShot(aimPistol.Weapon.audioList[1]);
                         }
@@ -522,6 +601,13 @@ public class PlayerController : MonoBehaviour
                 Destroy(bloodPS, 3f);
                 var enemyController = hit.collider.GetComponent<EnemyController>();
                 enemyController.TakeDamage(scriptGun.Weapon.GunDamage);
+                if(enemyController.dead)
+                {
+                    puntaje += 60;
+                }else
+                {
+                    puntaje += 10;
+                }
             }
             else if (hit.collider.CompareTag("Boss"))
             {
@@ -593,12 +679,47 @@ public class PlayerController : MonoBehaviour
         {
             RockText.SetActive(true);
         }
+
+        if (col.CompareTag("Interactable"))
+        {
+            isNearInteractable = true;
+            if(col.gameObject.GetComponent<CrateBox>())
+            {
+                interactedObject = col.gameObject;
+                crateBox = interactedObject.GetComponent<CrateBox>();
+                isCrateBox = true;
+                Interactable.text = "Presiona F para comprar municion (coste: " + crateBox.precio.ToString() + ")";
+                Interactable2.SetActive(true);
+            }else if(col.gameObject.GetComponent<EESongInteractable>())
+            {
+                interactedObject = col.gameObject;
+                EEsongInteractable = interactedObject.GetComponent<EESongInteractable>();
+                isEEObject = true;
+            }
+        }
     }
     private void OnTriggerExit(Collider col)
     {
         if (col.CompareTag("Rock"))
         {
             RockText.SetActive(false);
+        }
+
+        if (col.CompareTag("Interactable"))
+        {
+            isNearInteractable = false;
+            if(col.gameObject.GetComponent<CrateBox>())
+            {
+                interactedObject = null;
+                crateBox = null;
+                isCrateBox = false;
+                Interactable2.SetActive(false);
+            }else if(col.gameObject.GetComponent<EESongInteractable>())
+            {
+                interactedObject = null;
+                isEEObject = false;
+                EEsongInteractable = null;
+            }
         }
     }
     private void OnPause(InputValue value)
@@ -655,7 +776,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!IsDead)
         {
-            if (!MenuPausa.isPaused && !isInspecting && !isReloading)
+            if (!MenuPausa.isPaused && !isInspecting && !isReloading && !isStartingGun)
             {
                 if (value.isPressed)
                 {
@@ -755,6 +876,7 @@ public class PlayerController : MonoBehaviour
                             grenadeCooldown = cooldownGrenade;
                             canThrowGrenade = false;
                             var clone = Instantiate(grenadePrefab, cameraMain.transform.position, Quaternion.identity);
+                            clone.GetComponent<Grenade>().playerController = this;
 
                             // Adjust the direction of the throw
                             Vector3 throwDirection = Vector3.forward;
@@ -771,4 +893,74 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnKnife(InputValue value)
+    {
+        if (!IsDead)
+        {
+            if (!MenuPausa.isPaused && !isInspecting && !isReloading)
+            {
+                if(!isKnifing)
+                {
+                    if (!player1Voices.isPlayingRoundAudios)
+                    {
+                        PlayKnife();
+                    }
+                    modelAnimator.SetTrigger("isKnifing");
+                    if(aimShotgun.WeaponActive)
+                    {
+                        reactivateShotgun = true;
+                        reactivateModelShotgun = true;
+                        modelShotgun.SetActive(false);
+                        primary.SetActive(false);
+                    }else
+                    {
+                        reactivateShotgun = false;
+                        reactivateModelShotgun = false;
+                        modelPistol.SetActive(false);
+                        secondary.SetActive(false);
+                    }
+                    knifeArms.SetActive(true);
+                    knife.SetActive(true);
+                    isModelKnifing = true;
+                    isKnifing = true;
+                }
+            }
+        }
+    }
+
+    private void PlayKnife()
+    {
+        BackgroundSource.PlayOneShot(voicesKnife, 10f);
+    }
+
+    public void stopKnifing()
+    {
+        if(reactivateShotgun)
+        {
+            primary.SetActive(true);
+        }else
+        {
+            secondary.SetActive(true);
+        }
+        isKnifing = false;
+        knifeArms.SetActive(false);
+    }
+
+    public void stopModelKnifing()
+    {
+        if(reactivateModelShotgun)
+        {
+            modelShotgun.SetActive(true);
+        }else
+        {
+            modelPistol.SetActive(true);
+        }
+        isModelKnifing = false;
+        knife.SetActive(false);
+    }
+
+    public void stopStartingGun()
+    {
+        isStartingGun = false;
+    }
 }
