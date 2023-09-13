@@ -1,6 +1,6 @@
 # Trabajo-final-videojuegos
 
-Elaborado por Juanse Alvarez, Renato Migliori
+Elaborado por Juanse Alvarez, Renato Migliori, Alejandro Silva y Junior Rodrigo
 Efectos de sonido:
 
 Flexing muscles: https://mixkit.co/free-sound-effects/monster/
