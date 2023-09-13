@@ -8,7 +8,10 @@ public class CrateBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(StateNameController.isHardcoreMode)
+        {
+            precio *= 2;
+        }
     }
 
     // Update is called once per frame

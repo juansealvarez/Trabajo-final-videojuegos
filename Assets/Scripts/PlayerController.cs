@@ -520,7 +520,6 @@ public class PlayerController : MonoBehaviour
     {
         isPlayingNoMoneyAudio = true;
         int randomAudio = UnityEngine.Random.Range(0,NoMoney.Count);
-        Debug.Log(randomAudio);
         BackgroundSource.PlayOneShot(NoMoney[randomAudio], 10f);
         yield return new WaitForSeconds(NoMoney[randomAudio].length);
         isPlayingNoMoneyAudio = false;
@@ -688,7 +687,7 @@ public class PlayerController : MonoBehaviour
                 interactedObject = col.gameObject;
                 crateBox = interactedObject.GetComponent<CrateBox>();
                 isCrateBox = true;
-                Interactable.text = "Presiona F para comprar municion (coste: " + crateBox.precio.ToString() + ")";
+                Interactable.text = "Presiona R para comprar municion (coste: " + crateBox.precio.ToString() + ")";
                 Interactable2.SetActive(true);
             }else if(col.gameObject.GetComponent<EESongInteractable>())
             {
@@ -734,7 +733,6 @@ public class PlayerController : MonoBehaviour
                 MenuPausa.Instance.PausarJuego();
             }
         }
-
     }
     private void OnPlay(InputValue value)
     {
@@ -746,7 +744,6 @@ public class PlayerController : MonoBehaviour
                 MenuPausa.Instance.ReanudarJuego();
             }
         }
-
     }
 
     private void OnJump(InputValue value)
