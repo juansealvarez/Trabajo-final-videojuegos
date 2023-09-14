@@ -10,6 +10,8 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { private set; get; }
+    public TextMeshProUGUI UILocator;
+
     public List<AudioClip> NoMoney;
 
     public GameObject Interactable2;
@@ -719,6 +721,14 @@ public class PlayerController : MonoBehaviour
                 isEEObject = false;
                 EEsongInteractable = null;
             }
+        }
+    }
+    private void OnTriggerStay(Collider col)
+    {
+        if (col.CompareTag("PlaceLocator"))
+        {
+            var locator = col.gameObject.GetComponent<PlaceLocator>();
+            UILocator.text = locator.location;
         }
     }
     private void OnPause(InputValue value)

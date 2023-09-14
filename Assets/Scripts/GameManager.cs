@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject Interactable2;
+    public TextMeshProUGUI UILocator;
 
     public TextMeshProUGUI Interactable;
     public Transform Player;
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
             PlayerController.UIScore = UIScore;
             PlayerController.Interactable = Interactable;
             PlayerController.Interactable2 = Interactable2;
+            PlayerController.UILocator = UILocator;
         }else
         {
             UISolo.SetActive(true);
