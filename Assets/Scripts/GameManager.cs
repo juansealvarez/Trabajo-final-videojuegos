@@ -146,7 +146,9 @@ public class GameManager : MonoBehaviour
         {
             if (zombiesActuales == 0)
             {
-
+                RondaUI.GetComponent<TextMeshProUGUI>().text = "∞";
+                RondaUI2.GetComponent<TextMeshProUGUI>().text = "∞";
+                RondaUI1.GetComponent<TextMeshProUGUI>().text = "∞";
                 if (!bossIniciado)
                 {
                     cinecontrol.IniciarCinematica();
@@ -206,11 +208,6 @@ public class GameManager : MonoBehaviour
             enemy.GetComponent<EnemyController>().player2Controller = GameManager.Instance.player2Controller;
         }
 
-    }
-
-    private object GetEndRoundAudio()
-    {
-        return EndRoundAudio;
     }
 
     IEnumerator newRound()
