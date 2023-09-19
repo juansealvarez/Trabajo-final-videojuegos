@@ -28,7 +28,16 @@ public class EnemyController : MonoBehaviour
     private bool HizoDeadAnimation = false;
     public PlayerController player1Controller;
     public PlayerController player2Controller;
+    private Rigidbody[] Rigidbodies;
+    public SphereCollider[] sphereColliders;
+    public CapsuleCollider[] capsuleColliders;
+    public BoxCollider[] boxColliders;
 
+    private void Awake()
+    {
+        Rigidbodies = GetComponentsInChildren<Rigidbody>();
+        DisableRagdoll();
+    }
     private void Start()
     {
         mRb = GetComponent<Rigidbody>();
@@ -45,6 +54,45 @@ public class EnemyController : MonoBehaviour
             salud*=1.5f;
             navMeshAgent.speed*=1.5f;
             damage*=1.2f;
+        }
+    }
+
+    private void DisableRagdoll()
+    {
+        foreach(var rigidbody in Rigidbodies)
+        {
+            rigidbody.isKinematic = true;
+        }
+        foreach(var sphereCollider in sphereColliders)
+        {
+            sphereCollider.enabled = false;
+        }
+        foreach(var capsuleCollider in capsuleColliders)
+        {
+            capsuleCollider.enabled = false;
+        }
+        foreach(var boxCollider in boxColliders)
+        {
+            boxCollider.enabled = false;
+        }
+    }
+    private void EnableRagdoll()
+    {
+        foreach(var rigidbody in Rigidbodies)
+        {
+            rigidbody.isKinematic = false;
+        }
+        foreach(var sphereCollider in sphereColliders)
+        {
+            sphereCollider.enabled = true;
+        }
+        foreach(var capsuleCollider in capsuleColliders)
+        {
+            capsuleCollider.enabled = true;
+        }
+        foreach(var boxCollider in boxColliders)
+        {
+            boxCollider.enabled = true;
         }
     }
 
@@ -187,8 +235,12 @@ public class EnemyController : MonoBehaviour
                 transform.position.z
             );
             var bullet = Instantiate(Bullet, instantiatePosition, Quaternion.identity);
-            mAnimator.SetTrigger("Die");
+            // quitar el animator y poner un ragdoll
+            mAnimator.enabled = false;
+            EnableRagdoll();
+            //mAnimator.SetTrigger("Die");
             mCollider.enabled = false;
+            StartCoroutine(disableColliders());
             dead = true;
             Destroy(gameObject, 20f);
             HitboxLeft.SetActive(false);
@@ -196,6 +248,13 @@ public class EnemyController : MonoBehaviour
             GameManager.Instance.zombiesActuales -= 1;
         }
     }
+
+    IEnumerator disableColliders()
+    {
+        yield return new WaitForSeconds(1.5f);
+        DisableRagdoll();
+    }
+
     private void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("KnifeAttack"))

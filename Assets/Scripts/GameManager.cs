@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
         {
             var LugarRandom = UnityEngine.Random.Range(0, Spawnpoints.Count);
             var instantiatePosition = Spawnpoints[LugarRandom].transform.position;
-            int random = UnityEngine.Random.Range(0, 2);
+            int random = UnityEngine.Random.Range(0, EnemiesToInstantiate.Count);
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
             enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
             enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;   
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
                 0f,
                 UnityEngine.Random.Range(boss.position.z + bossController.SpawnRadius, boss.position.z - bossController.SpawnRadius)
             );
-            int random = UnityEngine.Random.Range(0,2);
+            int random = UnityEngine.Random.Range(0,EnemiesToInstantiate.Count);
             var enemy = Instantiate(EnemiesToInstantiate[random], instantiatePosition, Quaternion.identity);
             enemy.GetComponent<EnemyController>().playerController = GameManager.Instance.PlayerController;
             enemy.GetComponent<EnemyController>().Bullet = GameManager.Instance.Bullet;
