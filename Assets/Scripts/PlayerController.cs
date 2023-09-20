@@ -340,8 +340,6 @@ public class PlayerController : MonoBehaviour
                 {
                     //Recarga
                     reloading();
-                    scriptGun.StopAiming();
-                    apuntando = false;
                 }
                 if (scriptGun.balasActuales <= scriptGun.balasCargador * 0.2 && scriptGun.balasTotales != 0)
                 {
@@ -452,6 +450,8 @@ public class PlayerController : MonoBehaviour
             PlayReload();
         }
         isReloading = true;
+        scriptGun.StopAiming();
+        apuntando = false;
         if (aimShotgun.WeaponActive)
         {
             mAudioSource.PlayOneShot(aimPistol.Weapon.audioList[2]);
