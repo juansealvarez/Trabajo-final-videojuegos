@@ -2451,6 +2451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf39f5048ea988469f6dda79496d614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UILocator: {fileID: 0}
   NoMoney:
   - {fileID: 8300000, guid: eaac0feda9cd35e4e9b8d82186e76456, type: 3}
   - {fileID: 8300000, guid: 33f21cfdb263f404996e216ebcd0013c, type: 3}
@@ -9910,6 +9911,7 @@ MonoBehaviour:
   arma: {fileID: 0}
   balas: {fileID: 0}
   PlayerController: {fileID: 2135516418314264313}
+  camara: {fileID: 2135516418643430270}
 --- !u!4 &6599796762579147065 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5059179477758357327, guid: b52a2a857d903434facf521b55ad8bfd, type: 3}
@@ -10194,6 +10196,7 @@ MonoBehaviour:
   arma: {fileID: 0}
   balas: {fileID: 0}
   PlayerController: {fileID: 2135516418314264313}
+  camara: {fileID: 2135516418643430270}
 --- !u!198 &1880224607112888755 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 555357341898524574, guid: b2b131297e001ff4b9e486d17091eb9c, type: 3}

@@ -10,6 +10,8 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { private set; get; }
+    private AudioSource GameSource;
+
     public TextMeshProUGUI UILocator;
 
     public List<AudioClip> NoMoney;
@@ -165,6 +167,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        GameSource = gameManager.transform.GetComponent<AudioSource>();
         grenadeCooldown = 0f;
 
         mRb = GetComponent<Rigidbody>();
@@ -337,6 +340,8 @@ public class PlayerController : MonoBehaviour
                 {
                     //Recarga
                     reloading();
+                    scriptGun.StopAiming();
+                    apuntando = false;
                 }
                 if (scriptGun.balasActuales <= scriptGun.balasCargador * 0.2 && scriptGun.balasTotales != 0)
                 {
@@ -374,6 +379,14 @@ public class PlayerController : MonoBehaviour
                 }
                 UIScore.text = puntaje.ToString();
                 UIScoreForOtherCamera.text = puntaje.ToString();
+                mAudioSource.UnPause();
+                BackgroundSource.UnPause();
+                GameSource.UnPause();
+            }else
+            {
+                mAudioSource.Pause();
+                BackgroundSource.Pause();
+                GameSource.Pause();
             }
         }
         else

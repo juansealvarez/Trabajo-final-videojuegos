@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public int CantidadZombiesPorHordaCoop = 15;
 
     public static GameManager Instance { private set; get; }
+    public AudioSource BossSound;
     public List<AudioClip> StartRoundAudio;
 
     public List<AudioClip> EndRoundAudio;
@@ -164,7 +165,13 @@ public class GameManager : MonoBehaviour
             StartCoroutine(PlayEESong());
             reproduciendoCancionEE = true;
         }
-
+        if(!MenuPausa.isPaused)
+        {
+            BossSound.UnPause();
+        }else
+        {
+            BossSound.Pause();
+        }
     }
 
     IEnumerator PlayEESong()

@@ -220,6 +220,13 @@ public class BossController : MonoBehaviour
         {
             Destroy(gameObject, 5f);
         }
+        if(!MenuPausa.isPaused)
+        {
+            GetComponent<AudioSource>().UnPause();
+        }else
+        {
+            GetComponent<AudioSource>().Pause();
+        }
 
     }
     IEnumerator stopPlaying(int numero)

@@ -33,6 +33,8 @@ public class AimShotgun : MonoBehaviour
     private AudioSource audioSource;
     private Animator animator;
     private float aiming;
+    [SerializeField]
+    private Camera camara;
 
     private void Awake()
     {
@@ -112,6 +114,7 @@ public class AimShotgun : MonoBehaviour
         {
             animator.enabled = false;
             isAiming = true;
+            camara.fieldOfView = 40f;
             transform.position = Vector3.MoveTowards(transform.position, targetAim.position, aiming);
         }
     }
@@ -119,6 +122,7 @@ public class AimShotgun : MonoBehaviour
     {
         animator.enabled = true;
         isAiming = false;
+        camara.fieldOfView = 60f;
         transform.position = Vector3.MoveTowards(transform.position, targetNoAim.position, aiming);
     }
 }

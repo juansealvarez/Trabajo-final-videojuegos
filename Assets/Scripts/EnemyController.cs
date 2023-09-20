@@ -147,7 +147,13 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject, 5f);
         }
-        
+        if(!MenuPausa.isPaused)
+        {
+            GetComponent<AudioSource>().UnPause();
+        }else
+        {
+            GetComponent<AudioSource>().Pause();
+        }
     }
 
     private Collider IsPlayerNearby()

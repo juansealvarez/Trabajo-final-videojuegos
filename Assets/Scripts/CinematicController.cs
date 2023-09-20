@@ -47,6 +47,13 @@ public class CinematicController : MonoBehaviour
         {
             AudioBoss.SetActive(false);
         }
+        if(!MenuPausa.isPaused)
+        {
+            GetComponent<AudioSource>().UnPause();
+        }else
+        {
+            GetComponent<AudioSource>().Pause();
+        }
     }
 
     IEnumerator PlayScene()
