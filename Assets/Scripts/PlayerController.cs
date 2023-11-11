@@ -157,6 +157,8 @@ public class PlayerController : MonoBehaviour
     private CrateBox crateBox;
     private bool isCrateBox;
     private bool isPlayingNoMoneyAudio;
+    private float speed1 = 0f;
+    private float turnSpeed3;
 
     private void Awake()
     {
@@ -205,6 +207,7 @@ public class PlayerController : MonoBehaviour
         modelAnimator.SetBool("IsShotgun", true);
         scriptGun = aimShotgun;
         turnSpeed2 = turnSpeed;
+        turnSpeed3 = turnSpeed;
 
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(PauseSelectedButton);
@@ -262,11 +265,11 @@ public class PlayerController : MonoBehaviour
                 }
                 if (corriendo)
                 {
-                    speed = WalkingSpeed * RunnigMultiplier;
+                    speed1 = WalkingSpeed * RunnigMultiplier;
                 }
                 else
                 {
-                    speed = WalkingSpeed;
+                    speed1 = WalkingSpeed;
                 }
 
                 /*mRb.velocity = mDirection.y * speed * transform.forward
@@ -276,12 +279,23 @@ public class PlayerController : MonoBehaviour
                 var control = GetComponent<PlayerInput>().currentControlScheme;
                 if (control == "Player1Controller")
                 {
-                    turnSpeed2 = turnSpeed * 50;
+                    turnSpeed3 = turnSpeed * 50;
                 }
                 else
                 {
-                    turnSpeed2 = turnSpeed;
+                    turnSpeed3 = turnSpeed;
                 }
+
+                if(apuntando)
+                {
+                    speed = speed1*0.75f;
+                    turnSpeed2 = turnSpeed3 * 0.5f;
+                }else
+                {
+                    speed = speed1;
+                    turnSpeed2 = turnSpeed3;
+                }
+
                 transform.Rotate(
                     Vector3.up,
                     turnSpeed2 * Time.deltaTime * mDeltaLook.x
@@ -666,21 +680,24 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.CompareTag("EnemyAttack"))
-        {
-            isBeingDamaged = true;
-            var damage = col.gameObject.GetComponentInParent<EnemyController>().EnemyType.Damage;
-            TakeDamage(damage);
+        if(!GameManager.Instance.commandGodModeDone){
+            if (col.CompareTag("EnemyAttack"))
+            {
+                isBeingDamaged = true;
+                var damage = col.gameObject.GetComponentInParent<EnemyController>().EnemyType.Damage;
+                TakeDamage(damage);
+            }
+            else if (col.CompareTag("BossAttack"))
+            {
+                isBeingDamaged = true;
+                var damage = col.gameObject.GetComponentInParent<BossController>().EnemyType.Damage;
+                TakeDamage(damage);
+            }
+            {
+                isBeingDamaged = false;
+            }
         }
-        else if (col.CompareTag("BossAttack"))
-        {
-            isBeingDamaged = true;
-            var damage = col.gameObject.GetComponentInParent<BossController>().EnemyType.Damage;
-            TakeDamage(damage);
-        }
-        {
-            isBeingDamaged = false;
-        }
+        
 
         if (col.CompareTag("AmmoCrate"))
         {

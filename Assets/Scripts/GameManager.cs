@@ -75,6 +75,12 @@ public class GameManager : MonoBehaviour
     public AudioClip interactSound;
     public PlayerController player1Controller;
     public PlayerController player2Controller;
+    [System.NonSerialized]
+    public bool executedKillCommand;
+    public bool commandKillDone;
+    [System.NonSerialized]
+    public bool executedGodModeCommand;
+    public bool commandGodModeDone;
 
     private void Awake()
     {
@@ -98,6 +104,7 @@ public class GameManager : MonoBehaviour
         {
             zombies+=5;
         }
+        
         BackgroundSource = transform
             .GetComponent<AudioSource>();
         if (!isSoloGame)
@@ -125,6 +132,16 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        executedKillCommand = false;
+        if(commandKillDone)
+        {
+            executedKillCommand = true;
+        }
+        executedGodModeCommand = false;
+        if(commandGodModeDone)
+        {
+            executedGodModeCommand = true;
+        }
         if (Ronda <= (rondaMaxima-1))
         {
             if (zombiesActuales == 0)

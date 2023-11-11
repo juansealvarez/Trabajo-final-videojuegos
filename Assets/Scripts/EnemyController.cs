@@ -133,15 +133,21 @@ public class EnemyController : MonoBehaviour
                 mAnimator.SetBool("IsWalking", false);
                 navMeshAgent.isStopped = true;
             }
-            if(StateNameController.isBossDead && !HizoDeadAnimation)
+            if((StateNameController.isBossDead || GameManager.Instance.executedKillCommand) && !HizoDeadAnimation)
             {
-                mAnimator.SetTrigger("Die");
+                // quitar el animator y poner un ragdoll
+                mAnimator.enabled = false;
+                EnableRagdoll();
+                StartCoroutine(disableColliders());
+                //mAnimator.SetTrigger("Die");
                 mCollider.enabled = false;
                 dead = true;
                 mAudioSource.Stop();
                 Destroy(gameObject, 20f);
                 HizoDeadAnimation = true;
                 HitboxLeft.SetActive(false);
+                GameManager.Instance.zombiesActuales -= 1;
+                
             }
         }else
         {
